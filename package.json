@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "node --env-file-if-exists=.env --import tsx scripts/dev.ts",
+    "preview": "node --env-file-if-exists=.env --import tsx scripts/dev.ts --production",
     "dev:web": "next dev apps/web --webpack -H 127.0.0.1 -p 3100",
     "dev:runtime": "node --env-file-if-exists=.env --import tsx apps/runtime/src/main.ts",
     "dev:lab": "node --env-file-if-exists=.env --import tsx apps/workspace-lab/src/main.ts",

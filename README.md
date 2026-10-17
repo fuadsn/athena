@@ -43,6 +43,15 @@ docker compose up --build
 
 The compose services expose the web and runtime only on host loopback; the Lab is internal. Graph and Lab data have separate persistent volumes. The image tag and multi-architecture digest are pinned in `compose.yaml`. Restart services after changing model configuration.
 
+For recording and production browser checks, stop the development command, then run:
+
+```sh
+npm run build
+npm run preview -- --embedded
+```
+
+`preview` runs the built web interface with the same runtime and Lab, without development controls or hot reload. Omit `--embedded` when the database is already running separately. Both modes use the same saved local graph and Lab data.
+
 ## Demonstration
 
 1. Enter as **Mira**, the process owner. Show three historical cases and no published procedure.

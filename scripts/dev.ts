@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import type { FalkorDB as EmbeddedGraph } from 'falkordblite';
 if (!existsSync('.env')) throw new Error('Run npm run setup first');
+const production = process.argv.includes('--production');
+if (production && !existsSync('apps/web/.next/BUILD_ID')) throw new Error('Run npm run build before npm run preview');
 const children: ChildProcess[] = [];
 let graph: EmbeddedGraph | undefined;
 let stopping = false;
@@ -44,5 +46,5 @@ const launch = (label: string, args: string[]) => {
 };
 launch('Workspace Lab', ['--env-file-if-exists=.env', '--import', 'tsx', 'apps/workspace-lab/src/main.ts']);
 launch('Athena runtime', ['--env-file-if-exists=.env', '--import', 'tsx', 'apps/runtime/src/main.ts']);
-launch('Web interface', [resolve('node_modules/next/dist/bin/next'), 'dev', 'apps/web', '--webpack', '-H', '127.0.0.1', '-p', '3100']);
+launch('Web interface', [resolve('node_modules/next/dist/bin/next'), production ? 'start' : 'dev', 'apps/web', ...(production ? [] : ['--webpack']), '-H', '127.0.0.1', '-p', '3100']);
 process.stdout.write('Athena local workspace: http://127.0.0.1:3100\n');

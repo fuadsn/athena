@@ -8,6 +8,7 @@ Primary track: Company Brain. Use synthetic HelioWorks data and the local Worksp
 2. Configure a tested live `OPENAI_MODEL` and `OPENAI_API_KEY` on the server. Open `http://127.0.0.1:3100`.
 3. Select Mira in the **Local demo persona** control. Open **Demo controls**, acknowledge the local reset, and choose **Reset demo**. Confirm zero published procedures and zero verified workspaces.
 4. Keep recording at a readable browser size, ideally 1440 × 1000. Close unrelated applications. Do not show keys or local environment files.
+5. Use `npm run build` followed by `npm run preview -- --embedded` for recording, after stopping development mode. This serves the production interface without Next.js development controls.
 
 ## The demonstration
 
