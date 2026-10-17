@@ -45,3 +45,22 @@
 .receipt code{font-size:11px;color:#65596f;line-height:1.7}
 .receipt small{font-size:11px;color:#6e6477}
 .receipt>.badge{font-size:10px}
+.demo-controls>p,.demo-controls .muted,.demo-controls .field-help{font-size:12px;color:#65596f}
+.demo-controls .check-label{font-size:12px;color:#65596f}
+
+@media(max-width:640px){
+  .case-grid{grid-template-columns:1fr;gap:14px}
+  .case-card{padding:18px 18px 0}
+  .case-top{margin-bottom:12px}
+  .customer-avatar{width:34px;height:34px;font-size:17px}
+  .case-top>.badge{display:inline-flex;font-size:10px}
+  .case-card h3{font-size:17px}
+  .case-date{font-size:11px;color:#777180}
+  .case-facts{grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .case-facts small{font-size:11px;color:#777180}
+  .case-facts strong{font-size:14px;color:#51475e}
+  .case-bottom{flex-direction:row;align-items:center;padding:10px 0}
+  .case-bottom>span{display:inline;font-size:11px;color:#777180}
+  .case-bottom .text-button{font-size:12px;min-height:32px;gap:6px}
+  .case-bottom svg{width:15px}
+}
