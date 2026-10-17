@@ -1,39 +1,51 @@
 # Validation status
 
-Status as of the initial implementation on 17 October 2026. This file reports performed checks, not the intended release result.
+Updated 17 October 2026 after actual database, HTTP, and browser verification. This file reports performed checks, not an assumed release result.
 
 ## Completed
 
-- Synthetic JSON consistency: ten source hashes, thirty-one citation references, event chronology, historical durations, and T01–T16 specification coverage passed.
-- Root TypeScript check passed.
-- Next.js production webpack build passed.
-- The latest combined unit run passed 73 tests; four opt-in real graph cases were skipped. A subsequent focused graph run passed all 13 cases, including an additional stored-source-hash check.
-- Workspace Lab: nine real file-backed application tests passed, including persistence, concurrent retries, restart recovery, access/expiry evaluation, corruption and exclusive writer ownership.
-- Executor: forty-three cases passed together. These use an explicit test graph double and the actual file-backed Lab.
-- Runtime: fourteen service-flow tests passed using explicit graph/model doubles and actual Lab persistence.
-- Playwright headline test discovery passed.
-- All four local services started with `npm run dev -- --embedded`. Logs confirm actual FalkorDB 4.18.3 loaded into Redis 8.4.0; the runtime imported the history and reported graph availability.
-- HTTP checks against the running runtime confirmed four people, three cases, fifteen observations, ten sources, zero procedures/approvals, source retrieval, and signed persona selection. A cold operator request persisted as `BLOCKED / NEEDS_TEACHING`, with zero model calls and no receipts or verification. Owner submission was correctly rejected.
-- The real authority endpoint replaced Ravi with Leena, closed the old assignment, created revision 2, and increased knowledge revision to 1. A stale revision update was rejected. Owner reset successfully restored both Lab and graph to the cold demo state.
-- The Next.js page was served successfully over HTTP. This verifies serving, not visual layout or browser behavior.
+| Check | Actual outcome |
+|---|---|
+| Synthetic JSON consistency | Ten source hashes, thirty-one citations, chronology, observed durations, and T01–T16 specification coverage passed |
+| `npm test` | 74 passed; four opt-in graph cases skipped here and passed in the integration command |
+| `npm run typecheck` | Passed |
+| `npm run build` | Next.js production webpack build passed |
+| `npm run test:integration` | All 63 passed against the real embedded FalkorDB and real file-backed Lab |
+| `npm run test:e2e -- cold.spec.ts` | Passed against both development and production previews using installed Chrome |
+| Desktop/mobile UI inspection | 14 actual-service checks passed; screenshots inspected and mobile evidence readability corrected |
+| `npm run preview -- --embedded` | All four services started; persisted graph reopened; health endpoint reported available |
 
-## Not yet verified
+The 63 integration cases comprise four graph relationship cases, fourteen runtime cases with actual FalkorDB, fourteen runtime cases with an explicit graph double, fifteen Lab HTTP cases, and sixteen runtime HTTP authorization cases. Runtime integration cases use an explicit test-only model; they do not prove live-model performance. The Lab stores actual persisted resources throughout these checks.
 
-- Actual FalkorDB Cypher execution and persistence with the pinned Docker image.
-- Full graph, Workspace Lab, and runtime HTTP integration suites. This managed session denies test-process TCP connections/listeners with `EPERM`, even while the approved development process is running. The attempted combined run passed fourteen test-double runtime cases; twenty-nine real graph/HTTP cases failed during setup and four graph cases skipped after setup failure. No passing result is claimed for them.
-- Sixteen additional runtime HTTP authorization cases are implemented and typechecked; execution remains pending the same local-network permission boundary.
-- Live-model induction and three consecutive recorded live rehearsals. API model/key configuration was still empty at the last check.
-- Browser interaction and visual verification. Chrome launch aborted under the managed process restrictions; a running preview is available at http://127.0.0.1:3100.
-- Docker Compose build/start, public repository publication, working demo video, and participant inspection.
+The first unrestricted integration run passed 62/63. Its stalled-model test advanced fake timers while real database setup was still pending, triggering the graph query timeout. The corrected test waits for the model call to start before advancing time. The subsequent complete run passed all 63 with no unhandled errors.
 
-## Environment notes
+Browser checks found and fixed a real origin mismatch: Next normalized its development URL to localhost while the browser used 127.0.0.1. The proxy now checks the actual local HTTP Host and exact Origin, and the permanent browser test verifies legitimate entry plus rejection of foreign origins. Other checks cover source content, persona permissions, missing-model messaging, cold-request blocking, mobile dialogs, and absence of browser exceptions.
 
-Local Node.js is v25.2.1. Vitest 5 declares supported Node lines 22.12+, 24, and 26+, so Node 24 LTS is the documented reproducible setup and the container base. Tests executed successfully on the available local Node version, but that does not change the upstream support declaration.
+Actual runtime API checks confirmed historical-only cold state, source retrieval, zero model calls and no receipts for `NEEDS_TEACHING`, owner/operator separation, Ravi-to-Leena reassignment, stale revision rejection, and owner reset of both services.
 
-Docker Desktop's executable is missing on this host. Colima is installed but stopped. Starting it from this session was blocked while writing `~/.colima`, and elevated execution was rejected because sandbox approvals are disabled. The official embedded database provides local services without touching Colima. A terminal outside the test-process restriction or a changed session permission profile is still needed for the full integration/browser suites.
+## Remaining release gates
 
-The official FalkorDB Docker registry lists the pinned v4.22.1 image and its amd64/arm64 manifest. Availability was checked; successful local execution has not yet been established.
+- **Live model:** `OPENAI_API_KEY` and `OPENAI_MODEL` remain empty. `npm run eval:live` was attempted and correctly failed with `Runtime has no live model configured`. The failed attempt and a false release-gate result are preserved under `.local/live-rehearsals/2026-10-17T17-15-46.396Z/`. Zero live rehearsals have passed.
+- **Complete browser flow:** the headline learn → review → execute → change authority flow still requires the live model. Cold-browser verification does not replace it.
+- **Container deployment:** the pinned FalkorDB 4.22.1 image and full Compose deployment remain unverified. All actual graph tests above used embedded FalkorDB 4.18.3 with Redis 8.4.0.
+- **Submission:** a real demo video, public repository URL, and participant code/demo inspection are still required. No remote repository has been created or pushed by this checkout.
 
-## Release gate
+## Environment and recovery
 
-Run the commands in the README after prerequisites are available. All deterministic P0 checks, the actual graph/HTTP integrations, and the headline Playwright flow must pass. Then record three consecutive live reset-to-completion rehearsals and a working demo video. Preserve failed live attempts. Do not present this initial implementation status as release completion.
+Local Node.js is v25.2.1. Vitest 5 declares supported lines 22.12+, 24, and 26+, so Node 24 LTS remains the documented reproducible setup and container base. Checks executed successfully on the available local version.
+
+The initial managed sandbox blocked test sockets and Chrome. Permissions were subsequently enabled and those checks ran successfully; that earlier restriction is no longer the blocker.
+
+Colima successfully started after permissions were enabled. During image download/build, the Mac's disk reached 100% capacity and Colima's data filesystem reported I/O errors and remounted read-only. Athena's generated npm cache was removed, recovering about 414 MB; roughly 539 MB remained at the last check. Colima was cleanly stopped. No unrelated user files, existing containers, or volumes were deleted. Free at least 3 GB before restarting Colima and retrying the container build; if its filesystem still reports errors, inspect/recover the VM storage before further builds.
+
+The embedded graph and Lab remain available through the production preview at http://127.0.0.1:3100. They use separate persisted local stores. Restart the preview after configuring model values so the runtime loads them.
+
+## Finish in order
+
+1. Configure the model in `.env` and restart the local preview.
+2. Run the full `npm run test:e2e` and fix any live-model failures.
+3. Run `npm run eval:live` until three consecutive reset-to-completion rehearsals pass; preserve every failed attempt.
+4. Retry Compose verification once disk space is available.
+5. Inspect the implementation, record the actual demo, and publish the approved repository and video links for submission.
+
+The original local implementation checkpoint was split into feature commits without changing its tree. Subsequent fixes, browser coverage, mobile readability, rehearsal diagnostics, and production preview each have separate commits. A backup reference remains at `checkpoint/before-feature-split-20261017`.
