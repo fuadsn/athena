@@ -1,0 +1,38 @@
+{
+  "name": "athena-company-brain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12" },
+  "scripts": {
+    "dev": "tsx scripts/dev.ts",
+    "dev:web": "next dev apps/web -p 3100",
+    "dev:runtime": "tsx --env-file-if-exists=.env apps/runtime/src/main.ts",
+    "dev:lab": "tsx --env-file-if-exists=.env apps/workspace-lab/src/main.ts",
+    "build": "tsc --noEmit && next build apps/web",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx --env-file-if-exists=.env scripts/seed.ts",
+    "demo:reset": "tsx --env-file-if-exists=.env scripts/reset.ts",
+    "test": "vitest run --exclude 'tests/integration/**' --exclude 'tests/e2e/**'",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "eval:live": "tsx --env-file-if-exists=.env evals/live/run.ts"
+  },
+  "dependencies": {
+    "falkordb": "6.8.0",
+    "next": "16.4.2",
+    "openai": "7.36.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  }
+}

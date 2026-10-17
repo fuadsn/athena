@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext", "moduleResolution": "Bundler", "jsx": "react-jsx",
+    "strict": true, "noEmit": true, "esModuleInterop": true, "skipLibCheck": true,
+    "resolveJsonModule": true, "allowImportingTsExtensions": true,
+    "types": ["node"], "baseUrl": ".",
+    "paths": {
+      "@athena/contracts": ["packages/contracts/src/index.ts"],
+      "@athena/graph": ["packages/graph/src/index.ts"],
+      "@athena/learner": ["packages/learner/src/index.ts"],
+      "@athena/executor": ["packages/executor/src/index.ts"]
+    }
+  },
+  "include": ["apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "evals/live/**/*.ts", "*.ts"],
+  "exclude": ["node_modules", "apps/web/.next", ".local"]
+}

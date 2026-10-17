@@ -1,0 +1,964 @@
+{
+  "schemaVersion": "1.0.0",
+  "datasetId": "helioworks-history-v1",
+  "synthetic": true,
+  "description": "Synthetic historical facts and directory authority for Athena cold-start ingestion.",
+  "importBoundary": {
+    "purpose": "RUNTIME_HISTORY_ONLY",
+    "allowedNodeLabels": [
+      "Person",
+      "Role",
+      "Process",
+      "Case",
+      "ActionObservation",
+      "Source"
+    ],
+    "prohibitedNodeLabels": [
+      "Procedure",
+      "Rule",
+      "Step",
+      "Plan",
+      "Approval"
+    ],
+    "sourceContentHashAlgorithm": "SHA-256 of exact UTF-8 text, without added newline",
+    "historicalResources": "Observation payloads only; do not create live Lab resources or current Request nodes.",
+    "historicalConsent": "Evidence only; never convert historical consent into an executable approval.",
+    "policyBoundary": "Observed outcomes do not establish reusable policy. A new owner confirmation is required."
+  },
+  "company": {
+    "id": "company_helioworks",
+    "name": "HelioWorks"
+  },
+  "knowledgeRevision": 0,
+  "people": [
+    {
+      "id": "person_mira",
+      "name": "Mira",
+      "email": "mira@helioworks.example",
+      "title": "Operations Lead",
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Mira: mira@helioworks.example; title: Operations Lead.",
+          "observationId": null
+        }
+      ]
+    },
+    {
+      "id": "person_ana",
+      "name": "Ana",
+      "email": "ana@helioworks.example",
+      "title": "Trial Operator",
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Ana: ana@helioworks.example; title: Trial Operator.",
+          "observationId": null
+        }
+      ]
+    },
+    {
+      "id": "person_ravi",
+      "name": "Ravi",
+      "email": "ravi@helioworks.example",
+      "title": "Customer Operations",
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Ravi: ravi@helioworks.example; title: Customer Operations.",
+          "observationId": null
+        }
+      ]
+    },
+    {
+      "id": "person_leena",
+      "name": "Leena",
+      "email": "leena@helioworks.example",
+      "title": "Customer Operations",
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Leena: leena@helioworks.example; title: Customer Operations.",
+          "observationId": null
+        }
+      ]
+    }
+  ],
+  "processes": [
+    {
+      "id": "process_trial",
+      "name": "Customer trial-workspace provisioning",
+      "ownerPersonId": "person_mira",
+      "operatorPersonIds": [
+        "person_ana"
+      ],
+      "ownershipRevision": 1,
+      "ownerEvidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Mira is the owner of the customer trial-workspace process (process_trial).",
+          "observationId": null
+        },
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "As process owner, Mira may review and publish its procedure and manage its approval-role assignment in local demo mode.",
+          "observationId": null
+        }
+      ],
+      "operatorEvidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Ana is a trial operator and may submit trial-workspace requests for this process.",
+          "observationId": null
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "role_trial_extension_approver",
+      "name": "Trial Extension Approver",
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Ravi holds the Trial Extension Approver role (role_trial_extension_approver), effective 2026-09-01T00:00:00Z, assignment revision 1.",
+          "observationId": null
+        }
+      ]
+    }
+  ],
+  "roleAssignments": [
+    {
+      "id": "assignment_trial_extension_v1",
+      "personId": "person_ravi",
+      "roleId": "role_trial_extension_approver",
+      "revision": 1,
+      "validFrom": "2026-09-01T00:00:00Z",
+      "validTo": null,
+      "evidenceRefs": [
+        {
+          "sourceId": "source_directory",
+          "revision": 1,
+          "quote": "Ravi holds the Trial Extension Approver role (role_trial_extension_approver), effective 2026-09-01T00:00:00Z, assignment revision 1.",
+          "observationId": null
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_directory",
+      "revision": 1,
+      "kind": "directory",
+      "title": "HelioWorks directory and current assignments",
+      "occurredAt": "2026-09-01T00:00:00Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_mira"
+      ],
+      "synthetic": true,
+      "text": "HelioWorks synthetic company directory, revision 1.\nMira is the owner of the customer trial-workspace process (process_trial).\nAs process owner, Mira may review and publish its procedure and manage its approval-role assignment in local demo mode.\nAna is a trial operator and may submit trial-workspace requests for this process.\nRavi holds the Trial Extension Approver role (role_trial_extension_approver), effective 2026-09-01T00:00:00Z, assignment revision 1.\nLeena is a member of Customer Operations and currently has no Trial Extension Approver assignment.\nMira: mira@helioworks.example; title: Operations Lead.\nAna: ana@helioworks.example; title: Trial Operator.\nRavi: ravi@helioworks.example; title: Customer Operations.\nLeena: leena@helioworks.example; title: Customer Operations.",
+      "contentHash": "26de00b88544c5d6a8a491ad31d791f9ed91e0feb574b75a35866a05ef76069b"
+    },
+    {
+      "id": "source_northstar_ticket",
+      "revision": 1,
+      "kind": "ticket",
+      "title": "Northstar trial request and closure",
+      "occurredAt": "2026-10-01T07:00:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "Ticket HIST-NORTHSTAR\nCustomer: Northstar\nOwner email: owner@northstar.example\nCustomer request: Please create a trial workspace for Northstar for 7 days.\nClosed by Ana: The workspace was created for this customer and activated after configuration. The owner had member access; the recorded expiry was 2026-10-08T09:00:00.000Z.",
+      "contentHash": "437fd097e1e14ccfb48a38c41df67e514399a87faca55f647d8eb66a4d301fc5"
+    },
+    {
+      "id": "source_northstar_chat",
+      "revision": 1,
+      "kind": "chat",
+      "title": "Northstar operations conversation",
+      "occurredAt": "2026-10-01T08:30:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana",
+        "person_mira"
+      ],
+      "synthetic": true,
+      "text": "Ana: Northstar asked for a seven-day evaluation. I set the expiry, then added the owner as a member, and activated the workspace after both were saved.\nMira: Thanks; the customer confirmed they could sign in to this workspace.",
+      "contentHash": "a0850661fce3c4b9f11c63f473265e6d6885ec3de7e9674474677e1c57681629"
+    },
+    {
+      "id": "source_northstar_audit",
+      "revision": 1,
+      "kind": "audit",
+      "title": "Northstar historical workspace audit",
+      "occurredAt": "2026-10-01T09:01:40.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_northstar\",\"requestId\":\"historical_request_northstar\"},\"at\":\"2026-10-01T09:00:00.000Z\",\"id\":\"audit_northstar_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}\n{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:00:20.000Z\",\"id\":\"audit_northstar_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}\n{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:00:40.000Z\",\"id\":\"audit_northstar_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}\n{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:00.000Z\",\"id\":\"audit_northstar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}\n{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@northstar.example\",\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:40.000Z\",\"id\":\"audit_northstar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-01T09:01:40.000Z\",\"role\":\"member\"}}",
+      "contentHash": "f48c75118858ca4f4b430025f5487d920ea8e4e1c2da0aad9ab73900e5ad881f"
+    },
+    {
+      "id": "source_cedar_ticket",
+      "revision": 1,
+      "kind": "ticket",
+      "title": "Cedar trial request and closure",
+      "occurredAt": "2026-10-03T08:00:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "Ticket HIST-CEDAR\nCustomer: Cedar\nOwner email: owner@cedar.example\nCustomer request: Please create a trial workspace for Cedar for 7 days.\nClosed by Ana: The workspace was created for this customer and activated after configuration. The owner had member access; the recorded expiry was 2026-10-10T10:00:00.000Z.",
+      "contentHash": "507b1399212b5072435fc0d1ccba86227c3c7b830ce6a732fbb5f0eec7f53342"
+    },
+    {
+      "id": "source_cedar_chat",
+      "revision": 1,
+      "kind": "chat",
+      "title": "Cedar operations conversation",
+      "occurredAt": "2026-10-03T09:30:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana",
+        "person_mira"
+      ],
+      "synthetic": true,
+      "text": "Ana: Cedar received a seven-day trial. This time I added the owner as a member first, then saved the expiry. It stayed inactive until both settings were present.\nMira: The handoff for Cedar is complete.",
+      "contentHash": "57022b40854b3c660c0fddf345367e07682c69e843ec43377f02b1e2e29bd281"
+    },
+    {
+      "id": "source_cedar_audit",
+      "revision": 1,
+      "kind": "audit",
+      "title": "Cedar historical workspace audit",
+      "occurredAt": "2026-10-03T10:01:40.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_cedar\",\"requestId\":\"historical_request_cedar\"},\"at\":\"2026-10-03T10:00:00.000Z\",\"id\":\"audit_cedar_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}\n{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:00:20.000Z\",\"id\":\"audit_cedar_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":null,\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}\n{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:00:40.000Z\",\"id\":\"audit_cedar_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}\n{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:00.000Z\",\"id\":\"audit_cedar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}\n{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@cedar.example\",\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:40.000Z\",\"id\":\"audit_cedar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-03T10:01:40.000Z\",\"role\":\"member\"}}",
+      "contentHash": "df933b69e27b7b6f461e50438fb11c6007db5d2d6263dd067b82751d39b95caa"
+    },
+    {
+      "id": "source_lumen_ticket",
+      "revision": 1,
+      "kind": "ticket",
+      "title": "Lumen trial request and closure",
+      "occurredAt": "2026-09-15T09:00:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "Ticket HIST-LUMEN\nCustomer: Lumen\nOwner email: owner@lumen.example\nCustomer request: Please create a trial workspace for Lumen for 30 days.\nClosed by Ana: The workspace was created for this customer and activated after configuration. The owner had member access; the recorded expiry was 2026-10-15T11:00:00.000Z.",
+      "contentHash": "17b4076476116b330c2b0778865d8a91a99408c5d50554feef7cb2ea144cdc55"
+    },
+    {
+      "id": "source_lumen_chat",
+      "revision": 1,
+      "kind": "chat",
+      "title": "Lumen operations conversation",
+      "occurredAt": "2026-09-15T10:30:00.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana",
+        "person_ravi"
+      ],
+      "synthetic": true,
+      "text": "Ana: Lumen asked for thirty days because their evaluation spans two review meetings. Ravi, are you comfortable with that for this customer?\nRavi: Yes, I approve a thirty-day trial for Lumen for this request only.\nAna: I created it inactive, saved the thirty-day expiry and member access, then activated it. The owner confirmed access.",
+      "contentHash": "b59755d05f84bf6a00cdbe33c343445b6ec25b50d731eaff7cab1d9c4c1b2b76"
+    },
+    {
+      "id": "source_lumen_audit",
+      "revision": 1,
+      "kind": "audit",
+      "title": "Lumen historical workspace audit",
+      "occurredAt": "2026-09-15T11:01:40.000Z",
+      "importedAt": "2026-10-17T14:00:00Z",
+      "authorPersonIds": [
+        "person_ana"
+      ],
+      "synthetic": true,
+      "text": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_lumen\",\"requestId\":\"historical_request_lumen\"},\"at\":\"2026-09-15T11:00:00.000Z\",\"id\":\"audit_lumen_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}\n{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:00:20.000Z\",\"id\":\"audit_lumen_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}\n{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:00:40.000Z\",\"id\":\"audit_lumen_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}\n{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:00.000Z\",\"id\":\"audit_lumen_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}\n{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@lumen.example\",\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:40.000Z\",\"id\":\"audit_lumen_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-09-15T11:01:40.000Z\",\"role\":\"member\"}}",
+      "contentHash": "893171718d239539540df807f18c1193416db9b99a66002029d6be460311a4f4"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case_northstar",
+      "processId": "process_trial",
+      "customerId": "customer_northstar",
+      "customerName": "Northstar",
+      "ownerEmail": "owner@northstar.example",
+      "openedAt": "2026-10-01T07:00:00.000Z",
+      "closedAt": "2026-10-01T09:01:40.000Z",
+      "status": "CLOSED",
+      "sourceRefs": [
+        {
+          "sourceId": "source_northstar_ticket",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_northstar_chat",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1
+        }
+      ],
+      "observationIds": [
+        "observation_northstar_01",
+        "observation_northstar_02",
+        "observation_northstar_03",
+        "observation_northstar_04",
+        "observation_northstar_05"
+      ],
+      "outcome": {
+        "observedDurationDays": 7,
+        "workspaceId": "historical_workspace_northstar",
+        "createdAt": "2026-10-01T09:00:00.000Z",
+        "expiresAt": "2026-10-08T09:00:00.000Z",
+        "activeAtClose": true,
+        "ownerAccessRole": "member",
+        "ownerAccessSucceededAtClose": true,
+        "evidenceRefs": [
+          {
+            "sourceId": "source_northstar_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:00.000Z\",\"id\":\"audit_northstar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}",
+            "observationId": "observation_northstar_04"
+          },
+          {
+            "sourceId": "source_northstar_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@northstar.example\",\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:40.000Z\",\"id\":\"audit_northstar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-01T09:01:40.000Z\",\"role\":\"member\"}}",
+            "observationId": "observation_northstar_05"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case_cedar",
+      "processId": "process_trial",
+      "customerId": "customer_cedar",
+      "customerName": "Cedar",
+      "ownerEmail": "owner@cedar.example",
+      "openedAt": "2026-10-03T08:00:00.000Z",
+      "closedAt": "2026-10-03T10:01:40.000Z",
+      "status": "CLOSED",
+      "sourceRefs": [
+        {
+          "sourceId": "source_cedar_ticket",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_cedar_chat",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1
+        }
+      ],
+      "observationIds": [
+        "observation_cedar_01",
+        "observation_cedar_02",
+        "observation_cedar_03",
+        "observation_cedar_04",
+        "observation_cedar_05"
+      ],
+      "outcome": {
+        "observedDurationDays": 7,
+        "workspaceId": "historical_workspace_cedar",
+        "createdAt": "2026-10-03T10:00:00.000Z",
+        "expiresAt": "2026-10-10T10:00:00.000Z",
+        "activeAtClose": true,
+        "ownerAccessRole": "member",
+        "ownerAccessSucceededAtClose": true,
+        "evidenceRefs": [
+          {
+            "sourceId": "source_cedar_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:00.000Z\",\"id\":\"audit_cedar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}",
+            "observationId": "observation_cedar_04"
+          },
+          {
+            "sourceId": "source_cedar_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@cedar.example\",\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:40.000Z\",\"id\":\"audit_cedar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-03T10:01:40.000Z\",\"role\":\"member\"}}",
+            "observationId": "observation_cedar_05"
+          }
+        ]
+      }
+    },
+    {
+      "id": "case_lumen",
+      "processId": "process_trial",
+      "customerId": "customer_lumen",
+      "customerName": "Lumen",
+      "ownerEmail": "owner@lumen.example",
+      "openedAt": "2026-09-15T09:00:00.000Z",
+      "closedAt": "2026-09-15T11:01:40.000Z",
+      "status": "CLOSED",
+      "sourceRefs": [
+        {
+          "sourceId": "source_lumen_ticket",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_lumen_chat",
+          "revision": 1
+        },
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1
+        }
+      ],
+      "observationIds": [
+        "observation_lumen_01",
+        "observation_lumen_02",
+        "observation_lumen_03",
+        "observation_lumen_04",
+        "observation_lumen_05"
+      ],
+      "outcome": {
+        "observedDurationDays": 30,
+        "workspaceId": "historical_workspace_lumen",
+        "createdAt": "2026-09-15T11:00:00.000Z",
+        "expiresAt": "2026-10-15T11:00:00.000Z",
+        "activeAtClose": true,
+        "ownerAccessRole": "member",
+        "ownerAccessSucceededAtClose": true,
+        "evidenceRefs": [
+          {
+            "sourceId": "source_lumen_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:00.000Z\",\"id\":\"audit_lumen_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}",
+            "observationId": "observation_lumen_04"
+          },
+          {
+            "sourceId": "source_lumen_audit",
+            "revision": 1,
+            "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@lumen.example\",\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:40.000Z\",\"id\":\"audit_lumen_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-09-15T11:01:40.000Z\",\"role\":\"member\"}}",
+            "observationId": "observation_lumen_05"
+          }
+        ]
+      },
+      "historicalConsent": {
+        "actorPersonId": "person_ravi",
+        "scope": "This historical Lumen request only.",
+        "evidenceRefs": [
+          {
+            "sourceId": "source_lumen_chat",
+            "revision": 1,
+            "quote": "Yes, I approve a thirty-day trial for Lumen for this request only.",
+            "observationId": null
+          }
+        ]
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "observation_northstar_01",
+      "caseId": "case_northstar",
+      "auditEventId": "audit_northstar_01",
+      "sequence": 1,
+      "occurredAt": "2026-10-01T09:00:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "create_workspace",
+      "observedArguments": {
+        "customerId": "customer_northstar",
+        "requestId": "historical_request_northstar"
+      },
+      "observedResult": {
+        "id": "historical_workspace_northstar",
+        "requestId": "historical_request_northstar",
+        "customerId": "customer_northstar",
+        "createdAt": "2026-10-01T09:00:00.000Z",
+        "expiresAt": null,
+        "active": false,
+        "grants": []
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_northstar\",\"requestId\":\"historical_request_northstar\"},\"at\":\"2026-10-01T09:00:00.000Z\",\"id\":\"audit_northstar_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}",
+          "observationId": "observation_northstar_01"
+        }
+      ]
+    },
+    {
+      "id": "observation_northstar_02",
+      "caseId": "case_northstar",
+      "auditEventId": "audit_northstar_02",
+      "sequence": 2,
+      "occurredAt": "2026-10-01T09:00:20.000Z",
+      "actorPersonId": "person_ana",
+      "action": "set_expiry",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_northstar",
+        "expiresAt": "2026-10-08T09:00:00.000Z"
+      },
+      "observedResult": {
+        "id": "historical_workspace_northstar",
+        "requestId": "historical_request_northstar",
+        "customerId": "customer_northstar",
+        "createdAt": "2026-10-01T09:00:00.000Z",
+        "expiresAt": "2026-10-08T09:00:00.000Z",
+        "active": false,
+        "grants": []
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:00:20.000Z\",\"id\":\"audit_northstar_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}",
+          "observationId": "observation_northstar_02"
+        }
+      ]
+    },
+    {
+      "id": "observation_northstar_03",
+      "caseId": "case_northstar",
+      "auditEventId": "audit_northstar_03",
+      "sequence": 3,
+      "occurredAt": "2026-10-01T09:00:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "grant_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_northstar",
+        "grants": [
+          {
+            "email": "owner@northstar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "observedResult": {
+        "id": "historical_workspace_northstar",
+        "requestId": "historical_request_northstar",
+        "customerId": "customer_northstar",
+        "createdAt": "2026-10-01T09:00:00.000Z",
+        "expiresAt": "2026-10-08T09:00:00.000Z",
+        "active": false,
+        "grants": [
+          {
+            "email": "owner@northstar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:00:40.000Z\",\"id\":\"audit_northstar_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}",
+          "observationId": "observation_northstar_03"
+        }
+      ]
+    },
+    {
+      "id": "observation_northstar_04",
+      "caseId": "case_northstar",
+      "auditEventId": "audit_northstar_04",
+      "sequence": 4,
+      "occurredAt": "2026-10-01T09:01:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "activate_workspace",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_northstar"
+      },
+      "observedResult": {
+        "id": "historical_workspace_northstar",
+        "requestId": "historical_request_northstar",
+        "customerId": "customer_northstar",
+        "createdAt": "2026-10-01T09:00:00.000Z",
+        "expiresAt": "2026-10-08T09:00:00.000Z",
+        "active": true,
+        "grants": [
+          {
+            "email": "owner@northstar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:00.000Z\",\"id\":\"audit_northstar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-01T09:00:00.000Z\",\"customerId\":\"customer_northstar\",\"expiresAt\":\"2026-10-08T09:00:00.000Z\",\"grants\":[{\"email\":\"owner@northstar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_northstar\",\"requestId\":\"historical_request_northstar\"}}",
+          "observationId": "observation_northstar_04"
+        }
+      ]
+    },
+    {
+      "id": "observation_northstar_05",
+      "caseId": "case_northstar",
+      "auditEventId": "audit_northstar_05",
+      "sequence": 5,
+      "occurredAt": "2026-10-01T09:01:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "check_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_northstar",
+        "email": "owner@northstar.example"
+      },
+      "observedResult": {
+        "allowed": true,
+        "role": "member",
+        "evaluatedAt": "2026-10-01T09:01:40.000Z"
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_northstar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@northstar.example\",\"workspaceId\":\"historical_workspace_northstar\"},\"at\":\"2026-10-01T09:01:40.000Z\",\"id\":\"audit_northstar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-01T09:01:40.000Z\",\"role\":\"member\"}}",
+          "observationId": "observation_northstar_05"
+        }
+      ]
+    },
+    {
+      "id": "observation_cedar_01",
+      "caseId": "case_cedar",
+      "auditEventId": "audit_cedar_01",
+      "sequence": 1,
+      "occurredAt": "2026-10-03T10:00:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "create_workspace",
+      "observedArguments": {
+        "customerId": "customer_cedar",
+        "requestId": "historical_request_cedar"
+      },
+      "observedResult": {
+        "id": "historical_workspace_cedar",
+        "requestId": "historical_request_cedar",
+        "customerId": "customer_cedar",
+        "createdAt": "2026-10-03T10:00:00.000Z",
+        "expiresAt": null,
+        "active": false,
+        "grants": []
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_cedar\",\"requestId\":\"historical_request_cedar\"},\"at\":\"2026-10-03T10:00:00.000Z\",\"id\":\"audit_cedar_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}",
+          "observationId": "observation_cedar_01"
+        }
+      ]
+    },
+    {
+      "id": "observation_cedar_02",
+      "caseId": "case_cedar",
+      "auditEventId": "audit_cedar_02",
+      "sequence": 2,
+      "occurredAt": "2026-10-03T10:00:20.000Z",
+      "actorPersonId": "person_ana",
+      "action": "grant_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_cedar",
+        "grants": [
+          {
+            "email": "owner@cedar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "observedResult": {
+        "id": "historical_workspace_cedar",
+        "requestId": "historical_request_cedar",
+        "customerId": "customer_cedar",
+        "createdAt": "2026-10-03T10:00:00.000Z",
+        "expiresAt": null,
+        "active": false,
+        "grants": [
+          {
+            "email": "owner@cedar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:00:20.000Z\",\"id\":\"audit_cedar_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":null,\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}",
+          "observationId": "observation_cedar_02"
+        }
+      ]
+    },
+    {
+      "id": "observation_cedar_03",
+      "caseId": "case_cedar",
+      "auditEventId": "audit_cedar_03",
+      "sequence": 3,
+      "occurredAt": "2026-10-03T10:00:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "set_expiry",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_cedar",
+        "expiresAt": "2026-10-10T10:00:00.000Z"
+      },
+      "observedResult": {
+        "id": "historical_workspace_cedar",
+        "requestId": "historical_request_cedar",
+        "customerId": "customer_cedar",
+        "createdAt": "2026-10-03T10:00:00.000Z",
+        "expiresAt": "2026-10-10T10:00:00.000Z",
+        "active": false,
+        "grants": [
+          {
+            "email": "owner@cedar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:00:40.000Z\",\"id\":\"audit_cedar_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}",
+          "observationId": "observation_cedar_03"
+        }
+      ]
+    },
+    {
+      "id": "observation_cedar_04",
+      "caseId": "case_cedar",
+      "auditEventId": "audit_cedar_04",
+      "sequence": 4,
+      "occurredAt": "2026-10-03T10:01:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "activate_workspace",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_cedar"
+      },
+      "observedResult": {
+        "id": "historical_workspace_cedar",
+        "requestId": "historical_request_cedar",
+        "customerId": "customer_cedar",
+        "createdAt": "2026-10-03T10:00:00.000Z",
+        "expiresAt": "2026-10-10T10:00:00.000Z",
+        "active": true,
+        "grants": [
+          {
+            "email": "owner@cedar.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:00.000Z\",\"id\":\"audit_cedar_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-10-03T10:00:00.000Z\",\"customerId\":\"customer_cedar\",\"expiresAt\":\"2026-10-10T10:00:00.000Z\",\"grants\":[{\"email\":\"owner@cedar.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_cedar\",\"requestId\":\"historical_request_cedar\"}}",
+          "observationId": "observation_cedar_04"
+        }
+      ]
+    },
+    {
+      "id": "observation_cedar_05",
+      "caseId": "case_cedar",
+      "auditEventId": "audit_cedar_05",
+      "sequence": 5,
+      "occurredAt": "2026-10-03T10:01:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "check_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_cedar",
+        "email": "owner@cedar.example"
+      },
+      "observedResult": {
+        "allowed": true,
+        "role": "member",
+        "evaluatedAt": "2026-10-03T10:01:40.000Z"
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_cedar_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@cedar.example\",\"workspaceId\":\"historical_workspace_cedar\"},\"at\":\"2026-10-03T10:01:40.000Z\",\"id\":\"audit_cedar_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-10-03T10:01:40.000Z\",\"role\":\"member\"}}",
+          "observationId": "observation_cedar_05"
+        }
+      ]
+    },
+    {
+      "id": "observation_lumen_01",
+      "caseId": "case_lumen",
+      "auditEventId": "audit_lumen_01",
+      "sequence": 1,
+      "occurredAt": "2026-09-15T11:00:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "create_workspace",
+      "observedArguments": {
+        "customerId": "customer_lumen",
+        "requestId": "historical_request_lumen"
+      },
+      "observedResult": {
+        "id": "historical_workspace_lumen",
+        "requestId": "historical_request_lumen",
+        "customerId": "customer_lumen",
+        "createdAt": "2026-09-15T11:00:00.000Z",
+        "expiresAt": null,
+        "active": false,
+        "grants": []
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"create_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"customerId\":\"customer_lumen\",\"requestId\":\"historical_request_lumen\"},\"at\":\"2026-09-15T11:00:00.000Z\",\"id\":\"audit_lumen_01\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":null,\"grants\":[],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}",
+          "observationId": "observation_lumen_01"
+        }
+      ]
+    },
+    {
+      "id": "observation_lumen_02",
+      "caseId": "case_lumen",
+      "auditEventId": "audit_lumen_02",
+      "sequence": 2,
+      "occurredAt": "2026-09-15T11:00:20.000Z",
+      "actorPersonId": "person_ana",
+      "action": "set_expiry",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_lumen",
+        "expiresAt": "2026-10-15T11:00:00.000Z"
+      },
+      "observedResult": {
+        "id": "historical_workspace_lumen",
+        "requestId": "historical_request_lumen",
+        "customerId": "customer_lumen",
+        "createdAt": "2026-09-15T11:00:00.000Z",
+        "expiresAt": "2026-10-15T11:00:00.000Z",
+        "active": false,
+        "grants": []
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"set_expiry\",\"actorId\":\"person_ana\",\"arguments\":{\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:00:20.000Z\",\"id\":\"audit_lumen_02\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}",
+          "observationId": "observation_lumen_02"
+        }
+      ]
+    },
+    {
+      "id": "observation_lumen_03",
+      "caseId": "case_lumen",
+      "auditEventId": "audit_lumen_03",
+      "sequence": 3,
+      "occurredAt": "2026-09-15T11:00:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "grant_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_lumen",
+        "grants": [
+          {
+            "email": "owner@lumen.example",
+            "role": "member"
+          }
+        ]
+      },
+      "observedResult": {
+        "id": "historical_workspace_lumen",
+        "requestId": "historical_request_lumen",
+        "customerId": "customer_lumen",
+        "createdAt": "2026-09-15T11:00:00.000Z",
+        "expiresAt": "2026-10-15T11:00:00.000Z",
+        "active": false,
+        "grants": [
+          {
+            "email": "owner@lumen.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"grant_access\",\"actorId\":\"person_ana\",\"arguments\":{\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:00:40.000Z\",\"id\":\"audit_lumen_03\",\"result\":{\"active\":false,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}",
+          "observationId": "observation_lumen_03"
+        }
+      ]
+    },
+    {
+      "id": "observation_lumen_04",
+      "caseId": "case_lumen",
+      "auditEventId": "audit_lumen_04",
+      "sequence": 4,
+      "occurredAt": "2026-09-15T11:01:00.000Z",
+      "actorPersonId": "person_ana",
+      "action": "activate_workspace",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_lumen"
+      },
+      "observedResult": {
+        "id": "historical_workspace_lumen",
+        "requestId": "historical_request_lumen",
+        "customerId": "customer_lumen",
+        "createdAt": "2026-09-15T11:00:00.000Z",
+        "expiresAt": "2026-10-15T11:00:00.000Z",
+        "active": true,
+        "grants": [
+          {
+            "email": "owner@lumen.example",
+            "role": "member"
+          }
+        ]
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"activate_workspace\",\"actorId\":\"person_ana\",\"arguments\":{\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:00.000Z\",\"id\":\"audit_lumen_04\",\"result\":{\"active\":true,\"createdAt\":\"2026-09-15T11:00:00.000Z\",\"customerId\":\"customer_lumen\",\"expiresAt\":\"2026-10-15T11:00:00.000Z\",\"grants\":[{\"email\":\"owner@lumen.example\",\"role\":\"member\"}],\"id\":\"historical_workspace_lumen\",\"requestId\":\"historical_request_lumen\"}}",
+          "observationId": "observation_lumen_04"
+        }
+      ]
+    },
+    {
+      "id": "observation_lumen_05",
+      "caseId": "case_lumen",
+      "auditEventId": "audit_lumen_05",
+      "sequence": 5,
+      "occurredAt": "2026-09-15T11:01:40.000Z",
+      "actorPersonId": "person_ana",
+      "action": "check_access",
+      "observedArguments": {
+        "workspaceId": "historical_workspace_lumen",
+        "email": "owner@lumen.example"
+      },
+      "observedResult": {
+        "allowed": true,
+        "role": "member",
+        "evaluatedAt": "2026-09-15T11:01:40.000Z"
+      },
+      "evidenceRefs": [
+        {
+          "sourceId": "source_lumen_audit",
+          "revision": 1,
+          "quote": "{\"action\":\"check_access\",\"actorId\":\"person_ana\",\"arguments\":{\"email\":\"owner@lumen.example\",\"workspaceId\":\"historical_workspace_lumen\"},\"at\":\"2026-09-15T11:01:40.000Z\",\"id\":\"audit_lumen_05\",\"result\":{\"allowed\":true,\"evaluatedAt\":\"2026-09-15T11:01:40.000Z\",\"role\":\"member\"}}",
+          "observationId": "observation_lumen_05"
+        }
+      ]
+    }
+  ]
+}
