@@ -8,9 +8,20 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
   const { path } = await context.params;
   const route = path.join('/');
   if (!allowed.test(route)) return NextResponse.json({ error: { code: 'NOT_FOUND', message: 'Unknown endpoint.' } }, { status: 404 });
+  // Next can normalize the development URL to localhost even when the browser
+  // opened 127.0.0.1. Compare against the actual HTTP Host, restricted to local
+  // addresses; never trust forwarded host headers for this local demo boundary.
+  let requestOrigin: string;
+  try {
+    const url = new URL(`${request.nextUrl.protocol}//${request.headers.get('host') || request.nextUrl.host}`);
+    if (!['http:', 'https:'].includes(url.protocol) || !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || url.username || url.password) throw new Error('Not a local origin');
+    requestOrigin = url.origin;
+  } catch {
+    return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'This workspace is available only on a local address.' } }, { status: 403 });
+  }
   if (request.method !== 'GET') {
     const origin = request.headers.get('origin');
-    if (origin && origin !== request.nextUrl.origin) return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Cross-origin changes are not permitted.' } }, { status: 403 });
+    if (origin && origin !== requestOrigin) return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Cross-origin changes are not permitted.' } }, { status: 403 });
   }
   try {
     const upstream = new URL(`/${route}`, process.env.RUNTIME_URL || 'http://127.0.0.1:4100');
@@ -20,7 +31,7 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     if (cookie) headers.set('cookie', cookie);
     if (request.method !== 'GET') {
       headers.set('content-type', 'application/json');
-      headers.set('origin', request.nextUrl.origin);
+      headers.set('origin', requestOrigin);
     }
     const response = await fetch(upstream, {
       method: request.method,

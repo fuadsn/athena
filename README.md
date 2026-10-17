@@ -109,7 +109,8 @@ npm run eval:live
 
 - `test` exercises contracts, evidence checks, bounded model handling, executor guards, and real file-backed Lab behavior. Model and graph doubles are confined to tests.
 - `test:integration` requires real FalkorDB and runs graph queries, HTTP Lab checks, and the complete service flow. It uses unique test graphs and temporary Lab files; it does not reset the demo graph.
-- `test:e2e` requires the three application services and a configured live model. Install the Chromium test browser with `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to an existing Chrome executable. It resets the demo through its owner-authorized API.
+- `test:e2e` includes the live headline flow and requires the three application services and a configured live model. Install the Chromium test browser with `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to an existing Chrome executable and install the small video helper with `npx playwright install ffmpeg`. The headline flow resets the demo through its owner-authorized API.
+- `npm run test:e2e -- cold.spec.ts` verifies actual browser entry, source inspection, mobile layout, and origin guards without calling a model. It can run while API credentials are still being configured.
 - `eval:live` performs three consecutive reset-to-completion rehearsals against the running local runtime. It records real model identity, usage, episodes, queries, approvals, receipts, and verification under `.local/live-rehearsals/`. The harness submits its teaching input through the same explicit owner-review endpoint after live induction. A failed attempt remains recorded and cannot count as a pass.
 
 See [validation status](docs/validation.md) for actual completed checks and remaining release requirements. Passing deterministic tests is not a substitute for the live release gate.
