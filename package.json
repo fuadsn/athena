@@ -3,20 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.12" },
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
-    "dev": "tsx scripts/dev.ts",
-    "dev:web": "next dev apps/web -p 3100",
-    "dev:runtime": "tsx --env-file-if-exists=.env apps/runtime/src/main.ts",
-    "dev:lab": "tsx --env-file-if-exists=.env apps/workspace-lab/src/main.ts",
-    "build": "tsc --noEmit && next build apps/web",
+    "dev": "node --env-file-if-exists=.env --import tsx scripts/dev.ts",
+    "dev:web": "next dev apps/web --webpack -H 127.0.0.1 -p 3100",
+    "dev:runtime": "node --env-file-if-exists=.env --import tsx apps/runtime/src/main.ts",
+    "dev:lab": "node --env-file-if-exists=.env --import tsx apps/workspace-lab/src/main.ts",
+    "build": "tsc --noEmit && next build apps/web --webpack",
     "typecheck": "tsc --noEmit",
-    "seed": "tsx --env-file-if-exists=.env scripts/seed.ts",
-    "demo:reset": "tsx --env-file-if-exists=.env scripts/reset.ts",
+    "setup": "node --import tsx scripts/setup.ts",
+    "seed": "node --env-file-if-exists=.env --import tsx scripts/seed.ts",
+    "demo:reset": "node --env-file-if-exists=.env --import tsx scripts/reset.ts",
     "test": "vitest run --exclude 'tests/integration/**' --exclude 'tests/e2e/**'",
-    "test:integration": "vitest run tests/integration",
+    "test:integration": "GRAPH_INTEGRATION=1 RUNTIME_GRAPH_INTEGRATION=1 vitest run tests/integration packages/graph/test/graph.integration.test.ts",
     "test:e2e": "playwright test",
-    "eval:live": "tsx --env-file-if-exists=.env evals/live/run.ts"
+    "eval:live": "node --env-file-if-exists=.env --import tsx evals/live/run.ts"
   },
   "dependencies": {
     "falkordb": "6.8.0",
@@ -31,6 +34,7 @@
     "@types/node": "24.10.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "falkordblite": "0.3.0",
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "vitest": "5.0.5"

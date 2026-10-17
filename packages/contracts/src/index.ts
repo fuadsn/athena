@@ -85,6 +85,7 @@ export type QueryTrace = { name: string; query: string; parameters: Record<strin
 
 /** A single runtime MutationBroker owns all calls that mutate this store. */
 export interface GraphStore {
+  withTraceScope?<T>(operation: () => Promise<T>): Promise<T>;
   close(): Promise<void>;
   ping(): Promise<void>;
   reset(seed: HistorySeed): Promise<void>;
@@ -156,7 +157,8 @@ export const textHash = (value: string): string => createHash('sha256').update(v
 export function planHash(plan: Omit<Plan, 'planHash'> | Plan): string {
   const { id: _id, createdAt: _at, justification: _why, ...rest } = plan;
   const { planHash: _hash, ...identity } = rest as typeof rest & { planHash?: string };
-  return hash(identity);
+  const evidence = (refs: EvidenceRef[]) => [...refs].sort((a, b) => stableStringify(a).localeCompare(stableStringify(b)));
+  return hash({ ...identity, evidenceRefs: evidence(identity.evidenceRefs), steps: [...identity.steps].sort((a, b) => a.id.localeCompare(b.id)).map(step => ({ ...step, dependsOn: [...step.dependsOn].sort(), evidenceRefs: evidence(step.evidenceRefs), confirmationRefs: evidence(step.confirmationRefs) })) });
 }
 /** Hash semantic inputs, including tool and resource, excluding envelope hashes/keys. */
 export function operationHash(tool: ToolName, resourceId: string | null, input: Record<string, unknown>): string {

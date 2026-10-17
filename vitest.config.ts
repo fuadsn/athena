@@ -1,2 +1,3 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: { include: ['packages/**/*.test.ts', 'apps/**/*.test.ts', 'tests/integration/**/*.test.ts'], testTimeout: 30000, hookTimeout: 30000, fileParallelism: false } });
+import { fileURLToPath } from 'node:url';
+export default defineConfig({ resolve: { alias: { '@athena/contracts': fileURLToPath(new URL('./packages/contracts/src/index.ts', import.meta.url)), '@athena/graph': fileURLToPath(new URL('./packages/graph/src/index.ts', import.meta.url)), '@athena/learner': fileURLToPath(new URL('./packages/learner/src/index.ts', import.meta.url)), '@athena/executor': fileURLToPath(new URL('./packages/executor/src/index.ts', import.meta.url)) } }, test: { include: ['packages/**/*.test.ts', 'apps/**/*.test.ts', 'tests/integration/**/*.test.ts'], testTimeout: 30000, hookTimeout: 30000, fileParallelism: false } });
