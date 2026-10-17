@@ -1,0 +1,64 @@
+name: athena
+services:
+  graph:
+    image: falkordb/falkordb:v4.22.1@sha256:b0bdcac2cbaff989e77cb0610439b7a9289e86de033ccbbd4368b66fb680ae7a
+    restart: unless-stopped
+    environment:
+      REDIS_ARGS: "--appendonly yes --appendfsync always"
+    ports:
+      - "127.0.0.1:16379:6379"
+    volumes:
+      - graph-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+  workspace-lab:
+    build: .
+    command: ["node", "--import", "tsx", "apps/workspace-lab/src/main.ts"]
+    environment:
+      WORKSPACE_LAB_TOKEN: ${WORKSPACE_LAB_TOKEN:?Run npm run setup}
+      WORKSPACE_LAB_ADMIN_TOKEN: ${WORKSPACE_LAB_ADMIN_TOKEN:?Run npm run setup}
+      WORKSPACE_LAB_STORE: /data/workspaces.json
+      WORKSPACE_LAB_HOST: 0.0.0.0
+      WORKSPACE_LAB_PORT: 4200
+      DEMO_MODE: "true"
+    volumes:
+      - lab-data:/data
+  runtime:
+    build: .
+    command: ["node", "--import", "tsx", "apps/runtime/src/main.ts"]
+    environment:
+      FALKORDB_HOST: graph
+      FALKORDB_PORT: 6379
+      FALKORDB_GRAPH: athena
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-}
+      RUNTIME_HOST: 0.0.0.0
+      RUNTIME_PORT: 4100
+      WORKSPACE_LAB_URL: http://workspace-lab:4200
+      WORKSPACE_LAB_TOKEN: ${WORKSPACE_LAB_TOKEN:?Run npm run setup}
+      WORKSPACE_LAB_ADMIN_TOKEN: ${WORKSPACE_LAB_ADMIN_TOKEN:?Run npm run setup}
+      DEMO_MODE: "true"
+      DEMO_SESSION_SECRET: ${DEMO_SESSION_SECRET:?Run npm run setup}
+      APPROVAL_TTL_SECONDS: 900
+    depends_on:
+      graph:
+        condition: service_healthy
+      workspace-lab:
+        condition: service_started
+    ports:
+      - "127.0.0.1:4100:4100"
+  web:
+    build: .
+    command: ["node", "node_modules/next/dist/bin/next", "start", "apps/web", "-H", "0.0.0.0", "-p", "3100"]
+    environment:
+      RUNTIME_URL: http://runtime:4100
+    depends_on:
+      - runtime
+    ports:
+      - "127.0.0.1:3100:3100"
+volumes:
+  graph-data:
+  lab-data:

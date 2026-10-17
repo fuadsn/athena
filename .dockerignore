@@ -1,0 +1,16 @@
+node_modules
+.git
+.env
+.env.*
+!.env.example
+.local
+.npm-cache
+**/.next
+**/*.tsbuildinfo
+playwright-report
+test-results
+coverage
+evals
+tests
+**/*.test.ts
+**/test
