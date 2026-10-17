@@ -233,10 +233,16 @@ for (const realGraph of [false, true]) {
 
     test('a stalled request model fails visibly at its bounded timeout with no workspace', async () => {
       await teach(); const request = await runtime.createRequest('person_ana', requestInput());
-      const stalled: ModelAdapter = { mode: 'test', model: 'test-only-stalled', turn: async () => new Promise(() => {}) };
+      let reachedModel!: () => void;
+      const modelStarted = new Promise<void>(resolve => { reachedModel = resolve; });
+      const stalled: ModelAdapter = { mode: 'test', model: 'test-only-stalled', turn: async () => { reachedModel(); return new Promise(() => {}); } };
       runtime = new RuntimeService({ graph, lab, model: stalled, history: seed, demoMode: true, autoRun: false });
       vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
       const result = runtime.runRequest(request.id); const assertion = expect(result).rejects.toMatchObject({ code: 'BUDGET_EXCEEDED' });
+      // Let real FalkorDB setup reads complete before advancing virtual time.
+      // Otherwise their own five-second I/O deadlines fire before Redis can reply,
+      // testing a database outage instead of the intended stalled-model boundary.
+      await modelStarted;
       await vi.advanceTimersByTimeAsync(120_000); await assertion;
       vi.useRealTimers();
       const detail = (await graph.getRequest(request.id))!; expect(detail.request).toMatchObject({ state: 'FAILED', errorCode: 'BUDGET_EXCEEDED' });
