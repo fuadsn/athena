@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { State, RequestDetail, LearningDetail, Review, Person } from '@athena/contracts';
+import type { State, RequestDetail, LearningDetail, Review } from '@athena/contracts';
 
 /** Test harness only. This file and acceptance.json are never imported by runtime code. */
 const expected = JSON.parse(await readFile(new URL('../acceptance.json', import.meta.url), 'utf8'));
@@ -89,7 +89,20 @@ for (let index = 1; index <= count; index++) {
     process.stdout.write(`Live rehearsal ${index}/${count}: PASSED\n`);
   } catch (error) {
     rehearsal.outcome = 'FAILED'; rehearsal.error = error instanceof Error ? error.message : String(error); consecutive = 0;
-    try { rehearsal.finalState = await api('/state', 'person_mira'); rehearsal.events = await api('/events?after=0', 'person_mira'); } catch { /* Preserve the original error when graph/API are down. */ }
+    try {
+      const finalState = await api<State>('/state', 'person_mira');
+      rehearsal.finalState = finalState;
+      // Keep actual usage, episodes, proposals and receipts even when polling
+      // rejects before the successful result could be assigned above.
+      const diagnostics = await Promise.allSettled([
+        ...finalState.learningRuns.map(run => api<LearningDetail>(`/learning-runs/${run.id}`, 'person_mira')),
+        ...finalState.requests.map(request => api<RequestDetail>(`/requests/${request.id}`, 'person_mira')),
+      ]);
+      rehearsal.failureDiagnostics = diagnostics.map(result => result.status === 'fulfilled'
+        ? { available: true, detail: result.value }
+        : { available: false, error: result.reason instanceof Error ? result.reason.message : String(result.reason) });
+      rehearsal.events = await api('/events?after=0', 'person_mira');
+    } catch { /* Preserve the original error when graph/API are down. */ }
     process.stderr.write(`Live rehearsal ${index}/${count}: FAILED — ${String(rehearsal.error)}\n`);
     process.exitCode = 1;
   } finally {
