@@ -64,7 +64,7 @@ npm run preview -- --embedded
 
 An approval wait ends its model episode. Resuming starts a new episode with empty model history and fresh graph retrieval. A rejected request cannot resume. Other unsupported durations require clarification.
 
-See [the demo script](docs/demo-script.md) for the recording sequence. A video and public repository URL must be added before submission; they have not been published by this checkout.
+Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). See [the demo script](docs/demo-script.md) for the recording sequence. The working demo video is still pending live-model verification; its link will be added before submission.
 
 After live verification, `npm run demo:record` captures the actual headline flow as a WebM video under `.local/demo-recordings/`. It preserves failed recordings too; only a passing, reviewed recording should be used for submission.
 

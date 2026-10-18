@@ -2,6 +2,8 @@
 
 Updated 17 October 2026 after actual database, HTTP, and browser verification. This file reports performed checks, not an assumed release result.
 
+Submission update, 18 October: the owner authorized publication as [fuadsn/athena](https://github.com/fuadsn/athena), and the feature commits are now public. The README includes a graph map and a decision-to-traversal table. `npm run demo:record` is ready to capture the actual live headline flow; typechecking and test discovery passed. Live-model configuration and a working video are still pending.
+
 ## Completed
 
 | Check | Actual outcome |
@@ -28,7 +30,7 @@ Actual runtime API checks confirmed historical-only cold state, source retrieval
 - **Live model:** `OPENAI_API_KEY` and `OPENAI_MODEL` remain empty. `npm run eval:live` was attempted and correctly failed with `Runtime has no live model configured`. The failed attempt and a false release-gate result are preserved under `.local/live-rehearsals/2026-10-17T17-15-46.396Z/`. Zero live rehearsals have passed.
 - **Complete browser flow:** the headline learn → review → execute → change authority flow still requires the live model. Cold-browser verification does not replace it.
 - **Container deployment:** the pinned FalkorDB 4.22.1 image and full Compose deployment remain unverified. All actual graph tests above used embedded FalkorDB 4.18.3 with Redis 8.4.0.
-- **Submission:** a real demo video, public repository URL, and participant code/demo inspection are still required. No remote repository has been created or pushed by this checkout.
+- **Submission:** the public repository is [fuadsn/athena](https://github.com/fuadsn/athena). A real demo video, participant code/demo inspection, and submission through the owner's signed-in WeMakeDevs account are still required.
 
 ## Environment and recovery
 
