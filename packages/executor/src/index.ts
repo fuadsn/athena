@@ -60,7 +60,7 @@ export function validateProcedure(procedure: Procedure, confirmed = false): void
   };
   for (const step of ordered) {
     const expected = expectedBindings(step, create.id);
-    if (JSON.stringify(Object.keys(step.bindings).sort()) !== JSON.stringify(Object.keys(expected).sort())) fail(`Unexpected arguments for ${step.tool}`);
+    if (JSON.stringify(Object.keys(step.bindings).sort()) !== JSON.stringify(Object.keys(expected).sort())) fail(`Unexpected arguments for ${step.tool}: expected exactly ${JSON.stringify(expected)}, received parameter names ${JSON.stringify(Object.keys(step.bindings))}`);
     for (const [key, value] of Object.entries(expected)) {
       const actual = step.bindings[key];
       if (actual.kind !== value.kind || actual.key !== value.key || actual.stepId !== value.stepId) fail(`Unsafe binding for ${step.tool}.${key}: expected ${JSON.stringify(value)}, received ${JSON.stringify(actual)}`);
