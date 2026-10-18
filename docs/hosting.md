@@ -6,6 +6,37 @@ The hosted profile targets a **Render Free web service**, with the frontend, run
 
 Hosting and model selection are independent. The Blueprint defaults to `MODEL_PROVIDER=openai` and `OPENAI_MODEL=gpt-5.4-2026-03-05`, the configuration used by the published recording and live evidence. Render hosting is free; OpenAI API calls use the owner's existing credits. Only the runtime receives the selected provider's key. There is no automatic provider fallback.
 
+## What is running on Render
+
+The deployed service is named **athena**, in **Frankfurt**, on the **Free** plan with one instance. Render builds `Dockerfile.hosted` from the public repository. Automatic deployment is off, so documentation pushes do not restart the application and discard its demo state. Application releases are deployed explicitly.
+
+```mermaid
+flowchart TD
+  Browser[Browser] -->|HTTPS| Web
+  subgraph Render[One free Render Docker service]
+    Web[Next.js frontend and API proxy :10000] --> Runtime[Node.js runtime :4100]
+    Runtime --> Graph[FalkorDB :16379]
+    Runtime --> Lab[Workspace Lab :4200]
+    Graph --> GraphFiles[Graph files]
+    Lab --> LabFiles[Workspace JSON file]
+  end
+  Runtime -->|Model API| OpenAI[OpenAI gpt-5.4]
+```
+
+| Component | Responsibility | Exposure and storage |
+|---|---|---|
+| Next.js / React frontend | Learn, Do, Verify, persona selection, source inspection; forwards allowed API routes to the runtime | Public HTTPS, with Render terminating TLS and forwarding to port 10000 |
+| Node.js runtime | Model episodes, evidence validation, procedure publication, approval checks, execution, and independent verification | Private loopback port 4100; only this process receives the selected model API key |
+| FalkorDB | Sources, observations, procedures, rules, step dependencies, people and authority, requests, approvals, and execution evidence | Private loopback port 16379; embedded FalkorDB 4.18.3, graph `athena`, files under `/app/.local/hosted/graph` |
+| Workspace Lab | Creates and updates actual synthetic trial-workspace resources; provides independent read-back and operation receipts | Private loopback port 4200; `/app/.local/hosted/workspaces.json`; separate internal write/admin tokens generated at boot |
+| OpenAI | Proposes procedures and eligible actions through the model adapter | External API using the owner's existing key and `gpt-5.4-2026-03-05`; separate from Render hosting charges |
+
+The graph uses append-only writes, but **neither graph nor Lab storage has a persistent Render disk**. Both stores survive ordinary requests and separate agent episodes while the instance is running. They are lost on sleep, restart, or redeployment. No external database, object store, or backup service is configured. Startup imports historical cases only; teaching and execution happen through the application.
+
+`scripts/hosted.ts` starts the graph, waits for the Lab and runtime health checks, and then starts the frontend. It stops the other processes if one fails. Render checks `/`; the runtime's API health check also checks the graph. Sessions use signed, secure, HttpOnly cookies. Demo access is shared with judges; the four personas remain synthetic and are not connected to a company identity provider.
+
+GitHub Actions runs the build, tests, and container/browser checks on temporary GitHub runners. It does not host the application and has no model key. GitHub Pages separately hosts the recorded video and the link to the live app. The Render API key was used only by local deployment tooling and is not an application environment variable.
+
 ## Deploy
 
 1. Create a free [Render account](https://dashboard.render.com).

@@ -162,7 +162,7 @@ Athena implements one workflow for one synthetic company. Workspace Lab resource
 
 The runtime is a single mutation writer. It is not a distributed transaction system. If a response is lost after a Lab commit, resume reconciles its durable receipt before retrying. Partial resources remain visible; there is no automatic deletion, reactivation, or access broadening.
 
-The persona selector demonstrates role enforcement within an explicitly local demo. Do not expose it, the reset endpoint, or the Lab directly to the public internet. Hosted deployment is outside this version's scope.
+The persona selector demonstrates role enforcement for four synthetic people. The [public hosted demo](docs/hosting.md) requires a private access code and signed HTTPS sessions; its runtime, database, and Lab listen only inside the container. The original local profile must remain on loopback. Render Free storage is ephemeral: sleeping, restarting, or redeploying starts a fresh demo from historical cases. This is a shared demonstration, not enterprise authentication or durable company hosting.
 
 ## AI assistance and participant review
 
