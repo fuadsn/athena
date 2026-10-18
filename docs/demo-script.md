@@ -2,6 +2,8 @@
 
 Primary track: Company Brain. Use synthetic HelioWorks data and the local Workspace Lab. This script is a recording plan, not a claim that a rehearsal has passed. Record actual outcomes and model latency; never replace waiting or failure with a simulated result.
 
+Submission closes **18 October 2026 at 11:59 PM IST**. The organizer's final checklist is: public repository, working demo video, a graph map in the README, and visible evidence that graph relationships drive the result. The README contains the map and decision-to-traversal table; the recording must show actual execution and the authority change below. Complete the form at https://www.wemakedevs.org/hackathons/falkordb/submit only after the public repository and working-video links are available.
+
 ## Before recording
 
 1. Follow the root README to start FalkorDB, the Workspace Lab, the runtime, and the web application.

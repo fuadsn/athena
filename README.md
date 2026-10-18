@@ -90,6 +90,18 @@ flowchart LR
 
 [Graph model](docs/graph-model.md) · [Essential Cypher queries](docs/queries.md) · [Shared decisions](docs/decisions.md)
 
+The graph changes what the agent is allowed to do:
+
+| Decision | Graph traversal | Observable result |
+|---|---|---|
+| What can be reused? | Case → observation → source; then published procedure → confirmed rules and steps | Historical success alone never authorizes a new workspace. A cold graph blocks work until the owner publishes policy. |
+| Which action comes next? | Procedure → steps; step → prerequisite through `PRECEDES` | The executor reconstructs dependencies from relationships and configures access and expiry before activation. |
+| Who may approve now? | Rule → required role ← person with a currently valid `HOLDS_ROLE` assignment | Replacing Ravi with Leena changes fresh routing and invalidates unused stale approvals without changing the prompt. |
+| Does this approval authorize this action? | Request → plan ← approval → actor, joined to current role authority | Every Lab mutation rechecks the exact plan hash and current knowledge/assignment revisions. |
+| Did the action really succeed? | Request → receipts and verification, reconciled with the separate Lab | A graph receipt is checked against the persisted workspace, access decisions, expiry, and resource count before completion. |
+
+The runnable queries are in [the graph adapter](packages/graph/src/queries.ts). [Real-database tests](packages/graph/test/graph.integration.test.ts) remove relationships to verify that retrieval follows the graph; [runtime integration tests](tests/integration/runtime.test.ts) exercise changed authority, graph outages, and interrupted-work recovery. These checks use an explicit test model. Live-model rehearsal status is reported separately in [validation](docs/validation.md).
+
 ## Architecture
 
 | Component | Responsibility |
