@@ -1,8 +1,9 @@
 import { describe, expect, test, vi } from 'vitest';
+import { z } from 'zod';
 import seedJson from '../../../fixtures/company-history.json';
 import { HistorySeedSchema, type Episode, type GraphStore, type ModelAdapter, type ModelCall } from '@athena/contracts';
 import { assertEvidence } from '../../graph/src';
-import { learnProcedure, LEARNING_TOOLS, LEARNING_SYSTEM_PROMPT } from '../src';
+import { CandidateToolSchema, learnProcedure, LEARNING_TOOLS, LEARNING_SYSTEM_PROMPT } from '../src';
 
 const seed = HistorySeedSchema.parse(seedJson);
 const ref = seed.observations[0].evidenceRefs[0];
@@ -75,10 +76,33 @@ describe('bounded learning with test-only model adapters', () => {
       expect(observed.onUpdate).toHaveBeenLastCalledWith(expect.objectContaining({ status: 'FAILED' }));
     } finally { vi.useRealTimers(); }
   });
+  test('tool schemas use supported unions without changing discriminator semantics', () => {
+    const original = z.toJSONSchema(CandidateToolSchema, { target: 'draft-7' });
+    const wire = LEARNING_TOOLS.find(tool => tool.name === 'submit_candidate')!.parameters;
+    let unions = 0;
+    const compare = (source: any, target: any) => {
+      if (!source || typeof source !== 'object') { expect(target).toEqual(source); return; }
+      if (source.oneOf) {
+        unions++;
+        // Every converted union must have mutually exclusive literal tags.
+        const variants = source.oneOf;
+        const tags = Object.keys(variants[0].properties).filter(key => variants.every((variant: any) => variant.properties[key]?.const !== undefined));
+        expect(tags.some(key => new Set(variants.map((variant: any) => variant.properties[key].const)).size === variants.length)).toBe(true);
+        expect(target.oneOf).toBeUndefined();
+        expect(target.anyOf).toHaveLength(variants.length);
+      }
+      for (const [key, value] of Object.entries(source)) {
+        if (key !== '$schema') compare(value, target[key === 'oneOf' ? 'anyOf' : key]);
+      }
+    };
+    compare(original, wire);
+    expect(unions).toBeGreaterThan(0);
+  });
   test('every tool object is strict and includes all properties as required', () => {
     const inspect = (value: unknown) => {
       if (!value || typeof value !== 'object') return;
       const schema = value as Record<string, unknown>;
+      expect(schema).not.toHaveProperty('oneOf');
       if (schema.type === 'object') { expect(schema.additionalProperties).toBe(false); expect(schema.required ?? []).toEqual(Object.keys(schema.properties as object ?? {})); }
       Object.values(schema).forEach(child => Array.isArray(child) ? child.forEach(inspect) : inspect(child));
     };
