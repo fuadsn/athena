@@ -27,6 +27,9 @@ delete env.RENDER_API_KEY;
 // The runtime gets only the selected provider's credential.
 if (provider === 'openai') delete env.GEMINI_API_KEY;
 else delete env.OPENAI_API_KEY;
+// FalkorDBLite inherits the supervisor's environment when it starts Redis.
+// Keep credentials in the explicit runtime environment, out of that child.
+for (const key of ['OPENAI_API_KEY', 'GEMINI_API_KEY', 'RENDER_API_KEY', 'DEMO_ACCESS_CODE', 'DEMO_SESSION_SECRET', 'WORKSPACE_LAB_TOKEN', 'WORKSPACE_LAB_ADMIN_TOKEN']) delete process.env[key];
 const graph = await FalkorDB.open({ path: resolve(data, 'graph'), falkordbVersion: 'v4.18.3',
   additionalConfig: { port: '16379', bind: '127.0.0.1', appendonly: 'yes', appendfsync: 'always', save: '""', maxmemory: '96mb', 'maxmemory-policy': 'noeviction' }, timeout: 30_000 });
 const children: ChildProcess[] = [];
@@ -57,7 +60,7 @@ const ready = async (url: string) => {
   throw new Error('A hosted service did not become ready');
 };
 try {
-  const labEnv: NodeJS.ProcessEnv = { ...env }; delete labEnv.OPENAI_API_KEY; delete labEnv.GEMINI_API_KEY; delete labEnv.DEMO_ACCESS_CODE;
+  const labEnv: NodeJS.ProcessEnv = { ...env }; delete labEnv.OPENAI_API_KEY; delete labEnv.GEMINI_API_KEY; delete labEnv.DEMO_ACCESS_CODE; delete labEnv.DEMO_SESSION_SECRET;
   launch('Workspace Lab', ['--import', 'tsx', 'apps/workspace-lab/src/main.ts'], labEnv);
   await ready('http://127.0.0.1:4200/health');
   launch('Runtime', ['--import', 'tsx', 'apps/runtime/src/main.ts'], env);
