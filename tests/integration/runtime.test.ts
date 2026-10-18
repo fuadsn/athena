@@ -85,6 +85,39 @@ for (const realGraph of [false, true]) {
       expect(freshContext).toHaveLength(2); expect(JSON.stringify(freshContext)).not.toContain('submit_candidate');
     });
 
+    test('an invalid model dependency is rejected and corrected before a review draft is saved', async () => {
+      const turn = model.turn.bind(model);
+      let rejected = false;
+      vi.spyOn(model, 'turn').mockImplementation(async (...args) => {
+        const result = await turn(...args);
+        const proposal = result.calls.find(call => call.name === 'submit_candidate');
+        if (proposal && !rejected) {
+          rejected = true;
+          (proposal.arguments as { steps: { dependsOn: string[] }[] }).steps[0].dependsOn = ['missing_step'];
+          result.output = [{ type: 'function_call', call_id: proposal.id, name: proposal.name, arguments: JSON.stringify(proposal.arguments) }];
+        }
+        return result;
+      });
+      const run = await runtime.startLearning('person_mira', seed.cases.map(c => c.id));
+      await runtime.runLearning(run.id);
+      const detail = (await graph.getLearningRun(run.id))!;
+      expect(detail.run.state).toBe('NEEDS_REVIEW');
+      expect(detail.episode).toMatchObject({ status: 'WAITING', modelTurns: 4, toolCalls: 4 });
+      expect(detail.events.filter(event => event.type === 'CANDIDATE_REJECTED')).toHaveLength(1);
+      expect(detail.candidate!.steps.every(step => !step.dependsOn.includes('missing_step'))).toBe(true);
+      expect(await graph.getCurrentProcedure('process_trial')).toBeNull();
+    });
+
+    test('a draft persistence failure marks both the learning run and its usage-bearing episode failed', async () => {
+      vi.spyOn(graph, 'saveDraft').mockRejectedValueOnce(new AppError('DEPENDENCY_UNAVAILABLE', 'Injected draft persistence failure', 503));
+      const run = await runtime.startLearning('person_mira', seed.cases.map(c => c.id));
+      await expect(runtime.runLearning(run.id)).rejects.toMatchObject({ code: 'DEPENDENCY_UNAVAILABLE' });
+      const detail = (await graph.getLearningRun(run.id))!;
+      expect(detail.run).toMatchObject({ state: 'FAILED', error: 'Injected draft persistence failure' });
+      expect(detail.episode).toMatchObject({ status: 'FAILED', modelTurns: 3, toolCalls: 3, inputTokens: 30, outputTokens: 15, error: 'Injected draft persistence failure' });
+      expect(detail.candidate).toBeNull();
+    });
+
     test('extended work stops with no resource, then resumes in a fresh episode after exact current approval', async () => {
       await teach();
       const request = await runtime.createRequest('person_ana', requestInput(30)); await runtime.runRequest(request.id);

@@ -71,10 +71,12 @@ export class RuntimeService {
     const detail = await this.graph.getLearningRun(id);
     if (!detail || detail.run.state !== 'RUNNING' || !detail.episode) throw new AppError('CONFLICT', 'Learning run is not eligible', 409);
     try {
+      const metadata = { id: newId('procedure'), processId: detail.run.processId, version: 0, status: 'NEEDS_REVIEW' as const, createdAt: nowIso(), publishedAt: null, publishedBy: null, knowledgeRevision: await this.graph.getKnowledgeRevision(), confirmationSourceId: null };
       const result = await learnProcedure({ graph: this.graph, model, episode: detail.episode, processId: detail.run.processId, caseIds: detail.run.caseIds,
+        validateCandidate: candidate => validateProcedure({ ...candidate, ...metadata }),
         hooks: { onUpdate: episode => this.broker.run(() => this.graph.saveEpisode(episode)), onEvent: (type, message, data) => this.broker.run(async () => { await this.event('agent', id, type, message, data); await this.recordTraces(id); }) } });
       await this.broker.run(async () => {
-        const candidate = { ...result.candidate, id: newId('procedure'), processId: detail.run.processId, version: 0, status: 'NEEDS_REVIEW' as const, createdAt: nowIso(), publishedAt: null, publishedBy: null, knowledgeRevision: await this.graph.getKnowledgeRevision(), confirmationSourceId: null };
+        const candidate = { ...result.candidate, ...metadata, knowledgeRevision: await this.graph.getKnowledgeRevision() };
         validateProcedure(candidate);
         await this.graph.saveDraft(candidate);
         await this.graph.saveLearningRun({ ...detail.run, state: 'NEEDS_REVIEW', procedureId: candidate.id });
@@ -82,6 +84,10 @@ export class RuntimeService {
       });
     } catch (error) {
       await this.broker.run(async () => {
+        // Persistence can fail after model validation. Keep the episode aligned
+        // with the failed learning run while retaining its actual usage.
+        const latest = await this.graph.getLearningRun(id);
+        if (latest?.episode && latest.episode.status !== 'FAILED') await this.graph.saveEpisode({ ...latest.episode, status: 'FAILED', endedAt: nowIso(), error: this.safeMessage(error) });
         await this.graph.saveLearningRun({ ...detail.run, state: 'FAILED', error: this.safeMessage(error) });
         await this.event('agent', id, 'learning_failed', this.safeMessage(error), { code: error instanceof AppError ? error.code : 'DEPENDENCY_UNAVAILABLE' });
         await this.recordTraces(id);
