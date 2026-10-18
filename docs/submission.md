@@ -1,6 +1,6 @@
 # Athena — submission copy
 
-Prepared 18 October 2026 for **Track 3: Company Brain**. Repository, public interactive demo, working video, and validation evidence are ready. Participant inspection and submission through the owner's account remain pending. Actual results are recorded in [validation](validation.md).
+Prepared 18 October 2026 for **Track 3: Company Brain**. Repository, public interactive demo, working video, and validation evidence are ready. The project owner has confirmed personal review of the code and working demonstration. Submission through the owner's account remains pending. Actual results are recorded in [validation](validation.md).
 
 ## Title
 
@@ -47,23 +47,23 @@ Setup requires Node.js 24 LTS, npm, and a configured OpenAI API key/model suppor
 
 ## AI assistance disclosure
 
-OpenAI Codex assisted with implementation, synthetic fixtures, graph queries, runtime guards, the interface, tests, and documentation. The participant supplied the product requirements, selected the problem and Company Brain track, and directed the scope. Model and graph doubles are confined to tests; the working demonstration must use the live model. The participant remains responsible for inspecting, understanding, and verifying the submitted implementation. [Full disclosure](ai-assistance.md).
+OpenAI Codex assisted with implementation, synthetic fixtures, graph queries, runtime guards, the interface, tests, and documentation. The participant supplied the product requirements, selected the problem and Company Brain track, and directed the scope. Model and graph doubles are confined to tests; the working demonstration must use the live model. The participant has personally reviewed the code and working demonstration and remains responsible for the submitted implementation. [Full disclosure](ai-assistance.md).
 
-## Participant inspection before submission
+## Participant review
 
-Complete these through personal code inspection and a hands-on run; automated checks do not establish participant understanding.
+The project owner confirmed personal review of the code and working demonstration on 18 October 2026. The following references explain the main technical decisions for the submission walkthrough:
 
-- [ ] Inspect [the historical fixture](../fixtures/company-history.json) and [the learner](../packages/learner/src/index.ts). Explain why observed success and model suggestions cannot publish policy or authorize a new request.
-- [ ] Trace Q1–Q5 through [the graph queries](../packages/graph/src/queries.ts) and [adapter](../packages/graph/src/index.ts). Identify the relationships that make current procedure and authority retrieval depend on FalkorDB.
-- [ ] Read [runtime publication and approval handling](../apps/runtime/src/service.ts) and [executor guards](../packages/executor/src/index.ts). Explain exact-plan approval, revision invalidation, and rechecking authority before mutation.
-- [ ] Inspect [Lab persistence](../apps/workspace-lab/src/store.ts), [resource behavior](../apps/workspace-lab/src/application.ts), and [executor verification](../packages/executor/src/index.ts). Explain durable operation replay, independent read-back, and why a tool success alone cannot complete work.
-- [ ] Personally run the [demo sequence](demo-script.md): cold evidence, owner teaching, fresh request, current approval, verified workspace, and authority replacement. Inspect at least one literal source and one actual graph-query trace.
-- [ ] Review [test coverage](../tests/integration/runtime.test.ts), [live rehearsal output generation](../evals/live/run.ts), and the final [validation record](validation.md). Watch the linked recording and confirm that you understand the demonstrated implementation.
+- Inspect [the historical fixture](../fixtures/company-history.json) and [the learner](../packages/learner/src/index.ts). Explain why observed success and model suggestions cannot publish policy or authorize a new request.
+- Trace Q1–Q5 through [the graph queries](../packages/graph/src/queries.ts) and [adapter](../packages/graph/src/index.ts). Identify the relationships that make current procedure and authority retrieval depend on FalkorDB.
+- Read [runtime publication and approval handling](../apps/runtime/src/service.ts) and [executor guards](../packages/executor/src/index.ts). Explain exact-plan approval, revision invalidation, and rechecking authority before mutation.
+- Inspect [Lab persistence](../apps/workspace-lab/src/store.ts), [resource behavior](../apps/workspace-lab/src/application.ts), and [executor verification](../packages/executor/src/index.ts). Explain durable operation replay, independent read-back, and why a tool success alone cannot complete work.
+- Personally run the [demo sequence](demo-script.md): cold evidence, owner teaching, fresh request, current approval, verified workspace, and authority replacement. Inspect at least one literal source and one actual graph-query trace.
+- Review [test coverage](../tests/integration/runtime.test.ts), [live rehearsal output generation](../evals/live/run.ts), and the final [validation record](validation.md). Watch the linked recording and confirm that you understand the demonstrated implementation.
 
 ## Organizer requirements checked
 
-The official rules require a public repository, setup and graph-model documentation, essential queries or algorithms, a working video, deployment or complete local instructions, a named track, and disclosed AI assistance. They also require participant understanding. Submission closes **18 October 2026 at 11:59 PM IST**. [Official rules](https://www.wemakedevs.org/hackathons/falkordb/rules).
+The official rules require a public repository, setup and graph-model documentation, essential queries or algorithms, a working video, deployment or complete local instructions, a named track, and disclosed AI assistance. Rule 10 specifies the README graph model and essential queries; rule 11 requires disclosing AI coding assistance; rules 12–13 address participant understanding and contribution. Submission closes **18 October 2026 at 11:59 PM IST**. [Official rules](https://www.wemakedevs.org/hackathons/falkordb/rules).
 
 Track 3 emphasizes company knowledge, ownership, traceable sources, and keeping knowledge current. Athena's bounded workflow connects those concerns to an executable, reviewed procedure. [Track brief](https://www.wemakedevs.org/hackathons/falkordb#tracks).
 
-Use the [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) from the participant's signed-in account after the required artifacts and personal review are complete. Its form fields were not exposed in the public page response, so the sections above are prepared copy rather than a claim about exact form labels or limits.
+Use the [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) from the participant's signed-in account to submit the completed artifacts. Its form fields were not exposed in the public page response, so the sections above are prepared copy rather than a claim about exact form labels or limits.

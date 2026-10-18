@@ -2,7 +2,7 @@
 
 Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. The public Render deployment has now also passed the full live browser flow. All three CI jobs passed at `f46d886`, including the full Compose build and the hosted container under free-tier resource limits.
 
-The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](https://fuadsn.github.io/athena/) has been exported and visually reviewed. Participant code/demo inspection and official submission remain outstanding.
+The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](https://fuadsn.github.io/athena/) has been exported and visually reviewed. The project owner has confirmed personal review of the code and working demonstration. Official submission remains outstanding.
 
 ## Public deployment
 
@@ -98,7 +98,6 @@ The local production preview uses separate persisted graph and Lab stores with l
 
 ## Remaining work before submission
 
-1. Complete the participant code walkthrough and hands-on demonstration using the [inspection checklist](submission.md#participant-inspection-before-submission).
-2. Review the public repository, working video, and [submission copy](submission.md), then submit through the participant's signed-in [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) before the deadline.
+The project owner has confirmed personal code and demo review. Review the [submission copy](submission.md), then submit through the participant's signed-in [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) before the deadline.
 
-The technical release checks and video are complete. Participant review and the official submission remain pending.
+The technical release checks, video, and participant review are complete. The official submission remains pending.

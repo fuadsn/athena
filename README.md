@@ -166,4 +166,4 @@ The persona selector demonstrates role enforcement within an explicitly local de
 
 ## AI assistance and participant review
 
-OpenAI Codex assisted with implementation, testing, and documentation. The project owner supplied the product specification and selected the problem and track. See [the assistance disclosure](docs/ai-assistance.md). Participant code inspection, hands-on demonstration, and submission review remain explicit release requirements.
+OpenAI Codex assisted with implementation, testing, and documentation. The project owner supplied the product specification and selected the problem and track. See [the assistance disclosure](docs/ai-assistance.md). The project owner has personally reviewed the code and working demonstration.
