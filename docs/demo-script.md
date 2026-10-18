@@ -78,3 +78,15 @@ The demonstration proves one bounded local workflow. It does not provision a pro
 Install the browser with `npx playwright install chromium` if necessary, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to an existing Chromium/Chrome executable. `PLAYWRIGHT_BASE_URL` defaults to `http://127.0.0.1:3100`. Traces, failed screenshots, and the HTML report are written under `.local/`.
 
 The available in-app Browser skill was inspected during implementation. Its required Node REPL execution tool and tool-discovery endpoint were unavailable in this agent session; standalone Playwright is the documented fallback for automated release verification. No mock success data is used by the production UI or headline release test.
+
+## Capture the working flow
+
+After the live release checks pass, keep the production preview running and execute:
+
+```sh
+npm run demo:record
+```
+
+This runs the actual headline browser flow with video retained on success and failure, at 1440 × 1000, under a new `.local/demo-recordings/<timestamp>/` directory. Browser interactions are slowed slightly for readability; model waits and actual outcomes remain intact. It calls the real runtime, resets the synthetic demo, and requires a configured live model. A failed run is evidence for debugging, not a successful demo.
+
+Review the resulting `video.webm` before publishing. Add your narration using the sequence above, and keep the working interface and graph-driven authority change visible. Do not replace failed behavior with a successful-looking edit. The capture command does not upload anything.

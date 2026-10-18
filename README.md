@@ -66,6 +66,8 @@ An approval wait ends its model episode. Resuming starts a new episode with empt
 
 See [the demo script](docs/demo-script.md) for the recording sequence. A video and public repository URL must be added before submission; they have not been published by this checkout.
 
+After live verification, `npm run demo:record` captures the actual headline flow as a WebM video under `.local/demo-recordings/`. It preserves failed recordings too; only a passing, reviewed recording should be used for submission.
+
 ## Why FalkorDB matters
 
 The runtime uses relationship queries to retrieve evidence, assemble the reviewed procedure and its dependency graph, resolve current role assignments, validate approvals, and recover receipts. It cannot execute from a local procedure snapshot when the graph is unavailable.
