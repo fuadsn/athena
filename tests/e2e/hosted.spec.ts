@@ -7,7 +7,7 @@ test('hosted HTTPS entry, access code, actual graph and origin checks', async ({
   await expect(page.getByLabel('Demo access code')).toBeVisible();
   await page.getByLabel('Demo access code').fill('incorrect');
   await page.getByRole('button', { name: 'Enter hosted demo' }).click();
-  await expect(page.getByRole('alert')).toContainText('Enter the demo access code');
+  await expect(page.getByRole('alert').filter({ hasText: 'Enter the demo access code' })).toBeVisible();
   await page.getByLabel('Demo access code').fill(process.env.DEMO_ACCESS_CODE!);
   await page.getByRole('button', { name: 'Enter hosted demo' }).click();
   await expect(page.getByRole('combobox', { name: 'Demo persona' })).toHaveValue('person_mira');
