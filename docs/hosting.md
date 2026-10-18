@@ -1,5 +1,7 @@
 # Free hosted demonstration
 
+**Live app: [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com).** Enter the access code supplied with the submission. The public deployment passed the complete live browser rehearsal on 18 October 2026: learning, owner confirmation, normal and extended requests, changed approval authority, and three independently verified workspaces. [Recorded public evidence](hosted-evidence.json).
+
 The hosted profile targets a **Render Free web service**, with the frontend, runtime, separate Workspace Lab process, and real embedded FalkorDB in one container. Only the web port is public. This is a shared hackathon demonstration, not durable company hosting.
 
 Hosting and model selection are independent. The Blueprint defaults to `MODEL_PROVIDER=openai` and `OPENAI_MODEL=gpt-5.4-2026-03-05`, the configuration used by the published recording and live evidence. Render hosting is free; OpenAI API calls use the owner's existing credits. Only the runtime receives the selected provider's key. There is no automatic provider fallback.

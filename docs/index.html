@@ -18,6 +18,9 @@
     h1 { font-size: clamp(32px, 5.4vw, 58px); line-height: 1.1; letter-spacing: -2px; max-width: 850px; margin: 14px 0 20px; }
     .intro { max-width: 800px; color: #c4c3d2; line-height: 1.7; font-size: 17px; }
     .proof { display: flex; gap: 12px 24px; flex-wrap: wrap; margin: 26px 0; color: #bce5ce; font-size: 14px; }
+    .live-demo { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; margin: 24px 0; color: #c4c3d2; font-size: 14px; line-height: 1.6; }
+    .live-demo a { display: inline-block; padding: 12px 20px; border-radius: 9px; background: #b7a1ff; color: #171222; font-weight: 700; text-decoration: none; }
+    .live-demo a:hover, .live-demo a:focus-visible { background: #d0c1ff; }
     .player { border: 1px solid #393545; border-radius: 15px; overflow: hidden; background: #191b25; box-shadow: 0 20px 80px #0005; }
     video { display: block; width: 100%; height: auto; }
     .caption { display: flex; justify-content: space-between; gap: 20px; padding: 14px 18px; font-size: 13px; color: #c4c3d2; border-top: 1px solid #393545; }
@@ -37,6 +40,7 @@
     <div class="eyebrow">Company Brain · Graph Hacks · Working demonstration</div>
     <h1>Teach the company once.<br>Equip the next agent.</h1>
     <p class="intro">Athena learns from historical evidence, asks a person to confirm the policy, and equips a fresh agent to act. Change the approver in FalkorDB, and the next request follows the new authority.</p>
+    <div class="live-demo"><a href="https://athena-0gfk.onrender.com">Try Athena live ↗</a><span>Use the access code supplied with the submission.<br>Free hosting may take about a minute to wake.</span></div>
     <div class="proof"><span>✓ 3 consecutive live rehearsals</span><span>✓ 9 independently verified requests</span><a href="https://github.com/fuadsn/athena/blob/main/docs/validation.md">Inspect the evidence</a></div>
     <div class="player">
       <video id="demo" controls playsinline preload="metadata" poster="demo/poster.jpg" width="1440" height="1100" aria-label="Athena working demonstration">
@@ -56,7 +60,7 @@
     </div>
     <footer>
       <div class="links"><a href="https://github.com/fuadsn/athena#run-locally">Run it locally</a><a href="https://github.com/fuadsn/athena/blob/main/docs/graph-model.md">Graph model</a><a href="https://github.com/fuadsn/athena/blob/main/docs/live-evidence.json">Measured live results</a></div>
-      Synthetic company data and a separate local Workspace Lab. Captions are added below the recorded interface; no simulated outcomes or substituted model responses. This page serves the recording only.
+      Synthetic company data and an independent Workspace Lab. Captions are added below the recorded interface; no simulated outcomes or substituted model responses. The interactive app is linked above.
     </footer>
   </main>
   <script>

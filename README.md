@@ -6,13 +6,13 @@ Athena learns a proposed trial-workspace procedure from three synthetic company 
 
 Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October 2026.
 
-**[Watch Athena working — 3:11 video](https://fuadsn.github.io/athena/)** · [Download MP4](docs/demo/athena-demo.mp4) · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
+**[Try Athena live](https://athena-0gfk.onrender.com)** · **[Watch the 3:11 video](https://fuadsn.github.io/athena/)** · [Download MP4](docs/demo/athena-demo.mp4) · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
 
-[Free hosted-demo setup](docs/hosting.md) is available for Render using the same OpenAI configuration as the recording. Hosting and model provider are configured independently; model API usage is billed by the selected provider. A public interactive deployment is pending.
+The public demo runs on Render Free with real FalkorDB and OpenAI. Enter the access code supplied with the submission. Free hosting may take about a minute to wake and resets demo data on restart. Hosting and model selection are independent; model calls use the selected provider's billing. [Hosting details](docs/hosting.md) · [Public deployment evidence](docs/hosted-evidence.json).
 
 [![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](https://fuadsn.github.io/athena/)
 
-Validated with three consecutive live-model rehearsals, nine independently verified requests, 78 unit tests, 67 integration tests, the complete live browser flow, and a full Docker Compose check. [CI results](https://github.com/fuadsn/athena/actions).
+Validated with three consecutive live-model rehearsals, nine independently verified requests, 85 unit tests, 68 integration tests, the complete live browser flow, and a full Docker Compose check. The public deployment also passed the complete live browser flow with three verified workspaces. [CI results](https://github.com/fuadsn/athena/actions).
 
 ## Run locally
 

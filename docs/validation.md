@@ -1,8 +1,16 @@
 # Validation status
 
-Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. Both CI jobs passed at `40e27dd`, including the full Compose build and cold browser flow.
+Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. The public Render deployment has now also passed the full live browser flow. All three CI jobs passed at `f46d886`, including the full Compose build and the hosted container under free-tier resource limits.
 
 The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](https://fuadsn.github.io/athena/) has been exported and visually reviewed. Participant code/demo inspection and official submission remain outstanding.
+
+## Public deployment
+
+[Athena is running on Render Free](https://athena-0gfk.onrender.com), with the application at `8a25638` and the browser rehearsal at `f46d886`. The complete live headline browser test passed in **103.2 seconds** through public HTTPS. It learned from cold graph evidence, submitted explicit owner confirmation through the UI, verified Atlas and approved Orion workspaces, blocked Vela's stale plan after authority changed, routed Peregrine to Leena, and verified that replay did not create a duplicate resource. Three workspaces passed independent verification. [Actual hosted episodes, receipts, verification results and authority-query traces](hosted-evidence.json).
+
+Separate public-browser checks passed for rejected incorrect access codes, secure session cookies, rejected foreign origins, literal Northstar source access, no browser exceptions, and no horizontal overflow at 390 pixels. Desktop and mobile screenshots were visually inspected. The hosted model calls used 67,950 input and 4,043 output tokens with `gpt-5.4-2026-03-05` (approximately $0.23 at uncached standard rates).
+
+[CI run 39149278769](https://github.com/fuadsn/athena/actions/runs/39149278769) passed **85 unit tests**, **68 integration tests**, production builds, the Compose browser check, and hosted HTTPS checks under **512 MB RAM / 0.1 CPU**. CI has no model key. Render's service plan was confirmed as `free`; model calls still use the owner's OpenAI credits. Free hosting sleeps and loses local data on restart, so the verified state is a recorded result rather than a guarantee that it remains present after a cold start. The access code is supplied privately with the submission.
 
 ## Completed checks
 

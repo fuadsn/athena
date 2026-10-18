@@ -1,0 +1,1597 @@
+{
+  "recordedAt": "2026-10-18T17:26:33.565Z",
+  "url": "https://athena-0gfk.onrender.com",
+  "hosting": {
+    "provider": "Render",
+    "plan": "free",
+    "applicationRevision": "8a25638e4af9fc46dd55498c7a1c9960fcc5b758",
+    "testRevision": "f46d8860ca445f1ade3a6a6d8f9adbedd110c252",
+    "storage": "Ephemeral: demo data resets on restart or spin-down."
+  },
+  "browser": {
+    "checkedAt": "2026-10-18T17:25:27.829Z",
+    "url": "https://athena-0gfk.onrender.com",
+    "passed": true,
+    "modelConfigured": true,
+    "cases": 3,
+    "invalidCodeRejected": true,
+    "foreignOriginStatus": 403,
+    "secureSession": true,
+    "sourceOpened": true,
+    "mobileOverflow": false,
+    "browserExceptions": 0,
+    "liveHeadlinePassed": true,
+    "durationMs": 103211.307
+  },
+  "humanInputs": "The browser harness submits explicit synthetic-owner confirmation and approval through the real UI. The model learns and plans against real FalkorDB; the Workspace Lab independently verifies persisted resources.",
+  "learning": [
+    {
+      "id": "learning_15ba8cd4b06143c697d65e1632dc6e0a",
+      "state": "PUBLISHED",
+      "episode": {
+        "id": "episode_fea45347d0a645208bf9c2822651dd7c",
+        "mission": "LEARN",
+        "targetId": "learning_15ba8cd4b06143c697d65e1632dc6e0a",
+        "startedAt": "2026-10-18T17:23:48.636Z",
+        "endedAt": "2026-10-18T17:24:19.635Z",
+        "status": "WAITING",
+        "initialContextMessages": 0,
+        "modelTurns": 3,
+        "toolCalls": 3,
+        "activeMs": 30907,
+        "inputTokens": 30132,
+        "outputTokens": 3716,
+        "model": "gpt-5.4-2026-03-05",
+        "error": null
+      }
+    }
+  ],
+  "requests": [
+    {
+      "id": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "customer": "Peregrine Labs",
+      "state": "COMPLETED",
+      "reason": null,
+      "durationDays": 30,
+      "approverPersonId": "person_leena",
+      "receiptCount": 4,
+      "verification": {
+        "id": "verification_019debcc0ef94a628adfd588d25e0ec3",
+        "requestId": "request_6ad20ff38a424d96b2cebb490a87c213",
+        "planId": "plan_2e1331bae4214ead99302027468c1de6",
+        "checkedAt": "2026-10-18T17:25:21.735Z",
+        "passed": true,
+        "checks": [
+          {
+            "name": "Exactly one workspace",
+            "expected": 1,
+            "actual": 1,
+            "passed": true
+          },
+          {
+            "name": "Request identity",
+            "expected": "request_6ad20ff38a424d96b2cebb490a87c213",
+            "actual": "request_6ad20ff38a424d96b2cebb490a87c213",
+            "passed": true
+          },
+          {
+            "name": "Customer identity",
+            "expected": "customer_peregrine_labs",
+            "actual": "customer_peregrine_labs",
+            "passed": true
+          },
+          {
+            "name": "Exact member grant",
+            "expected": [
+              {
+                "email": "owner@peregrine.example",
+                "role": "member"
+              }
+            ],
+            "actual": [
+              {
+                "email": "owner@peregrine.example",
+                "role": "member"
+              }
+            ],
+            "passed": true
+          },
+          {
+            "name": "Expiry from persisted creation time",
+            "expected": "2026-11-17T17:25:15.233Z",
+            "actual": "2026-11-17T17:25:15.233Z",
+            "passed": true
+          },
+          {
+            "name": "Workspace active",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Intended member access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Unrelated identity denied",
+            "expected": false,
+            "actual": false,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: create_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: grant_access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: set_expiry",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: activate_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Current plan and applicable approval",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          }
+        ],
+        "workspace": {
+          "id": "ws_23f28c3a-59cc-4e09-83e8-3381188cacc6",
+          "requestId": "request_6ad20ff38a424d96b2cebb490a87c213",
+          "customerId": "customer_peregrine_labs",
+          "createdAt": "2026-10-18T17:25:15.233Z",
+          "expiresAt": "2026-11-17T17:25:15.233Z",
+          "grants": [
+            {
+              "email": "owner@peregrine.example",
+              "role": "member"
+            }
+          ],
+          "active": true
+        },
+        "resourceCount": 1
+      },
+      "episodes": [
+        {
+          "id": "episode_48a5b1943f414a4eb7c9153fd94f2702",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+          "startedAt": "2026-10-18T17:25:06.795Z",
+          "endedAt": "2026-10-18T17:25:08.132Z",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "activeMs": 1338,
+          "inputTokens": 256,
+          "outputTokens": 14,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        },
+        {
+          "id": "episode_8eaa1fd3c65644b5b14b7467e1903e81",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+          "startedAt": "2026-10-18T17:25:11.434Z",
+          "endedAt": "2026-10-18T17:25:22.237Z",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "activeMs": 10803,
+          "inputTokens": 12479,
+          "outputTokens": 95,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "request_8ee0125c94bf4b8cbb17dca706fe8a1b",
+      "customer": "Vela Research",
+      "state": "BLOCKED",
+      "reason": "Approval authority changed; resume to prepare a fresh plan",
+      "durationDays": 30,
+      "approverPersonId": "person_ravi",
+      "receiptCount": 0,
+      "verification": null,
+      "episodes": [
+        {
+          "id": "episode_d43d756e0dc147daa27d285e96df79eb",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_8ee0125c94bf4b8cbb17dca706fe8a1b",
+          "startedAt": "2026-10-18T17:24:57.858Z",
+          "endedAt": "2026-10-18T17:24:59.832Z",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "activeMs": 1974,
+          "inputTokens": 259,
+          "outputTokens": 14,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "customer": "Orion Instruments",
+      "state": "COMPLETED",
+      "reason": null,
+      "durationDays": 30,
+      "approverPersonId": "person_ravi",
+      "receiptCount": 4,
+      "verification": {
+        "id": "verification_f3896a69ac3b4ab5af44606d52c26580",
+        "requestId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+        "planId": "plan_c7bc24c1836642e887413d8a1420551d",
+        "checkedAt": "2026-10-18T17:24:54.733Z",
+        "passed": true,
+        "checks": [
+          {
+            "name": "Exactly one workspace",
+            "expected": 1,
+            "actual": 1,
+            "passed": true
+          },
+          {
+            "name": "Request identity",
+            "expected": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+            "actual": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+            "passed": true
+          },
+          {
+            "name": "Customer identity",
+            "expected": "customer_orion_instruments",
+            "actual": "customer_orion_instruments",
+            "passed": true
+          },
+          {
+            "name": "Exact member grant",
+            "expected": [
+              {
+                "email": "owner@orion.example",
+                "role": "member"
+              }
+            ],
+            "actual": [
+              {
+                "email": "owner@orion.example",
+                "role": "member"
+              }
+            ],
+            "passed": true
+          },
+          {
+            "name": "Expiry from persisted creation time",
+            "expected": "2026-11-17T17:24:47.636Z",
+            "actual": "2026-11-17T17:24:47.636Z",
+            "passed": true
+          },
+          {
+            "name": "Workspace active",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Intended member access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Unrelated identity denied",
+            "expected": false,
+            "actual": false,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: create_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: grant_access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: set_expiry",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: activate_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Current plan and applicable approval",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          }
+        ],
+        "workspace": {
+          "id": "ws_3d2ce760-3111-42b9-82f5-2f54f9fad392",
+          "requestId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+          "customerId": "customer_orion_instruments",
+          "createdAt": "2026-10-18T17:24:47.636Z",
+          "expiresAt": "2026-11-17T17:24:47.636Z",
+          "grants": [
+            {
+              "email": "owner@orion.example",
+              "role": "member"
+            }
+          ],
+          "active": true
+        },
+        "resourceCount": 1
+      },
+      "episodes": [
+        {
+          "id": "episode_091a92da0aa548ffb375e39bc407966e",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+          "startedAt": "2026-10-18T17:24:37.738Z",
+          "endedAt": "2026-10-18T17:24:39.241Z",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "activeMs": 1503,
+          "inputTokens": 259,
+          "outputTokens": 14,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        },
+        {
+          "id": "episode_3c9cea2f85da4b258a55ec52f3e11f27",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+          "startedAt": "2026-10-18T17:24:43.459Z",
+          "endedAt": "2026-10-18T17:24:55.481Z",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "activeMs": 12022,
+          "inputTokens": 12414,
+          "outputTokens": 95,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "request_62664bb54bf8470ca5b297203b1c3a00",
+      "customer": "Atlas Robotics",
+      "state": "COMPLETED",
+      "reason": null,
+      "durationDays": 7,
+      "approverPersonId": null,
+      "receiptCount": 4,
+      "verification": {
+        "id": "verification_2eaefea40bb048e59fc679260ef447e2",
+        "requestId": "request_62664bb54bf8470ca5b297203b1c3a00",
+        "planId": "plan_cc210a63dbe041419dce481a8fcdfae9",
+        "checkedAt": "2026-10-18T17:24:34.926Z",
+        "passed": true,
+        "checks": [
+          {
+            "name": "Exactly one workspace",
+            "expected": 1,
+            "actual": 1,
+            "passed": true
+          },
+          {
+            "name": "Request identity",
+            "expected": "request_62664bb54bf8470ca5b297203b1c3a00",
+            "actual": "request_62664bb54bf8470ca5b297203b1c3a00",
+            "passed": true
+          },
+          {
+            "name": "Customer identity",
+            "expected": "customer_atlas_robotics",
+            "actual": "customer_atlas_robotics",
+            "passed": true
+          },
+          {
+            "name": "Exact member grant",
+            "expected": [
+              {
+                "email": "owner@atlas.example",
+                "role": "member"
+              }
+            ],
+            "actual": [
+              {
+                "email": "owner@atlas.example",
+                "role": "member"
+              }
+            ],
+            "passed": true
+          },
+          {
+            "name": "Expiry from persisted creation time",
+            "expected": "2026-10-25T17:24:28.839Z",
+            "actual": "2026-10-25T17:24:28.839Z",
+            "passed": true
+          },
+          {
+            "name": "Workspace active",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Intended member access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Unrelated identity denied",
+            "expected": false,
+            "actual": false,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: create_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: grant_access",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: set_expiry",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Durable receipt: activate_workspace",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          },
+          {
+            "name": "Current plan and applicable approval",
+            "expected": true,
+            "actual": true,
+            "passed": true
+          }
+        ],
+        "workspace": {
+          "id": "ws_4e926dd0-7e9e-4500-83ad-ebe0dc852f4b",
+          "requestId": "request_62664bb54bf8470ca5b297203b1c3a00",
+          "customerId": "customer_atlas_robotics",
+          "createdAt": "2026-10-18T17:24:28.839Z",
+          "expiresAt": "2026-10-25T17:24:28.839Z",
+          "grants": [
+            {
+              "email": "owner@atlas.example",
+              "role": "member"
+            }
+          ],
+          "active": true
+        },
+        "resourceCount": 1
+      },
+      "episodes": [
+        {
+          "id": "episode_72cd08e5c0084c0898df617a9a4a20d9",
+          "mission": "HANDLE_REQUEST",
+          "targetId": "request_62664bb54bf8470ca5b297203b1c3a00",
+          "startedAt": "2026-10-18T17:24:25.231Z",
+          "endedAt": "2026-10-18T17:24:35.300Z",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "activeMs": 10069,
+          "inputTokens": 12151,
+          "outputTokens": 95,
+          "model": "gpt-5.4-2026-03-05",
+          "error": null
+        }
+      ]
+    }
+  ],
+  "authorityQueryTraces": [
+    {
+      "id": "event_656ddf85b17a43e5ba59f9223ebafabc",
+      "at": "2026-10-18T17:25:07.962Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:07.755Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 397
+    },
+    {
+      "id": "event_2ec16844f2f94cc19a659d7b6935780a",
+      "at": "2026-10-18T17:25:13.026Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 98 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:12.425Z"
+        },
+        "rowCount": 1,
+        "durationMs": 98
+      },
+      "sequence": 423
+    },
+    {
+      "id": "event_1459612cb9db4af3840a63ba62565636",
+      "at": "2026-10-18T17:25:13.030Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:12.628Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 424
+    },
+    {
+      "id": "event_ee7c037646594f31a442b7a141fcd012",
+      "at": "2026-10-18T17:25:14.372Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 71 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:13.124Z"
+        },
+        "rowCount": 1,
+        "durationMs": 71
+      },
+      "sequence": 435
+    },
+    {
+      "id": "event_e85326c24f5c4dc493a6809d4fd3ca8d",
+      "at": "2026-10-18T17:25:14.375Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 3 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:13.225Z"
+        },
+        "rowCount": 1,
+        "durationMs": 3
+      },
+      "sequence": 436
+    },
+    {
+      "id": "event_b557a285c4554adb95b89c1711b859d8",
+      "at": "2026-10-18T17:25:15.356Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:14.435Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 453
+    },
+    {
+      "id": "event_c1b3c170b5484d12ba8616ea58a4c2b7",
+      "at": "2026-10-18T17:25:15.359Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 95 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:14.629Z"
+        },
+        "rowCount": 1,
+        "durationMs": 95
+      },
+      "sequence": 454
+    },
+    {
+      "id": "event_5ff47c83e7a149b2af729854f8254964",
+      "at": "2026-10-18T17:25:15.392Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:15.030Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 464
+    },
+    {
+      "id": "event_ececf2d188d140cb96493827c84c55e6",
+      "at": "2026-10-18T17:25:15.395Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:15.230Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 465
+    },
+    {
+      "id": "event_911125befbea4f5bbd9015cbc3f8ca6a",
+      "at": "2026-10-18T17:25:17.049Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:16.323Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 477
+    },
+    {
+      "id": "event_25299ad45b34432ba325c376e79851d7",
+      "at": "2026-10-18T17:25:17.052Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:16.425Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 478
+    },
+    {
+      "id": "event_6e13d367447b41f0a6f7d6255074fcd6",
+      "at": "2026-10-18T17:25:17.091Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:16.438Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 488
+    },
+    {
+      "id": "event_ffa61d26eab2426693acc9548515e41e",
+      "at": "2026-10-18T17:25:17.095Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:16.930Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 489
+    },
+    {
+      "id": "event_74fae3a4a89b4ee188d99ba267bc92fc",
+      "at": "2026-10-18T17:25:18.929Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:18.309Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 501
+    },
+    {
+      "id": "event_8a19e735af254c148e42d127dd8a8ac0",
+      "at": "2026-10-18T17:25:18.933Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:18.335Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 502
+    },
+    {
+      "id": "event_1e130a7646fc4e1289da37262f5b8f92",
+      "at": "2026-10-18T17:25:18.965Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:18.433Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 512
+    },
+    {
+      "id": "event_d604cb0ba43d46928c0fbd9604c1bf9d",
+      "at": "2026-10-18T17:25:18.969Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 92 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:18.731Z"
+        },
+        "rowCount": 1,
+        "durationMs": 92
+      },
+      "sequence": 513
+    },
+    {
+      "id": "event_e46ac54d52114f8a94d5b4bd12b8e9ab",
+      "at": "2026-10-18T17:25:20.951Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:20.322Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 525
+    },
+    {
+      "id": "event_b3d05030edcf4e38b726cb50c0d2644f",
+      "at": "2026-10-18T17:25:20.956Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:20.334Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 526
+    },
+    {
+      "id": "event_a55d1e4a5ecb4dd3bcfad3c8aefbcf69",
+      "at": "2026-10-18T17:25:21.071Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:20.430Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 536
+    },
+    {
+      "id": "event_de681b78a2d6490ab614606e1078858e",
+      "at": "2026-10-18T17:25:21.074Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:20.529Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 537
+    },
+    {
+      "id": "event_1f89c573491a49e7a19eb0e7409ab2e1",
+      "at": "2026-10-18T17:25:22.083Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 67 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.153Z"
+        },
+        "rowCount": 1,
+        "durationMs": 67
+      },
+      "sequence": 551
+    },
+    {
+      "id": "event_1637300356c9495daa3897b1108782ca",
+      "at": "2026-10-18T17:25:22.087Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.331Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 552
+    },
+    {
+      "id": "event_db742adbb7854b77a89dcba9a1165e3c",
+      "at": "2026-10-18T17:25:22.154Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.630Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 565
+    },
+    {
+      "id": "event_1c269c809e7c45d2920e302c1b7fad14",
+      "at": "2026-10-18T17:25:22.157Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.734Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 566
+    },
+    {
+      "id": "event_373e2bd0a9054f18b8c7b92c9049c766",
+      "at": "2026-10-18T17:25:22.196Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 2 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.831Z"
+        },
+        "rowCount": 1,
+        "durationMs": 2
+      },
+      "sequence": 576
+    },
+    {
+      "id": "event_327ba29e7ae742b2890b35fac8e62db3",
+      "at": "2026-10-18T17:25:22.199Z",
+      "actorId": "graph",
+      "targetId": "request_6ad20ff38a424d96b2cebb490a87c213",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:25:21.933Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 577
+    },
+    {
+      "id": "event_d14ad27466eb43ddb9d4759ffd042303",
+      "at": "2026-10-18T17:24:59.590Z",
+      "actorId": "graph",
+      "targetId": "request_8ee0125c94bf4b8cbb17dca706fe8a1b",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 4 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:59.328Z"
+        },
+        "rowCount": 1,
+        "durationMs": 4
+      },
+      "sequence": 378
+    },
+    {
+      "id": "event_0b3890182af44adbad69ac0ddbc57acf",
+      "at": "2026-10-18T17:24:39.042Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 2 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:38.821Z"
+        },
+        "rowCount": 1,
+        "durationMs": 2
+      },
+      "sequence": 179
+    },
+    {
+      "id": "event_36715aabe6dc4a9396ab3eb7ee12dc68",
+      "at": "2026-10-18T17:24:44.851Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:44.551Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 205
+    },
+    {
+      "id": "event_857f047b3abd4016ab3c647078259397",
+      "at": "2026-10-18T17:24:44.854Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:44.635Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 206
+    },
+    {
+      "id": "event_597c00cac2054d72a9fff0dcf4749e51",
+      "at": "2026-10-18T17:24:46.844Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 3 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:44.923Z"
+        },
+        "rowCount": 1,
+        "durationMs": 3
+      },
+      "sequence": 217
+    },
+    {
+      "id": "event_4c874dff2a944ef09d9ba0b42a170e37",
+      "at": "2026-10-18T17:24:46.848Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:45.228Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 218
+    },
+    {
+      "id": "event_2b3f4433b4844802b97f4904a4033476",
+      "at": "2026-10-18T17:24:47.768Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 82 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:46.922Z"
+        },
+        "rowCount": 1,
+        "durationMs": 82
+      },
+      "sequence": 235
+    },
+    {
+      "id": "event_8d0a1ff1e7d34207826bb3f48c5eb5f1",
+      "at": "2026-10-18T17:24:47.771Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:47.024Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 236
+    },
+    {
+      "id": "event_92d65bef7ec445838b30d21f5ba9f4ec",
+      "at": "2026-10-18T17:24:47.841Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:47.426Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 246
+    },
+    {
+      "id": "event_a36680d178e54426a339716c762c7413",
+      "at": "2026-10-18T17:24:47.850Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:47.633Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 247
+    },
+    {
+      "id": "event_9172a58d37c9443488963c08c07af5c7",
+      "at": "2026-10-18T17:24:49.747Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 2 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:48.929Z"
+        },
+        "rowCount": 1,
+        "durationMs": 2
+      },
+      "sequence": 259
+    },
+    {
+      "id": "event_734d5d228bc84c70b75ca33b828ffa8b",
+      "at": "2026-10-18T17:24:49.754Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 2 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:49.224Z"
+        },
+        "rowCount": 1,
+        "durationMs": 2
+      },
+      "sequence": 260
+    },
+    {
+      "id": "event_0a85a391834b47b0b5b69c67195f6591",
+      "at": "2026-10-18T17:24:49.804Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:49.525Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 270
+    },
+    {
+      "id": "event_ab8b6ac9d3a74aed93a845b640f9012a",
+      "at": "2026-10-18T17:24:49.807Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:49.633Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 271
+    },
+    {
+      "id": "event_19e3c330feea4876b5ffc202e5aeb284",
+      "at": "2026-10-18T17:24:51.534Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:50.825Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 283
+    },
+    {
+      "id": "event_40c6e431cf1949a3be167b1f06c1fa1a",
+      "at": "2026-10-18T17:24:51.537Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:50.926Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 284
+    },
+    {
+      "id": "event_04f2649eb3274583921c8b305e8a2ca2",
+      "at": "2026-10-18T17:24:51.633Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:51.023Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 294
+    },
+    {
+      "id": "event_df98c4aaab184176975ecdc78b7649e7",
+      "at": "2026-10-18T17:24:51.637Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:51.326Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 295
+    },
+    {
+      "id": "event_85098956f06b419f9f278663ca66b8c4",
+      "at": "2026-10-18T17:24:54.163Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 1 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:53.629Z"
+        },
+        "rowCount": 1,
+        "durationMs": 1
+      },
+      "sequence": 307
+    },
+    {
+      "id": "event_1f7b5ee98a884c7485f9ff4a3a8763b7",
+      "at": "2026-10-18T17:24:54.166Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:53.836Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 308
+    },
+    {
+      "id": "event_4678a6a52b61478cb637b0abb0aecd2f",
+      "at": "2026-10-18T17:24:54.198Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:53.932Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 318
+    },
+    {
+      "id": "event_e39c27a435f548b0a201f57ff95bd3d2",
+      "at": "2026-10-18T17:24:54.201Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.032Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 319
+    },
+    {
+      "id": "event_dcbe0adddf1547c091ebe3d53508686b",
+      "at": "2026-10-18T17:24:55.325Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.237Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 333
+    },
+    {
+      "id": "event_e5dc810db3444ee98335df8d1ea9c080",
+      "at": "2026-10-18T17:24:55.329Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.426Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 334
+    },
+    {
+      "id": "event_3548695954f04321b1becf3953b4ed63",
+      "at": "2026-10-18T17:24:55.429Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 3 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.631Z"
+        },
+        "rowCount": 1,
+        "durationMs": 3
+      },
+      "sequence": 347
+    },
+    {
+      "id": "event_44cefb8f0ddf455a9fa6b003a5b32bef",
+      "at": "2026-10-18T17:24:55.433Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.733Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 348
+    },
+    {
+      "id": "event_12a7ab348e6d4ce09c427e5708471d32",
+      "at": "2026-10-18T17:24:55.465Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.830Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 358
+    },
+    {
+      "id": "event_13134638fca84cee8b618cd6d817c529",
+      "at": "2026-10-18T17:24:55.468Z",
+      "actorId": "graph",
+      "targetId": "request_948ee8c20d314fc6a6f4b8da28c48ac3",
+      "type": "graph_query",
+      "message": "Q3_current_role_holder: 1 rows in 0 ms",
+      "data": {
+        "name": "Q3_current_role_holder",
+        "query": "MATCH (person:Person)-[assignment:HOLDS_ROLE]->(role:Role {id: $roleId})\n    WHERE assignment.validFrom <= $now AND (assignment.validTo IS NULL OR assignment.validTo > $now)\n    RETURN person.json AS personJson, assignment.json AS assignmentJson,\n      assignment.revision AS assignmentRevision, assignment.validFrom AS validFrom, assignment.validTo AS validTo,\n      person.id AS personId, role.id AS roleId",
+        "parameters": {
+          "roleId": "role_trial_extension_approver",
+          "now": "2026-10-18T17:24:54.933Z"
+        },
+        "rowCount": 1,
+        "durationMs": 0
+      },
+      "sequence": 359
+    }
+  ],
+  "usage": {
+    "inputTokens": 67950,
+    "outputTokens": 4043
+  },
+  "currentAssignments": [
+    {
+      "id": "assignment_role_trial_extension_approver_2",
+      "personId": "person_leena",
+      "roleId": "role_trial_extension_approver",
+      "revision": 2,
+      "validFrom": "2026-10-18T17:25:03.348Z",
+      "validTo": null,
+      "evidenceRefs": [
+        {
+          "sourceId": "source_authority_48503dd059624ad78aeafad6ded4bfd7",
+          "revision": 1,
+          "quote": "Process owner person_mira assigns role_trial_extension_approver to person_leena, effective 2026-10-18T17:25:03.346Z. This replaces the current assignment.",
+          "observationId": null
+        }
+      ]
+    }
+  ]
+}
