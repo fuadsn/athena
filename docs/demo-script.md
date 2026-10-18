@@ -71,7 +71,7 @@ Say: “The approval role stayed the same. Its holder changed in the graph. A fr
 
 “Athena learned a reviewed procedure from three synthetic historical cases, resolved uncertainty through human teaching, and executed new requests using current graph-based authority. Company knowledge persists; each agent episode starts fresh.”
 
-The demonstration proves one bounded workflow in a synthetic company. It does not provision a production cloud environment or establish enterprise identity security. The persona selector lets the presenter demonstrate each person’s permissions; the hosted version also requires the private demo access code.
+The demonstration proves one bounded workflow in a synthetic company. It does not provision a production cloud environment or establish enterprise identity security. The persona selector lets the presenter demonstrate each person’s permissions; the hosted version uses the [shared demo code in the README](../README.md#demo-access).
 
 ## Browser release test
 

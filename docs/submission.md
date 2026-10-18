@@ -40,7 +40,7 @@ The Workspace Lab stores business resources separately. Its independent read-bac
 | Graph model and architecture | [README graph map](https://github.com/fuadsn/athena#why-falkordb-matters) and [graph-model.md](graph-model.md) |
 | Essential graph queries | [queries.md](queries.md) |
 | Working demo video | [Watch the complete 3:11 demonstration](https://fuadsn.github.io/athena/) · [Download MP4](https://fuadsn.github.io/athena/demo/athena-demo.mp4) |
-| Public interactive demo | [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com) — Render Free, real FalkorDB and live OpenAI. Supply the demo access code privately in the submission. Free hosting may sleep and resets local data on restart. [Verified public flow](hosted-evidence.json). |
+| Public interactive demo | [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com) — Render Free, real FalkorDB and live OpenAI. The [shared demo code is in the README](../README.md#demo-access). Free hosting may sleep and resets local data on restart. [Verified public flow](hosted-evidence.json). |
 | Actual validation evidence | [validation.md](validation.md) |
 
 Setup requires Node.js 24 LTS, npm, and a configured OpenAI API key/model supporting strict Responses function calling. The verified release uses `gpt-5.4-2026-03-05`. The README documents `npm ci`, `npm run setup`, model configuration, and either embedded FalkorDB or Docker. Full Compose startup and its cold browser flow passed CI; three consecutive live rehearsals and the complete live browser recording passed separately.

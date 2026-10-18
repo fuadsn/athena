@@ -10,7 +10,7 @@ The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The 
 
 Separate public-browser checks passed for rejected incorrect access codes, secure session cookies, rejected foreign origins, literal Northstar source access, no browser exceptions, and no horizontal overflow at 390 pixels. Desktop and mobile screenshots were visually inspected. The hosted model calls used 67,950 input and 4,043 output tokens with `gpt-5.4-2026-03-05` (approximately $0.23 at uncached standard rates).
 
-[CI run 39149278769](https://github.com/fuadsn/athena/actions/runs/39149278769) passed **85 unit tests**, **68 integration tests**, production builds, the Compose browser check, and hosted HTTPS checks under **512 MB RAM / 0.1 CPU**. CI has no model key. Render's service plan was confirmed as `free`; model calls still use the owner's OpenAI credits. Free hosting sleeps and loses local data on restart, so the verified state is a recorded result rather than a guarantee that it remains present after a cold start. The access code is supplied privately with the submission.
+[CI run 39149278769](https://github.com/fuadsn/athena/actions/runs/39149278769) passed **85 unit tests**, **68 integration tests**, production builds, the Compose browser check, and hosted HTTPS checks under **512 MB RAM / 0.1 CPU**. CI has no model key. Render's service plan was confirmed as `free`; model calls still use the owner's OpenAI credits. Free hosting sleeps and loses local data on restart, so the verified state is a recorded result rather than a guarantee that it remains present after a cold start. The [shared demo code is published in the README](../README.md#demo-access).
 
 ## Completed checks
 

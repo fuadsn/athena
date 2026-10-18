@@ -8,7 +8,15 @@ Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October
 
 **[Try Athena live](https://athena-0gfk.onrender.com)** · **[Watch the 3:11 video](https://fuadsn.github.io/athena/)** · [Download MP4](docs/demo/athena-demo.mp4) · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
 
-The public demo runs on Render Free with real FalkorDB and OpenAI. Enter the access code supplied with the submission. Free hosting may take about a minute to wake and resets demo data on restart. Hosting and model selection are independent; model calls use the selected provider's billing. [Hosting details](docs/hosting.md) · [Public deployment evidence](docs/hosted-evidence.json).
+## Demo access
+
+Open **[Athena live](https://athena-0gfk.onrender.com)** and enter this shared demo code:
+
+**`Os33ljyk0jUCs6j7UDJxOD7H`**
+
+The code is published here for judges and visitors. No hosting account or model API key is needed to try this instance. Start as **Mira**, then follow [Try the demo](#try-the-demo).
+
+The public demo runs on Render Free with real FalkorDB and OpenAI. Free hosting may take about a minute to wake and resets demo data on restart. Hosting and model selection are independent; model calls use the selected provider's billing. [Hosting details](docs/hosting.md) · [Public deployment evidence](docs/hosted-evidence.json).
 
 [![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](https://fuadsn.github.io/athena/)
 
@@ -16,7 +24,7 @@ Validated with three consecutive live-model rehearsals, nine independently verif
 
 ## Try the demo
 
-Open the **[live app](https://athena-0gfk.onrender.com)** and enter the access code supplied with the submission, or **[watch the 3:11 recording](https://fuadsn.github.io/athena/)**. The app has three tabs: **Learn** teaches a policy, **Do** carries out a request, and **Verify** checks the actual workspace.
+Open the **[live app](https://athena-0gfk.onrender.com)** and enter the [shared demo code above](#demo-access), or **[watch the 3:11 recording](https://fuadsn.github.io/athena/)**. The app has three tabs: **Learn** teaches a policy, **Do** carries out a request, and **Verify** checks the actual workspace.
 
 You play four people using the **Demo persona** dropdown at the top. Switching people demonstrates who is allowed to teach, request, or approve work.
 
@@ -204,7 +212,7 @@ Athena implements one workflow for one synthetic company. Workspace Lab resource
 
 The runtime is a single mutation writer. It is not a distributed transaction system. If a response is lost after a Lab commit, resume reconciles its durable receipt before retrying. Partial resources remain visible; there is no automatic deletion, reactivation, or access broadening.
 
-The persona selector demonstrates role enforcement for four synthetic people. The [public hosted demo](docs/hosting.md) requires a private access code and signed HTTPS sessions; its runtime, database, and Lab listen only inside the container. The original local profile must remain on loopback. Render Free storage is ephemeral: sleeping, restarting, or redeploying starts a fresh demo from historical cases. This is a shared demonstration, not enterprise authentication or durable company hosting.
+The persona selector demonstrates role enforcement for four synthetic people. The [public hosted demo](docs/hosting.md) uses the shared demo access code and signed HTTPS sessions; its runtime, database, and Lab listen only inside the container. The original local profile must remain on loopback. Render Free storage is ephemeral: sleeping, restarting, or redeploying starts a fresh demo from historical cases. This is a shared demonstration, not enterprise authentication or durable company hosting.
 
 ## AI assistance and participant review
 

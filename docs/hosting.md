@@ -1,6 +1,6 @@
 # Free hosted demonstration
 
-**Live app: [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com).** Enter the access code supplied with the submission. The public deployment passed the complete live browser rehearsal on 18 October 2026: learning, owner confirmation, normal and extended requests, changed approval authority, and three independently verified workspaces. [Recorded public evidence](hosted-evidence.json).
+**Live app: [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com).** Enter the [shared demo code in the README](../README.md#demo-access). The public deployment passed the complete live browser rehearsal on 18 October 2026: learning, owner confirmation, normal and extended requests, changed approval authority, and three independently verified workspaces. [Recorded public evidence](hosted-evidence.json).
 
 The hosted profile targets a **Render Free web service**, with the frontend, runtime, separate Workspace Lab process, and real embedded FalkorDB in one container. Only the web port is public. This is a shared hackathon demonstration, not durable company hosting.
 
@@ -41,7 +41,7 @@ GitHub Actions runs the build, tests, and container/browser checks on temporary 
 
 1. Create a free [Render account](https://dashboard.render.com).
 2. Open [Deploy Athena to Render](https://render.com/deploy?repo=https://github.com/fuadsn/athena). The checked-in `render.yaml` explicitly sets `plan: free`; do not select an upgrade.
-3. Supply the existing `OPENAI_API_KEY` and a random `DEMO_ACCESS_CODE` of at least 16 characters. Keep both out of Git. Render generates the session-signing secret. The access code is shared privately with judges in the submission.
+3. Supply the existing `OPENAI_API_KEY` and a random `DEMO_ACCESS_CODE` of at least 16 characters. Keep API keys and session-signing secrets out of Git. Render generates the session-signing secret. The shared entry code for our public hackathon instance is published in the [README](../README.md#demo-access).
 4. Deploy. Render's `RENDER_EXTERNAL_URL` selects the one accepted HTTPS origin. The public link is the URL Render returns; no deployment is claimed until that URL has been checked.
 5. Open the URL, enter the access code, and run the complete Learn → Confirm → Do → Verify flow. Inspect an actual graph query and repeat the authority-change demonstration.
 
