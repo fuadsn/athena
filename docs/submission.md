@@ -1,6 +1,6 @@
 # Athena — submission copy
 
-Prepared 18 October 2026 for **Track 3: Company Brain**. Repository, public interactive demo, working video, and validation evidence are ready. The project owner has confirmed personal review of the code and working demonstration. Submission through the owner's account remains pending. Actual results are recorded in [validation](validation.md).
+Prepared 18 October 2026 for **Track 3: Company Brain**. Repository, public interactive demo, working MP4, and validation evidence are ready. The project owner has confirmed personal review of the code and working demonstration. **Uploading a public or unlisted YouTube video and submitting through the owner's account remain pending.** See the [recording and upload checklist](recording-checklist.md). Actual results are recorded in [validation](validation.md).
 
 ## Title
 
@@ -40,6 +40,7 @@ The Workspace Lab stores business resources separately. Its independent read-bac
 | Graph model and architecture | [README graph map](https://github.com/fuadsn/athena#why-falkordb-matters) and [graph-model.md](graph-model.md) |
 | Essential graph queries | [queries.md](queries.md) |
 | Working demo video | [Watch the complete 3:11 demonstration](https://fuadsn.github.io/athena/) · [Download MP4](https://fuadsn.github.io/athena/demo/athena-demo.mp4) |
+| Required YouTube video URL | **Pending upload.** Upload the existing MP4 or a new recording as public or unlisted, then use its YouTube URL in the form. [Instructions](recording-checklist.md#4-upload-and-submit). |
 | Public interactive demo | [athena-0gfk.onrender.com](https://athena-0gfk.onrender.com) — Render Free, real FalkorDB and live OpenAI. The [shared demo code is in the README](../README.md#demo-access). Free hosting may sleep and resets local data on restart. [Verified public flow](hosted-evidence.json). |
 | Actual validation evidence | [validation.md](validation.md) |
 
@@ -66,4 +67,4 @@ The official rules require a public repository, setup and graph-model documentat
 
 Track 3 emphasizes company knowledge, ownership, traceable sources, and keeping knowledge current. Athena's bounded workflow connects those concerns to an executable, reviewed procedure. [Track brief](https://www.wemakedevs.org/hackathons/falkordb#tracks).
 
-Use the [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) from the participant's signed-in account to submit the completed artifacts. Its form fields were not exposed in the public page response, so the sections above are prepared copy rather than a claim about exact form labels or limits.
+Use the [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) from the participant's signed-in account to submit the completed artifacts. The form supplied by the participant requires a public or unlisted **YouTube** demo link. Upload the video before completing that field; the GitHub Pages player is an additional viewing option.

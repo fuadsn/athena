@@ -1,6 +1,6 @@
 # Athena demonstration
 
-For a first visit, follow the [interactive demo walkthrough](../README.md#try-the-demo). This page is the detailed script for presenting or recording the same workflow.
+For a first visit, follow the [interactive demo walkthrough](../README.md#try-the-demo). To test the hosted app and record on your Mac, use the [short recording checklist](recording-checklist.md). This page is the detailed technical script and automated capture reference.
 
 Primary track: Company Brain. Use synthetic HelioWorks data and the independent Workspace Lab. Record actual outcomes and model latency; never replace waiting or failure with a simulated result.
 

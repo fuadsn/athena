@@ -78,6 +78,14 @@ For a shorter path, Ana can leave the duration blank to use the confirmed normal
 
 The video also shows a pending request becoming blocked when its approval authority changes. [Detailed recording script](docs/demo-script.md) · [Graph model and queries](#why-falkordb-matters).
 
+## Test and record your video
+
+Follow the **[testing and recording checklist](docs/recording-checklist.md)** for exact clicks, expected results, suggested narration, Mac recording instructions, and YouTube upload steps.
+
+Show **source evidence → human-confirmed policy → a new request → approval → verified workspace → change Ravi to Leena → a new request using the changed graph**. Open the actual `Q3_current_role_holder` query and briefly show the graph map below.
+
+There is also a finished **[3:11 MP4](docs/demo/athena-demo.mp4)** you can upload; it has captions and no audio. **The submission form requires a public or unlisted YouTube URL. That upload and the final submission are still pending.** The [existing video page](https://fuadsn.github.io/athena/) remains available for viewing and downloading.
+
 ## Run locally
 
 Prerequisites: Node.js 24 LTS, npm, and either a running Docker daemon (Docker Desktop or Colima) or the embedded database option below. This is a local demo using synthetic identities and resources.
