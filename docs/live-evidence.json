@@ -1,0 +1,1390 @@
+{
+  "recordedAt": "2026-10-18T11:45:40.154Z",
+  "batch": "2026-10-18T11-42-06.365Z",
+  "scope": "Three synthetic reset-to-completion rehearsals against live OpenAI and actual embedded FalkorDB. Owner teaching is explicit evaluation input; no canned model output. This is not a general capability benchmark.",
+  "runtimeRevision": "7d32f4f",
+  "ciRevision": "ce273a2",
+  "ciUrl": "https://github.com/fuadsn/athena/actions/runs/39124306179",
+  "releaseGatePassed": true,
+  "consecutivePasses": 3,
+  "rehearsals": [
+    {
+      "index": 1,
+      "outcome": "PASSED",
+      "startedAt": "2026-10-18T11:42:06.366Z",
+      "finishedAt": "2026-10-18T11:43:13.749Z",
+      "elapsedSeconds": 67.383,
+      "rawRecordSha256": "19b9f2005917f73063ce88b033add19b337fa02debaaa5279dcf58d6a5b0220c",
+      "model": "gpt-5.4-2026-03-05",
+      "coldPublishedProcedures": 0,
+      "learning": {
+        "modelTurns": 3,
+        "rejectedProposals": 0,
+        "questions": [
+          "Should normalDurationDays be set to 7, given two of three observed cases requested and received 7 days, or were those just examples rather than the standard default?",
+          "Should extendedDurationDays be set to 30 as a recognized exception path, and is 30 days normal for some customers or only allowed with case-specific approval?",
+          "If a request asks for requestedDays equal to extendedDurationDays, should the procedure require approval from the Trial Extension Approver role, or has that approval only been observed for one case-specific exception? Who should hold that approval role going forward?",
+          "Is accessRole intended to be member for all trial owners, or have we only observed member so far?"
+        ]
+      },
+      "explicitOwnerReview": {
+        "normalDurationDays": 7,
+        "extendedDurationDays": 30,
+        "accessRole": "member",
+        "extensionApprovalRoleId": "role_trial_extension_approver",
+        "configureWhileInactive": true,
+        "activateAfterConfiguration": true,
+        "confirmAllFields": true
+      },
+      "episodes": [
+        {
+          "id": "episode_d06ce66645c243fa8c9eed48c2987a47",
+          "mission": "LEARN",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 3,
+          "toolCalls": 3,
+          "inputTokens": 30132,
+          "outputTokens": 4121,
+          "activeMs": 37706,
+          "endedAt": "2026-10-18T11:42:44.169Z"
+        },
+        {
+          "id": "episode_505664a63899471ba394a45936a970c9",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 13789,
+          "outputTokens": 95,
+          "activeMs": 8341,
+          "endedAt": "2026-10-18T11:42:53.305Z"
+        },
+        {
+          "id": "episode_dcae5ac346eb404e9cefdd64a9f05010",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 258,
+          "outputTokens": 14,
+          "activeMs": 1623,
+          "endedAt": "2026-10-18T11:42:55.227Z"
+        },
+        {
+          "id": "episode_4e5bf9e8b1fe4fc49e3f827ef75d6ae0",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 14001,
+          "outputTokens": 95,
+          "activeMs": 7813,
+          "endedAt": "2026-10-18T11:43:03.605Z"
+        },
+        {
+          "id": "episode_65db87b2e0f546f490a7dcb21baba9b1",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 256,
+          "outputTokens": 14,
+          "activeMs": 1255,
+          "endedAt": "2026-10-18T11:43:04.975Z"
+        },
+        {
+          "id": "episode_17570284e54248c2b52f51a930afcfef",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 14103,
+          "outputTokens": 95,
+          "activeMs": 8047,
+          "endedAt": "2026-10-18T11:43:13.248Z"
+        }
+      ],
+      "verifiedRequests": [
+        {
+          "requestId": "request_18d918fc50854fc7bf6e4a9f28b7f485",
+          "state": "COMPLETED",
+          "customer": "Harbor1",
+          "durationDays": 7,
+          "approver": null,
+          "planHash": "fc73ed0d2ca3645fb1536a3edeaa197cb0b653d591bef3335d57430cce5db588",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_21bf06f2-6d24-4a50-a731-877905087c88",
+            "requestId": "request_18d918fc50854fc7bf6e4a9f28b7f485",
+            "customerId": "customer_harbor1",
+            "createdAt": "2026-10-18T11:42:47.939Z",
+            "expiresAt": "2026-10-25T11:42:47.939Z",
+            "grants": [
+              {
+                "email": "owner@harbor1.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_18d918fc50854fc7bf6e4a9f28b7f485",
+              "actual": "request_18d918fc50854fc7bf6e4a9f28b7f485",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_harbor1",
+              "actual": "customer_harbor1",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@harbor1.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@harbor1.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-10-25T11:42:47.939Z",
+              "actual": "2026-10-25T11:42:47.939Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_7a4a8b174f744fc197157b3ec087d6a2",
+          "state": "COMPLETED",
+          "customer": "Orbit1",
+          "durationDays": 30,
+          "approver": "person_ravi",
+          "planHash": "3e9998d161639c91428941aae88628ae33f5ecdf2ef026d420633053693eb373",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_a22805c0-9369-49fa-bd47-fd3805024c1a",
+            "requestId": "request_7a4a8b174f744fc197157b3ec087d6a2",
+            "customerId": "customer_orbit1",
+            "createdAt": "2026-10-18T11:42:58.580Z",
+            "expiresAt": "2026-11-17T11:42:58.580Z",
+            "grants": [
+              {
+                "email": "owner@orbit1.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_7a4a8b174f744fc197157b3ec087d6a2",
+              "actual": "request_7a4a8b174f744fc197157b3ec087d6a2",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_orbit1",
+              "actual": "customer_orbit1",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@orbit1.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@orbit1.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:42:58.580Z",
+              "actual": "2026-11-17T11:42:58.580Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_d33d5aa484eb46f1bd558cafe7b0c515",
+          "state": "COMPLETED",
+          "customer": "Quartz1",
+          "durationDays": 30,
+          "approver": "person_leena",
+          "planHash": "35bdc291d282f1ef681eca1cd4908221b26b51955190744a902a9ba1b4341ea2",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_52f6122a-5bf4-43e9-9321-c911d0ae6c7f",
+            "requestId": "request_d33d5aa484eb46f1bd558cafe7b0c515",
+            "customerId": "customer_quartz1",
+            "createdAt": "2026-10-18T11:43:08.039Z",
+            "expiresAt": "2026-11-17T11:43:08.039Z",
+            "grants": [
+              {
+                "email": "owner@quartz1.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_d33d5aa484eb46f1bd558cafe7b0c515",
+              "actual": "request_d33d5aa484eb46f1bd558cafe7b0c515",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_quartz1",
+              "actual": "customer_quartz1",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@quartz1.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@quartz1.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:43:08.039Z",
+              "actual": "2026-11-17T11:43:08.039Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "graphQueries": [
+        "Q1_history_evidence",
+        "Q1_case_sources",
+        "Q5_execution_receipts",
+        "Q5_independent_verification",
+        "Q2_current_procedure",
+        "Q2_procedure_steps_dependencies_sources",
+        "Q2_procedure_rules_roles_sources",
+        "Q4_plan_approval_current_authority",
+        "Q3_current_role_holder"
+      ],
+      "extendedReceiptsBeforeApproval": 0
+    },
+    {
+      "index": 2,
+      "outcome": "PASSED",
+      "startedAt": "2026-10-18T11:43:13.753Z",
+      "finishedAt": "2026-10-18T11:44:30.122Z",
+      "elapsedSeconds": 76.369,
+      "rawRecordSha256": "2cfeded641323dc27a29c5f7f19525c645173eb9d28beaad319753e9b0906f29",
+      "model": "gpt-5.4-2026-03-05",
+      "coldPublishedProcedures": 0,
+      "learning": {
+        "modelTurns": 3,
+        "rejectedProposals": 0,
+        "questions": [
+          "Should normalDurationDays be 7 because two of three observed cases requested seven days, or is some other standard intended?",
+          "Is extendedDurationDays = 30 a normal preapproved extension path, or was Lumen an exception requiring case-specific approval only? The historical evidence says the approval was for that request only.",
+          "If a requested duration matches neither the normal nor extended duration, should the procedure require approval or ask for clarification?",
+          "Should the owner access role be fixed as member in the editable field accessRole? All observed cases used member, but no explicit policy text confirms it.",
+          "Please confirm that the relevant approval branch, if any, should reference the Trial Extension Approver role (role_trial_extension_approver) rather than a historical individual. The directory currently shows Ravi assigned to that role."
+        ]
+      },
+      "explicitOwnerReview": {
+        "normalDurationDays": 7,
+        "extendedDurationDays": 30,
+        "accessRole": "member",
+        "extensionApprovalRoleId": "role_trial_extension_approver",
+        "configureWhileInactive": true,
+        "activateAfterConfiguration": true,
+        "confirmAllFields": true
+      },
+      "episodes": [
+        {
+          "id": "episode_0fee0d734f4d42d3b9e55501cde58888",
+          "mission": "LEARN",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 3,
+          "toolCalls": 3,
+          "inputTokens": 30132,
+          "outputTokens": 5849,
+          "activeMs": 47390,
+          "endedAt": "2026-10-18T11:44:01.223Z"
+        },
+        {
+          "id": "episode_304f8d83e3ad4e2ba6106f65e4e4833e",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 15697,
+          "outputTokens": 92,
+          "activeMs": 8183,
+          "endedAt": "2026-10-18T11:44:09.620Z"
+        },
+        {
+          "id": "episode_db6c04bded4f43f2af9fd8c835f906d1",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 256,
+          "outputTokens": 14,
+          "activeMs": 1578,
+          "endedAt": "2026-10-18T11:44:11.530Z"
+        },
+        {
+          "id": "episode_9b9c0f2eed3c445c8215883acc1e5549",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 15968,
+          "outputTokens": 92,
+          "activeMs": 7828,
+          "endedAt": "2026-10-18T11:44:19.965Z"
+        },
+        {
+          "id": "episode_f333df4125d247d58aec525843727c7f",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 255,
+          "outputTokens": 14,
+          "activeMs": 1259,
+          "endedAt": "2026-10-18T11:44:21.312Z"
+        },
+        {
+          "id": "episode_1c16d6e9c71f4b97950aac9552c0725b",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 16019,
+          "outputTokens": 92,
+          "activeMs": 8095,
+          "endedAt": "2026-10-18T11:44:29.629Z"
+        }
+      ],
+      "verifiedRequests": [
+        {
+          "requestId": "request_1474151a1f1b40148ad968185f2ed1d8",
+          "state": "COMPLETED",
+          "customer": "Harbor2",
+          "durationDays": 7,
+          "approver": null,
+          "planHash": "154a41825a9eba079baeba2ac0e94b8d4458247ffe84a1060e243ded1790b00e",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_e2aa5a1c-6336-4be5-8053-988008d66bc5",
+            "requestId": "request_1474151a1f1b40148ad968185f2ed1d8",
+            "customerId": "customer_harbor2",
+            "createdAt": "2026-10-18T11:44:04.160Z",
+            "expiresAt": "2026-10-25T11:44:04.160Z",
+            "grants": [
+              {
+                "email": "owner@harbor2.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_1474151a1f1b40148ad968185f2ed1d8",
+              "actual": "request_1474151a1f1b40148ad968185f2ed1d8",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_harbor2",
+              "actual": "customer_harbor2",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@harbor2.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@harbor2.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-10-25T11:44:04.160Z",
+              "actual": "2026-10-25T11:44:04.160Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_fb1fd8e16fc8442ba1e04da5db5cb513",
+          "state": "COMPLETED",
+          "customer": "Orbit2",
+          "durationDays": 30,
+          "approver": "person_ravi",
+          "planHash": "ad4b7e0dd17a50ee0a5d5f8914ea0c8e5f9e1e6dfda604088c0ea5a8a748f132",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_c6043ed0-ee87-4978-b33e-1fc770f56ede",
+            "requestId": "request_fb1fd8e16fc8442ba1e04da5db5cb513",
+            "customerId": "customer_orbit2",
+            "createdAt": "2026-10-18T11:44:14.905Z",
+            "expiresAt": "2026-11-17T11:44:14.905Z",
+            "grants": [
+              {
+                "email": "owner@orbit2.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_fb1fd8e16fc8442ba1e04da5db5cb513",
+              "actual": "request_fb1fd8e16fc8442ba1e04da5db5cb513",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_orbit2",
+              "actual": "customer_orbit2",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@orbit2.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@orbit2.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:44:14.905Z",
+              "actual": "2026-11-17T11:44:14.905Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_650a61b69d874c62ae0bdcb330a22fac",
+          "state": "COMPLETED",
+          "customer": "Quartz2",
+          "durationDays": 30,
+          "approver": "person_leena",
+          "planHash": "42174e5d3b02706089c868c74de687abaee1e0565f9746d09c69cfad675cfb81",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_02eb4e60-f9ef-4b6e-9712-9bb62ee815c0",
+            "requestId": "request_650a61b69d874c62ae0bdcb330a22fac",
+            "customerId": "customer_quartz2",
+            "createdAt": "2026-10-18T11:44:24.516Z",
+            "expiresAt": "2026-11-17T11:44:24.516Z",
+            "grants": [
+              {
+                "email": "owner@quartz2.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_650a61b69d874c62ae0bdcb330a22fac",
+              "actual": "request_650a61b69d874c62ae0bdcb330a22fac",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_quartz2",
+              "actual": "customer_quartz2",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@quartz2.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@quartz2.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:44:24.516Z",
+              "actual": "2026-11-17T11:44:24.516Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "graphQueries": [
+        "Q1_history_evidence",
+        "Q1_case_sources",
+        "Q5_execution_receipts",
+        "Q5_independent_verification",
+        "Q2_current_procedure",
+        "Q2_procedure_steps_dependencies_sources",
+        "Q2_procedure_rules_roles_sources",
+        "Q4_plan_approval_current_authority",
+        "Q3_current_role_holder"
+      ],
+      "extendedReceiptsBeforeApproval": 0
+    },
+    {
+      "index": 3,
+      "outcome": "PASSED",
+      "startedAt": "2026-10-18T11:44:30.130Z",
+      "finishedAt": "2026-10-18T11:45:40.147Z",
+      "elapsedSeconds": 70.017,
+      "rawRecordSha256": "5b7610c9b8f76b38721d3a3701a80b99d12a5f44c6eee8181026c8cbc5a819d5",
+      "model": "gpt-5.4-2026-03-05",
+      "coldPublishedProcedures": 0,
+      "learning": {
+        "modelTurns": 3,
+        "rejectedProposals": 0,
+        "questions": [
+          "Owner teaching question: should normalDurationDays be 7, given two observed 7-day trials, or is another baseline intended?",
+          "Owner teaching question: is a 30-day trial a normal extendedDurationDays option, or was Lumen an exception that required case-specific approval?",
+          "Owner teaching question: if extended trials require approval, should requests whose requestedDays equal extendedDurationDays require the Trial Extension Approver role (role_trial_extension_approver), or is another approval role responsible now?",
+          "Owner teaching question: for requestedDays values other than the observed 7 and 30, should the procedure clarify rather than proceed?"
+        ]
+      },
+      "explicitOwnerReview": {
+        "normalDurationDays": 7,
+        "extendedDurationDays": 30,
+        "accessRole": "member",
+        "extensionApprovalRoleId": "role_trial_extension_approver",
+        "configureWhileInactive": true,
+        "activateAfterConfiguration": true,
+        "confirmAllFields": true
+      },
+      "episodes": [
+        {
+          "id": "episode_e4f80964ac9e4c5f86461ba419bba5c1",
+          "mission": "LEARN",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 3,
+          "toolCalls": 3,
+          "inputTokens": 30132,
+          "outputTokens": 4332,
+          "activeMs": 39218,
+          "endedAt": "2026-10-18T11:45:09.433Z"
+        },
+        {
+          "id": "episode_fe817d0cba644962965f15b36b24f346",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 13786,
+          "outputTokens": 95,
+          "activeMs": 8416,
+          "endedAt": "2026-10-18T11:45:18.401Z"
+        },
+        {
+          "id": "episode_20a5ba28462647149d54550f22e5df14",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 254,
+          "outputTokens": 14,
+          "activeMs": 1229,
+          "endedAt": "2026-10-18T11:45:19.780Z"
+        },
+        {
+          "id": "episode_97691d48ae6642f6b73ea8be969dbab5",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 13993,
+          "outputTokens": 95,
+          "activeMs": 8384,
+          "endedAt": "2026-10-18T11:45:28.436Z"
+        },
+        {
+          "id": "episode_35ddc7d50e9a4fd9b09f77698648f5ca",
+          "mission": "HANDLE_REQUEST",
+          "status": "WAITING",
+          "initialContextMessages": 0,
+          "modelTurns": 1,
+          "toolCalls": 1,
+          "inputTokens": 257,
+          "outputTokens": 14,
+          "activeMs": 1508,
+          "endedAt": "2026-10-18T11:45:30.166Z"
+        },
+        {
+          "id": "episode_2269ab5301d04a0ab5f55e526f0c80f0",
+          "mission": "HANDLE_REQUEST",
+          "status": "SUCCEEDED",
+          "initialContextMessages": 0,
+          "modelTurns": 5,
+          "toolCalls": 5,
+          "inputTokens": 14136,
+          "outputTokens": 95,
+          "activeMs": 8758,
+          "endedAt": "2026-10-18T11:45:39.639Z"
+        }
+      ],
+      "verifiedRequests": [
+        {
+          "requestId": "request_25d86fa43f294dc1a1dedf745ded0554",
+          "state": "COMPLETED",
+          "customer": "Harbor3",
+          "durationDays": 7,
+          "approver": null,
+          "planHash": "115c2848a5173924555ca49499c5b7dede81702d55d3c581096b88384cf4efce",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_6ae5d2a8-2268-4379-999f-e0faa3fd7ac3",
+            "requestId": "request_25d86fa43f294dc1a1dedf745ded0554",
+            "customerId": "customer_harbor3",
+            "createdAt": "2026-10-18T11:45:13.065Z",
+            "expiresAt": "2026-10-25T11:45:13.065Z",
+            "grants": [
+              {
+                "email": "owner@harbor3.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_25d86fa43f294dc1a1dedf745ded0554",
+              "actual": "request_25d86fa43f294dc1a1dedf745ded0554",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_harbor3",
+              "actual": "customer_harbor3",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@harbor3.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@harbor3.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-10-25T11:45:13.065Z",
+              "actual": "2026-10-25T11:45:13.065Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_f29ef77e015c4561bfe519dd3675867e",
+          "state": "COMPLETED",
+          "customer": "Orbit3",
+          "durationDays": 30,
+          "approver": "person_ravi",
+          "planHash": "f519a1a96450426396a321befb9f39ee6507fe451454196716ddd42ec5df84be",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_97806bf7-015a-4f61-ab79-d5350326af81",
+            "requestId": "request_f29ef77e015c4561bfe519dd3675867e",
+            "customerId": "customer_orbit3",
+            "createdAt": "2026-10-18T11:45:22.986Z",
+            "expiresAt": "2026-11-17T11:45:22.986Z",
+            "grants": [
+              {
+                "email": "owner@orbit3.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_f29ef77e015c4561bfe519dd3675867e",
+              "actual": "request_f29ef77e015c4561bfe519dd3675867e",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_orbit3",
+              "actual": "customer_orbit3",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@orbit3.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@orbit3.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:45:22.986Z",
+              "actual": "2026-11-17T11:45:22.986Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        },
+        {
+          "requestId": "request_41c0f1f80fc64985840a98f405a2104a",
+          "state": "COMPLETED",
+          "customer": "Quartz3",
+          "durationDays": 30,
+          "approver": "person_leena",
+          "planHash": "2b8685812965d96118f11c4ce6cd0de06f0012aa2418cb95470b562592cc853b",
+          "receiptCount": 4,
+          "resourceCount": 1,
+          "workspace": {
+            "id": "ws_6851cafc-db85-4962-ad8a-b795f694970f",
+            "requestId": "request_41c0f1f80fc64985840a98f405a2104a",
+            "customerId": "customer_quartz3",
+            "createdAt": "2026-10-18T11:45:34.570Z",
+            "expiresAt": "2026-11-17T11:45:34.570Z",
+            "grants": [
+              {
+                "email": "owner@quartz3.example",
+                "role": "member"
+              }
+            ],
+            "active": true
+          },
+          "checks": [
+            {
+              "name": "Exactly one workspace",
+              "expected": 1,
+              "actual": 1,
+              "passed": true
+            },
+            {
+              "name": "Request identity",
+              "expected": "request_41c0f1f80fc64985840a98f405a2104a",
+              "actual": "request_41c0f1f80fc64985840a98f405a2104a",
+              "passed": true
+            },
+            {
+              "name": "Customer identity",
+              "expected": "customer_quartz3",
+              "actual": "customer_quartz3",
+              "passed": true
+            },
+            {
+              "name": "Exact member grant",
+              "expected": [
+                {
+                  "email": "owner@quartz3.example",
+                  "role": "member"
+                }
+              ],
+              "actual": [
+                {
+                  "email": "owner@quartz3.example",
+                  "role": "member"
+                }
+              ],
+              "passed": true
+            },
+            {
+              "name": "Expiry from persisted creation time",
+              "expected": "2026-11-17T11:45:34.570Z",
+              "actual": "2026-11-17T11:45:34.570Z",
+              "passed": true
+            },
+            {
+              "name": "Workspace active",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Intended member access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Unrelated identity denied",
+              "expected": false,
+              "actual": false,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: create_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: grant_access",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: set_expiry",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Durable receipt: activate_workspace",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            },
+            {
+              "name": "Current plan and applicable approval",
+              "expected": true,
+              "actual": true,
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "graphQueries": [
+        "Q1_history_evidence",
+        "Q1_case_sources",
+        "Q5_execution_receipts",
+        "Q5_independent_verification",
+        "Q2_current_procedure",
+        "Q2_procedure_steps_dependencies_sources",
+        "Q2_procedure_rules_roles_sources",
+        "Q4_plan_approval_current_authority",
+        "Q3_current_role_holder"
+      ],
+      "extendedReceiptsBeforeApproval": 0
+    }
+  ]
+}

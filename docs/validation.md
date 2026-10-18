@@ -1,53 +1,92 @@
 # Validation status
 
-Updated 17 October 2026 after actual database, HTTP, and browser verification. This file reports performed checks, not an assumed release result.
+Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. Both CI jobs passed at `ce273a2`, including the full Compose build and cold browser flow.
 
-Submission update, 18 October: the owner authorized publication as [fuadsn/athena](https://github.com/fuadsn/athena), and the feature commits are now public. The README includes a graph map and a decision-to-traversal table. `npm run demo:record` is ready to capture the actual live headline flow; typechecking and test discovery passed. Live-model configuration and a working video are still pending.
+The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser recording is currently running; its result and public video URL remain pending. Participant code/demo inspection and official submission remain outstanding.
 
-## Completed
+## Completed checks
 
 | Check | Actual outcome |
 |---|---|
 | Synthetic JSON consistency | Ten source hashes, thirty-one citations, chronology, observed durations, and T01–T16 specification coverage passed |
-| `npm test` | 74 passed; four opt-in graph cases skipped here and passed in the integration command |
-| `npm run typecheck` | Passed |
-| `npm run build` | Next.js production webpack build passed |
-| `npm run test:integration` | All 63 passed against the real embedded FalkorDB and real file-backed Lab |
-| `npm run test:e2e -- cold.spec.ts` | Passed against both development and production previews using installed Chrome |
-| Desktop/mobile UI inspection | 14 actual-service checks passed; screenshots inspected and mobile evidence readability corrected |
-| `npm run preview -- --embedded` | All four services started; persisted graph reopened; health endpoint reported available |
+| Last reported local `npm test` | **78 passed**; four opt-in graph cases skipped in this command and covered by the integration command |
+| Last reported local `npm run typecheck` | Passed |
+| Production web build | Next.js production webpack build passed locally and in CI |
+| Last reported local `npm run test:integration` | **67 passed**, including real embedded FalkorDB and persisted Workspace Lab checks |
+| Local cold browser flow | Passed against development and production previews using installed Chrome |
+| Desktop/mobile inspection | Fourteen actual-service checks passed; screenshots inspected, mobile evidence readability corrected |
+| Local production preview | All four services started; persisted graph reopened; health endpoint reported available |
+| Real OpenAI schema probe | Passed with `gpt-5.4-mini-2026-03-17`; subsequent full live results are recorded separately below |
+| Final audited live batch | **3/3 consecutive passes** with `gpt-5.4-2026-03-05`; nine requests independently verified; every recorded episode ended with final counters |
+| Earlier headline browser recording | Passed with the mini model through `npm run demo:record`; a real WebM exists. The final paced recording is running. |
+| CI: deterministic job at `ce273a2` | Passed on Node.js 24 with pinned FalkorDB 4.22.1: typechecking, production build, unit tests, and integration tests |
+| CI: container smoke job at `ce273a2` | Passed: full Compose build/start, service readiness, and the actual cold browser flow |
 
-The 63 integration cases comprise four graph relationship cases, fourteen runtime cases with actual FalkorDB, fourteen runtime cases with an explicit graph double, fifteen Lab HTTP cases, and sixteen runtime HTTP authorization cases. Runtime integration cases use an explicit test-only model; they do not prove live-model performance. The Lab stores actual persisted resources throughout these checks.
+Both CI jobs passed in [Verify Athena run 39124306179](https://github.com/fuadsn/athena/actions/runs/39124306179). Earlier CI runs at `21effa7`, `280d4a9`, and `041767b` also passed both jobs. The [workflow](../.github/workflows/verify.yml) uses the digest-pinned FalkorDB image from Compose. CI's model credentials are intentionally empty: live-model results come from the separate recorded rehearsals. This CI result belongs to `ce273a2`; subsequent implementation changes need their own checks.
 
-The first unrestricted integration run passed 62/63. Its stalled-model test advanced fake timers while real database setup was still pending, triggering the graph query timeout. The corrected test waits for the model call to start before advancing time. The subsequent complete run passed all 63 with no unhandled errors.
+Runtime integration coverage uses explicit test-only model responses and includes both real-graph and graph-double cases. Lab resources are persisted independently. Deterministic success and live-model success are reported separately.
 
-Browser checks found and fixed a real origin mismatch: Next normalized its development URL to localhost while the browser used 127.0.0.1. The proxy now checks the actual local HTTP Host and exact Origin, and the permanent browser test verifies legitimate entry plus rejection of foreign origins. Other checks cover source content, persona permissions, missing-model messaging, cold-request blocking, mobile dialogs, and absence of browser exceptions.
+## Final audited live results
 
-Actual runtime API checks confirmed historical-only cold state, source retrieval, zero model calls and no receipts for `NEEDS_TEACHING`, owner/operator separation, Ravi-to-Leena reassignment, stale revision rejection, and owner reset of both services.
+Evidence directory: `.local/live-rehearsals/2026-10-18T11-42-06.365Z/`. Its saved `summary.json` records `consecutivePasses: 3` and `releaseGatePassed: true`. The repository includes a [machine-readable evidence export](live-evidence.json) with source-record hashes, episode data, model identity, and outcomes. It identifies runtime revision `7d32f4f` and CI revision `ce273a2`.
 
-## Remaining release gates
+| Rehearsal | Outcome | Elapsed time | Input tokens | Output tokens | Independently verified requests |
+|---|---|---:|---:|---:|---:|
+| 1 | Passed | 67.383 seconds | 72,539 | 4,434 | 3 |
+| 2 | Passed | 76.369 seconds | 78,327 | 6,153 | 3 |
+| 3 | Passed | 70.017 seconds | 72,558 | 4,645 | 3 |
 
-- **Live model:** `OPENAI_API_KEY` and `OPENAI_MODEL` remain empty. `npm run eval:live` was attempted and correctly failed with `Runtime has no live model configured`. The failed attempt and a false release-gate result are preserved under `.local/live-rehearsals/2026-10-17T17-15-46.396Z/`. Zero live rehearsals have passed.
-- **Complete browser flow:** the headline learn → review → execute → change authority flow still requires the live model. Cold-browser verification does not replace it.
-- **Container deployment:** the pinned FalkorDB 4.22.1 image and full Compose deployment remain unverified. All actual graph tests above used embedded FalkorDB 4.18.3 with Redis 8.4.0.
-- **Submission:** the public repository is [fuadsn/athena](https://github.com/fuadsn/athena). A real demo video, participant code/demo inspection, and submission through the owner's signed-in WeMakeDevs account are still required.
+All three runs used `gpt-5.4-2026-03-05`. Each learning episode took three model turns and had zero rejected candidates. Every episode ended and included finalized usage counters. Each rehearsal covered a normal request, an approved extension, and a new extension after the authority change: **nine verified requests total**.
 
-## Environment and recovery
+The harness submits explicit teaching input through the owner-review endpoint after live induction; it does not insert an executable procedure into the cold seed or provide evaluation answers to the learner. These results establish the bounded synthetic demonstration, not a general company-workflow benchmark.
 
-Local Node.js is v25.2.1. Vitest 5 declares supported lines 22.12+, 24, and 26+, so Node 24 LTS remains the documented reproducible setup and container base. Checks executed successfully on the available local version.
+## Preserved attempts and corrections
 
-The initial managed sandbox blocked test sockets and Chrome. Permissions were subsequently enabled and those checks ran successfully; that earlier restriction is no longer the blocker.
+Every failed attempt remains under `.local/live-rehearsals/`, with a completed failed-batch summary recording `releaseGatePassed: false`. Directory timestamps below are UTC.
 
-Colima successfully started after permissions were enabled. During image download/build, the Mac's disk reached 100% capacity and Colima's data filesystem reported I/O errors and remounted read-only. Athena's generated npm cache was removed, recovering about 414 MB; roughly 539 MB remained at the last check. Colima was cleanly stopped. No unrelated user files, existing containers, or volumes were deleted. Free at least 3 GB before restarting Colima and retrying the container build; if its filesystem still reports errors, inspect/recover the VM storage before further builds.
+| Preserved batch | Actual outcome |
+|---|---|
+| `2026-10-17T17-15-46.396Z` | Failed because no live model was configured at the time |
+| `2026-10-18T11-19-54.038Z` | Failed at the strict-tool schema boundary: unsupported `oneOf` |
+| `2026-10-18T11-24-13.247Z` | Failed because the proposed procedure had invalid step dependencies |
+| `2026-10-18T11-28-28.893Z` | Failed after repeated invalid binding proposals exhausted the episode budget |
+| `2026-10-18T11-32-06.785Z` | First **3/3 consecutive passes**, using the mini model after `280d4a9`; retained as historical evidence |
+| `2026-10-18T11-38-27.154Z` | Audit-capture rerun failed rehearsal 1: the eight-turn learning budget was exhausted after repeated omission of the required `create_workspace` request-ID argument |
+| `2026-10-18T11-42-06.365Z` | Final audited batch: **3/3 consecutive passes** with `gpt-5.4-2026-03-05`, finalized episode records, and `releaseGatePassed: true` |
 
-The embedded graph and Lab remain available through the production preview at http://127.0.0.1:3100. They use separate persisted local stores. Restart the preview after configuring model values so the runtime loads them.
+The fixes replace unsupported tool-schema unions with supported `anyOf`, return specific validation feedback, and make the allowed technical binding grammar explicit. Invalid proposals remain recorded, and repairs must fit the existing turn, tool-call, and time budgets. Feedback explains dependencies and tool parameters without supplying hidden company-policy answers.
 
-## Finish in order
+An audit recorder could capture request completion before the final episode status and usage writes finished. The workspace verification itself remained valid. Harness fix `21effa7` waits for terminal episodes before saving metrics. The first follow-up failed during learning as recorded above. Revision `7d32f4f` then improved exact parameter feedback, and the locally selected model changed from `gpt-5.4-mini-2026-03-17` to `gpt-5.4-2026-03-05`. The final successful batch records that changed configuration explicitly; earlier failures were not discarded.
 
-1. Configure the model in `.env` and restart the local preview.
-2. Run the full `npm run test:e2e` and fix any live-model failures.
-3. Run `npm run eval:live` until three consecutive reset-to-completion rehearsals pass; preserve every failed attempt.
-4. Retry Compose verification once disk space is available.
-5. Inspect the implementation, record the actual demo, and publish the approved repository and video links for submission.
+## Browser recording
 
-The original local implementation checkpoint was split into feature commits without changing its tree. Subsequent fixes, browser coverage, mobile readability, rehearsal diagnostics, and production preview each have separate commits. A backup reference remains at `checkpoint/before-feature-split-20261017`.
+An earlier live headline browser run passed in about 1.5 minutes and produced this actual local recording:
+
+`.local/demo-recordings/2026-10-18T11-36-46.382Z/headline-cold-evidence-→-o-ca10b-ed-work-→-changed-authority-chromium/video.webm`
+
+That WebM is 6,830,185 bytes and used the mini model. It remains historical evidence. The updated recording script adds readable pauses and opens the actual Q3 `HOLDS_ROLE` query. Typechecking and test discovery passed; the final paced capture against the current configuration is running. Its pass result, reviewed artifact, and public URL are not yet claimed here.
+
+## Other verified behavior
+
+Cold API and browser checks confirmed historical-only state, literal source retrieval, owner/operator separation, and blocked work with zero mutation receipts when no reviewed procedure exists. Deterministic runtime checks also cover current role replacement, stale revisions, graph dependence, interrupted operations, independent verification, and owner-authorized reset.
+
+Browser checks found and fixed an origin mismatch between Next's normalized localhost URL and a browser using 127.0.0.1. The proxy now validates the actual local Host and exact Origin. Permanent coverage checks legitimate entry, rejected foreign origins, sources, persona permissions, absent-model messaging, mobile dialogs, and browser exceptions.
+
+An earlier integration timer test advanced fake time before real-database setup finished. It now waits for the model call before advancing time. Subsequent complete suites passed; the initial failure was not counted as a pass.
+
+## Environment and reproducibility
+
+Node.js 24 LTS is the documented setup and container base and is verified in CI. Local checks also ran on the available Node.js v25.2.1. Local graph integration used embedded FalkorDB 4.18.3 with Redis 8.4.0; CI separately verified pinned FalkorDB 4.22.1 and the full Compose application.
+
+Initial sandbox restrictions blocked sockets and Chrome; those checks subsequently ran after permissions were enabled. A later local Colima build encountered disk exhaustion and filesystem errors. Colima was stopped without deleting unrelated user files or volumes. That incident is no longer a container-release blocker because full Compose verification passed in CI. Repair the local VM storage and provide sufficient space before using Colima again.
+
+The local production preview uses separate persisted graph and Lab stores with live model configuration loaded. Secrets do not belong in committed evidence. `npm run demo:reset` resets both stores through the serialized runtime and refuses while episodes are active.
+
+## Remaining work before submission
+
+1. Let the final paced browser capture finish and inspect its actual source, Q3 authority query, approval, and verified-workspace sequence. Record its real outcome here; preserve any failed capture.
+2. Complete the participant code walkthrough and hands-on demonstration using the [inspection checklist](submission.md#participant-inspection-before-submission).
+3. Publish the reviewed working video and add its actual URL to the README and [submission copy](submission.md). A local WebM path does not satisfy the public-video handoff.
+4. Review the public repository and final artifacts, then submit through the participant's signed-in [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) before the deadline.
+
+The final audited three-rehearsal gate and container verification are complete. Video publication, participant review, and the official submission remain pending.
