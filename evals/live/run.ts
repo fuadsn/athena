@@ -36,7 +36,15 @@ async function until<T>(read: () => Promise<T>, done: (value: T) => boolean, fai
   }
   throw new Error('Timed out waiting for a bounded episode result');
 }
-const requestUntil = (id: string, state: string) => until(() => api<RequestDetail>(`/requests/${id}`, 'person_ana'), d => d.request.state === state, d => ['FAILED', 'BLOCKED', 'REJECTED'].includes(d.request.state) ? `${d.request.state}: ${d.request.reason}` : null);
+const requestUntil = (id: string, state: string) => until(
+  () => api<RequestDetail>(`/requests/${id}`, 'person_ana'),
+  // The request transition precedes the episode's final usage write. Wait for
+  // both so rehearsal evidence never records a completed job with an active
+  // episode or misses its final latency and token counters.
+  d => d.request.state === state && d.episodes.length > 0 && d.episodes.every(episode => episode.status !== 'RUNNING') &&
+    (state !== 'COMPLETED' || d.episodes.some(episode => episode.status === 'SUCCEEDED')),
+  d => ['FAILED', 'BLOCKED', 'REJECTED'].includes(d.request.state) ? `${d.request.state}: ${d.request.reason}` : d.episodes.find(episode => episode.status === 'FAILED')?.error ?? null,
+);
 const proof: Record<string, unknown>[] = [];
 let consecutive = 0;
 for (let index = 1; index <= count; index++) {
