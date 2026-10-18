@@ -9,7 +9,15 @@ const EmptyArguments = z.object({}).strict();
 const SourceArguments = z.object({ sourceId: IdSchema, revision: z.number().int().positive() }).strict();
 // Strict function tools cannot have arbitrary object keys. A bindings list is
 // losslessly converted into the engine's named binding map after validation.
-const WireBindingSchema = BindingSchema.extend({ parameter: z.string().min(1).max(80) }).strict();
+const NamedBindingSchema = BindingSchema.extend({ parameter: z.string().min(1).max(80) }).strict();
+// These are technical input/output fields, never company policy values. Keep
+// the model's grammar aligned with the actual tools instead of arbitrary keys.
+const WireBindingSchema = z.discriminatedUnion('kind', [
+  NamedBindingSchema.extend({ kind: z.literal('request'), key: z.enum(['id', 'customerId', 'ownerEmail']), stepId: z.null() }),
+  NamedBindingSchema.extend({ kind: z.literal('rule'), key: z.literal('accessRole'), stepId: z.null() }),
+  NamedBindingSchema.extend({ kind: z.literal('output'), key: z.literal('id'), stepId: IdSchema }),
+  NamedBindingSchema.extend({ kind: z.literal('derived'), key: z.literal('expiryFromCreatedAt'), stepId: IdSchema }),
+]);
 export const CandidateToolSchema = CandidateContentSchema.extend({ steps: z.array(StepSchema.extend({ bindings: z.array(WireBindingSchema).min(1).max(8) }).strict()).min(1).max(12) }).strict();
 function jsonSchema(schema: z.ZodType): Record<string, unknown> {
   const { $schema: _, ...rest } = z.toJSONSchema(schema, { target: 'draft-7' });

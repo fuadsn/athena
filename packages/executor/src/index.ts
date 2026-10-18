@@ -16,7 +16,11 @@ export function orderSteps(steps: Step[]): Step[] {
   const done = new Set<string>(), ordered: Step[] = [];
   while (ordered.length < steps.length) {
     const next = steps.find(s => !done.has(s.id) && s.dependsOn.every(id => done.has(id)));
-    if (!next) fail('Step dependencies contain a cycle or an unknown step');
+    if (!next) {
+      const pending = steps.filter(step => !done.has(step.id));
+      const blocked = pending.map(step => `${step.id} dependsOn ${JSON.stringify(step.dependsOn.filter(id => !done.has(id)))}`).join('; ');
+      fail(`Step dependencies contain a cycle or an unknown step: ${blocked}. Remove self-dependencies and reference only existing prerequisite step IDs.`);
+    }
     ordered.push(next); done.add(next.id);
   }
   return ordered;
@@ -59,7 +63,7 @@ export function validateProcedure(procedure: Procedure, confirmed = false): void
     if (JSON.stringify(Object.keys(step.bindings).sort()) !== JSON.stringify(Object.keys(expected).sort())) fail(`Unexpected arguments for ${step.tool}`);
     for (const [key, value] of Object.entries(expected)) {
       const actual = step.bindings[key];
-      if (actual.kind !== value.kind || actual.key !== value.key || actual.stepId !== value.stepId) fail(`Unsafe binding for ${step.tool}.${key}`);
+      if (actual.kind !== value.kind || actual.key !== value.key || actual.stepId !== value.stepId) fail(`Unsafe binding for ${step.tool}.${key}: expected ${JSON.stringify(value)}, received ${JSON.stringify(actual)}`);
       if (actual.stepId && (!completed.has(actual.stepId) || !ancestorsOf(step.id).has(actual.stepId))) fail('Output bindings must reference prerequisite steps');
     }
     completed.add(step.id);

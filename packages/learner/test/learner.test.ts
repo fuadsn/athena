@@ -55,10 +55,10 @@ describe('bounded learning with test-only model adapters', () => {
     expect(result.episode).toMatchObject({ id: 'episode_test', status: 'WAITING', modelTurns: 4, toolCalls: 4, inputTokens: 40, outputTokens: 20 });
     expect(validateCandidate).toHaveBeenCalledTimes(2);
     expect(result.candidate.steps[0].dependsOn).toEqual([]);
-    expect(observed.onEvent).toHaveBeenCalledWith('CANDIDATE_REJECTED', 'Step dependencies contain a cycle or an unknown step', expect.objectContaining({ toolCallId: 'invalid_submit', rejectedProposal: invalid, code: 'INVALID_INPUT' }));
+    expect(observed.onEvent).toHaveBeenCalledWith('CANDIDATE_REJECTED', expect.stringContaining('step_create dependsOn ["create_workspace"]'), expect.objectContaining({ toolCallId: 'invalid_submit', rejectedProposal: invalid, code: 'INVALID_INPUT' }));
     const nextContext = vi.mocked(model.turn).mock.calls[3][0] as Array<{ type?: string; call_id?: string; output?: string }>;
     const feedback = nextContext.find(item => item.type === 'function_call_output' && item.call_id === 'invalid_submit');
-    expect(JSON.parse(feedback!.output!)).toEqual({ accepted: false, error: { code: 'INVALID_INPUT', message: 'Step dependencies contain a cycle or an unknown step' } });
+    expect(JSON.parse(feedback!.output!)).toEqual({ accepted: false, error: { code: 'INVALID_INPUT', message: expect.stringContaining('step_create dependsOn ["create_workspace"]') } });
     expect(observed.onUpdate.mock.calls.filter(([episode]) => episode.status === 'WAITING')).toHaveLength(1);
     expect(observed.onUpdate.mock.calls.at(-2)?.[0]).toMatchObject({ status: 'RUNNING', modelTurns: 3, toolCalls: 3, endedAt: null });
   });
