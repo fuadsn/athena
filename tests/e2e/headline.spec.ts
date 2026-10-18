@@ -4,7 +4,7 @@ import { test, expect, type Page, type Locator } from '@playwright/test';
 import type { RequestDetail, State } from '@athena/contracts';
 
 /** Release test: all learning and execution use the running live-model runtime. */
-test('cold evidence → owner teaching → verified work → changed authority', async ({ page }, testInfo) => {
+test('cold evidence → owner teaching → verified work → changed authority', async ({ page, baseURL }, testInfo) => {
   const recording = process.env.ATHENA_RECORD_DEMO === '1';
   const recordingStarted = Date.now();
   const chapters: { seconds: number; caption: string }[] = [];
@@ -24,7 +24,15 @@ test('cold evidence → owner teaching → verified work → changed authority',
     await chapter('This recorded Cypher traversal follows HOLDS_ROLE to current authority.', event.locator('pre'), 6000);
     await event.getByText('Recorded details', { exact: true }).click();
   };
-  const ownerSession = await page.request.post('/api/session', { data: { personId: 'person_mira' } });
+  const endpoint = new URL(baseURL!);
+  const hosted = !['localhost', '127.0.0.1', '[::1]'].includes(endpoint.hostname);
+  if (hosted && (process.env.ATHENA_HOSTED_TEST !== '1' || !process.env.DEMO_ACCESS_CODE || endpoint.protocol !== 'https:')) {
+    throw new Error('A hosted reset rehearsal requires HTTPS, ATHENA_HOSTED_TEST=1 and DEMO_ACCESS_CODE');
+  }
+  const ownerSession = await page.request.post('/api/session', {
+    headers: { origin: endpoint.origin },
+    data: { personId: 'person_mira', ...(hosted ? { accessCode: process.env.DEMO_ACCESS_CODE } : {}) },
+  });
   expect(ownerSession.ok(), await ownerSession.text()).toBeTruthy();
   const reset = await page.request.post('/api/demo/reset', { data: {} });
   expect(reset.ok(), await reset.text()).toBeTruthy();
