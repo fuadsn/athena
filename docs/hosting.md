@@ -25,6 +25,17 @@ Dashboard deployment does **not** require a Render API key. For automated deploy
 
 Official references: [Render Free limitations](https://render.com/docs/free), [Render Blueprint configuration](https://render.com/docs/blueprint-spec), and [OpenAI API pricing](https://developers.openai.com/api/docs/pricing).
 
+## Observed model cost
+
+An audit on 18 October 2026 deduplicated episode IDs across the preserved rehearsal JSON and the current recording graph. At standard uncached token rates, those recorded calls estimate to **$1.87 USD**:
+
+| Recorded model | Input tokens | Output tokens | Estimated cost |
+|---|---:|---:|---:|
+| Earlier `gpt-5.4-mini-2026-03-17` experiments | 694,105 | 76,151 | $0.86 |
+| Selected `gpt-5.4-2026-03-05` | 289,722 | 18,992 | $1.01 |
+
+Within that total, the three final rehearsals used 223,424 input and 15,232 output tokens: **$0.79**, about **$0.26 per full rehearsal**. These are usage-based estimates, not the account bill: caching can reduce charges and calls without saved counters are excluded. The provider's usage dashboard is authoritative. CI has no model key and makes no paid model calls.
+
 ## Model portability
 
 Learning and planning depend on the `ModelAdapter` interface, not a provider SDK. The graph, procedure schemas, approval checks, execution, and independent verification are shared across adapters. Provider-specific conversation formats and credentials stay in the adapter layer.
