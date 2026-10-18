@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { trustedRequestOrigin } from '../../../../../packages/contracts/src/origin';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -13,11 +14,9 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
   // addresses; never trust forwarded host headers for this local demo boundary.
   let requestOrigin: string;
   try {
-    const url = new URL(`${request.nextUrl.protocol}//${request.headers.get('host') || request.nextUrl.host}`);
-    if (!['http:', 'https:'].includes(url.protocol) || !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || url.username || url.password) throw new Error('Not a local origin');
-    requestOrigin = url.origin;
+    requestOrigin = trustedRequestOrigin(request.nextUrl.protocol, request.headers.get('host') || request.nextUrl.host, process.env.APP_PUBLIC_ORIGIN ?? process.env.RENDER_EXTERNAL_URL);
   } catch {
-    return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'This workspace is available only on a local address.' } }, { status: 403 });
+    return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'This address is not configured for this workspace.' } }, { status: 403 });
   }
   if (request.method !== 'GET') {
     const origin = request.headers.get('origin');

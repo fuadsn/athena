@@ -118,7 +118,7 @@ jobs:
             process.stdin.setEncoding("utf8");
             process.stdin.on("data", chunk => { logs += chunk; });
             process.stdin.on("end", () => {
-              for (const key of ["WORKSPACE_LAB_TOKEN", "WORKSPACE_LAB_ADMIN_TOKEN", "DEMO_SESSION_SECRET", "OPENAI_API_KEY"]) {
+              for (const key of ["WORKSPACE_LAB_TOKEN", "WORKSPACE_LAB_ADMIN_TOKEN", "DEMO_SESSION_SECRET", "OPENAI_API_KEY", "GEMINI_API_KEY", "DEMO_ACCESS_CODE"]) {
                 const value = process.env[key];
                 if (value) logs = logs.split(value).join("[REDACTED]");
               }
@@ -128,3 +128,56 @@ jobs:
       - name: Remove only this job's containers and volumes
         if: ${{ always() && steps.setup.outcome == 'success' }}
         run: docker compose --project-name "$COMPOSE_PROJECT_NAME" down --volumes --remove-orphans
+
+  hosted-smoke:
+    name: Check the free hosted container under its resource limits
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      ATHENA_HOSTED_TEST: '1'
+      PLAYWRIGHT_BASE_URL: https://127.0.0.1:3443
+      DEMO_ACCESS_CODE: ci-only-hosted-entry-not-a-production-secret
+      GEMINI_API_KEY: ''
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install test dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build the hosted image
+        run: docker build --file Dockerfile.hosted --tag athena-hosted-ci .
+      - name: Start with 512 MB RAM and 0.1 CPU
+        run: >-
+          docker run --detach --name athena-hosted-ci --memory 512m --memory-swap 512m --cpus 0.1
+          --publish 127.0.0.1:10000:10000 --env DEMO_ACCESS_CODE
+          --env APP_PUBLIC_ORIGIN=https://127.0.0.1:3443
+          --env MODEL_PROVIDER=gemini --env GEMINI_MODEL=gemini-3.8-flash athena-hosted-ci
+      - name: Terminate HTTPS as the hosting platform does
+        run: |
+          mkdir -p .local/ci-tls
+          openssl req -x509 -newkey rsa:2048 -nodes -keyout .local/ci-tls/key.pem -out .local/ci-tls/cert.pem -days 1 -subj '/CN=127.0.0.1' -addext 'subjectAltName=IP:127.0.0.1' >/dev/null 2>&1
+          node tests/support/hosted-proxy.mjs >.local/ci-tls/proxy.log 2>&1 &
+          for attempt in $(seq 1 180); do
+            if curl --insecure --fail --silent --max-time 3 https://127.0.0.1:3443/api/health >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check hosted browser access and origin boundaries without a model
+        run: npm run test:e2e -- hosted.spec.ts
+      - name: Report resources and service logs
+        if: always()
+        run: |
+          docker stats --no-stream athena-hosted-ci || true
+          docker exec athena-hosted-ci cat /sys/fs/cgroup/memory.peak || true
+          docker logs --tail 100 athena-hosted-ci || true
+      - name: Remove this job's container
+        if: always()
+        run: docker rm --force athena-hosted-ci || true

@@ -13,6 +13,7 @@ export default defineConfig({
   reporter: [['list'], ['html', { outputFolder: '.local/playwright-report', open: 'never' }]],
   outputDir: recording ? recordingDirectory : '.local/playwright-results',
   use: {
+    ignoreHTTPSErrors: process.env.ATHENA_HOSTED_TEST === '1',
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:3100',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',

@@ -3,6 +3,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
 import { AppError, IdSchema, ReviewSchema, TrialRequestInputSchema } from '@athena/contracts';
 import { RuntimeService, type RuntimeOptions } from './service';
+import { publicOrigin } from '../../../packages/contracts/src/origin';
 
 const LearningBody = z.object({ caseIds: z.array(IdSchema).min(1).max(20) }).strict();
 const PublishBody = z.object({ review: ReviewSchema, expectedRevision: z.number().int().nonnegative() }).strict();
@@ -28,27 +29,38 @@ export function readSession(request: IncomingMessage, secret: string): string | 
   if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) return null;
   try { const session = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8')); return typeof session.actorId === 'string' && typeof session.expiresAt === 'number' && session.expiresAt > Date.now() ? session.actorId : null; } catch { return null; }
 }
-export function createRuntimeServer(options: RuntimeOptions & { sessionSecret: string }) {
+export function createRuntimeServer(options: RuntimeOptions & { sessionSecret: string; publicOrigin?: string; accessCode?: string }) {
   if (options.sessionSecret.length < 32) throw new Error('DEMO_SESSION_SECRET must contain at least 32 characters');
+  const hostedOrigin = publicOrigin(options.publicOrigin);
+  if (hostedOrigin && (!options.accessCode || options.accessCode.length < 16)) throw new Error('Hosted demos require a DEMO_ACCESS_CODE of at least 16 characters');
+  let attempts = 0, attemptWindow = Date.now();
   const service = new RuntimeService(options);
   const server = createServer((request, response) => { void (async () => {
     const url = new URL(request.url ?? '/', 'http://runtime.local'), path = url.pathname;
     if (request.method !== 'GET') {
       const origin = request.headers.origin;
-      if (origin) { let host = ''; try { host = new URL(origin).hostname; } catch { /* invalid origin remains disallowed */ } if (!['localhost', '127.0.0.1', '[::1]'].includes(host)) throw new AppError('FORBIDDEN', 'Mutations are available only from the local demo origin', 403); }
+      if (hostedOrigin && origin !== hostedOrigin) throw new AppError('FORBIDDEN', 'Changes must come from the configured demo origin', 403);
+      if (!hostedOrigin && origin) { let host = ''; try { host = new URL(origin).hostname; } catch { /* invalid origin remains disallowed */ } if (!['localhost', '127.0.0.1', '[::1]'].includes(host)) throw new AppError('FORBIDDEN', 'Mutations are available only from the local demo origin', 403); }
     }
     if (path === '/health' && request.method === 'GET') { await options.graph.ping(); return send(response, 200, { ok: true, graph: 'available', modelConfigured: !!options.model }); }
     const actorId = readSession(request, options.sessionSecret);
     if (path === '/session') {
       if (!options.demoMode) throw new AppError('FORBIDDEN', 'Persona selection is available only in local demo mode', 403);
       const directory = await options.graph.getDirectory();
-      if (request.method === 'GET') return send(response, 200, { actorId, demoMode: true, people: directory.people });
+      if (request.method === 'GET') return send(response, 200, { actorId, demoMode: true, hosted: !!hostedOrigin, accessRequired: !!hostedOrigin && !actorId, people: directory.people });
       if (request.method === 'POST') {
-        const { personId } = z.object({ personId: IdSchema }).strict().parse(await body(request));
+        const { personId, accessCode } = z.object({ personId: IdSchema, accessCode: z.string().max(256).optional() }).strict().parse(await body(request));
+        if (hostedOrigin && !actorId) {
+          if (Date.now() - attemptWindow >= 60_000) { attempts = 0; attemptWindow = Date.now(); }
+          if (++attempts > 20) throw new AppError('BUDGET_EXCEEDED', 'Too many entry attempts. Wait one minute before trying again.', 429);
+          const expected = createHmac('sha256', options.sessionSecret).update(options.accessCode!).digest();
+          const actual = createHmac('sha256', options.sessionSecret).update(accessCode ?? '').digest();
+          if (!timingSafeEqual(actual, expected)) throw new AppError('FORBIDDEN', 'Enter the demo access code supplied with the submission.', 403);
+        }
         const person = directory.people.find(p => p.id === personId);
         if (!person) throw new AppError('FORBIDDEN', 'Unknown demo persona', 403);
-        response.setHeader('set-cookie', `athena_session=${signSession(personId, options.sessionSecret)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=43200`);
-        return send(response, 200, { actorId: personId, personId, person });
+        response.setHeader('set-cookie', `athena_session=${signSession(personId, options.sessionSecret)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=43200${hostedOrigin ? '; Secure' : ''}`);
+        return send(response, 200, { actorId: personId, personId, person, hosted: !!hostedOrigin, accessRequired: false });
       }
     }
     if (!actorId || !(await options.graph.getDirectory()).people.some(p => p.id === actorId)) throw new AppError('FORBIDDEN', 'Choose a local demo persona to continue', 403);

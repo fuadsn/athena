@@ -1,0 +1,30 @@
+import { test, expect } from '@playwright/test';
+
+test('hosted HTTPS entry, access code, actual graph and origin checks', async ({ page, baseURL }) => {
+  test.skip(process.env.ATHENA_HOSTED_TEST !== '1', 'Opt-in hosted container test');
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/');
+  await expect(page.getByLabel('Demo access code')).toBeVisible();
+  await page.getByLabel('Demo access code').fill('incorrect');
+  await page.getByRole('button', { name: 'Enter hosted demo' }).click();
+  await expect(page.getByRole('alert')).toContainText('Enter the demo access code');
+  await page.getByLabel('Demo access code').fill(process.env.DEMO_ACCESS_CODE!);
+  await page.getByRole('button', { name: 'Enter hosted demo' }).click();
+  await expect(page.getByRole('combobox', { name: 'Demo persona' })).toHaveValue('person_mira');
+  await page.getByRole('button', { name: 'Open Northstar source' }).click();
+  await expect(page.getByRole('dialog')).toContainText('Northstar');
+  await page.getByRole('button', { name: 'Close dialog' }).click();
+  const state = await (await page.request.get('/api/state')).json();
+  expect(state.cases).toHaveLength(3); expect(state.modelConfigured).toBe(false);
+  expect(state.procedures).toHaveLength(0);
+  expect(JSON.stringify(state)).not.toContain(process.env.DEMO_ACCESS_CODE);
+  const bad = await page.request.post('/api/session', { headers: { origin: 'https://foreign.example' }, data: { personId: 'person_ana' } });
+  expect(bad.status()).toBe(403);
+  const accepted = await page.request.post('/api/session', { headers: { origin: new URL(baseURL!).origin }, data: { personId: 'person_ana' } });
+  expect(accepted.ok()).toBe(true);
+  const cookies = await page.context().cookies();
+  expect(cookies.find(cookie => cookie.name === 'athena_session')).toMatchObject({ secure: true, httpOnly: true, sameSite: 'Strict' });
+  await page.setViewportSize({ width: 390, height: 844 }); await page.reload();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});

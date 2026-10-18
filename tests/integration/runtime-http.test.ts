@@ -72,6 +72,25 @@ describe('runtime HTTP sessions and authorization boundary', () => {
     return (await graph.getLearningRun(run.id))!.candidate!.id;
   }
 
+  it('requires hosted access and exact origin, then allows signed persona switching', async () => {
+    await close(runtime.server);
+    const origin = 'https://athena.example', accessCode = 'test-only-hosted-access-code';
+    runtime = createRuntimeServer({ graph, lab, model: createTestOnlyModel(), history: seed, demoMode: true, autoRun: false, sessionSecret, publicOrigin: origin, accessCode });
+    url = await listen(runtime.server);
+    expect(await (await json('/session')).json()).toMatchObject({ hosted: true, accessRequired: true });
+    for (const headers of [{}, { origin: 'https://foreign.example' }] as Record<string, string>[]) {
+      expect((await json('/session', { method: 'POST', headers, input: { personId: 'person_mira', accessCode } })).status).toBe(403);
+    }
+    const incorrect = await json('/session', { method: 'POST', headers: { origin }, input: { personId: 'person_mira', accessCode: 'incorrect' } });
+    expect(incorrect.status).toBe(403); expect(incorrect.headers.get('set-cookie')).toBeNull();
+    const accepted = await json('/session', { method: 'POST', headers: { origin }, input: { personId: 'person_mira', accessCode } });
+    expect(accepted.status).toBe(200); expect(accepted.headers.get('set-cookie')).toContain('; Secure');
+    const cookie = accepted.headers.get('set-cookie')!.split(';')[0];
+    const state = await json('/state', { cookie });
+    expect(state.status).toBe(200); expect(await state.text()).not.toContain(accessCode);
+    expect((await json('/session', { method: 'POST', cookie, headers: { origin }, input: { personId: 'person_ana' } })).status).toBe(200);
+  });
+
   async function teach(): Promise<void> {
     const id = await candidate();
     const ownerCookie = await login('person_mira');

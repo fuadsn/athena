@@ -1,0 +1,13 @@
+FROM node:24-trixie-slim
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libgomp1 libatomic1 && rm -rf /var/lib/apt/lists/*
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY . .
+RUN npm run build
+RUN node -e 'new (require("falkordblite").BinaryManager)().ensureBinaries().then(({redisServerPath}) => require("node:child_process").execFileSync(redisServerPath, ["--version"], {stdio:"inherit"}))'
+RUN mkdir -p /app/.local && chown -R node:node /app/.local
+ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS=--max-old-space-size=128
+USER node
+EXPOSE 10000
+CMD ["node", "--import", "tsx", "scripts/hosted.ts"]

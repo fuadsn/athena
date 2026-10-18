@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: athena
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile.hosted
+    healthCheckPath: /
+    autoDeployTrigger: off
+    envVars:
+      - key: MODEL_PROVIDER
+        value: gemini
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DEMO_ACCESS_CODE
+        sync: false
+      - key: DEMO_SESSION_SECRET
+        generateValue: true
+      - key: MODEL_TURNS_PER_HOUR
+        value: '120'
+      - key: PORT
+        value: '10000'
