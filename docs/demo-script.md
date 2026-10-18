@@ -90,3 +90,11 @@ npm run demo:record
 This runs the actual headline browser flow with video retained on success and failure, at 1440 × 1000, under a new `.local/demo-recordings/<timestamp>/` directory. Browser interactions are slowed slightly for readability; model waits and actual outcomes remain intact. It calls the real runtime, resets the synthetic demo, and requires a configured live model. A failed run is evidence for debugging, not a successful demo.
 
 Review the resulting `video.webm` before publishing. Add your narration using the sequence above, and keep the working interface and graph-driven authority change visible. Do not replace failed behavior with a successful-looking edit. The capture command does not upload anything.
+
+Recording mode pauses on the evidence, teaching form, verified resource, and authority change. It opens the actual `Q3_current_role_holder` Cypher record and saves `chapters.json` beside the video. With FFmpeg installed, create a captioned MP4 using:
+
+```sh
+npm run demo:render -- '.local/demo-recordings/<timestamp>/<test-directory>/video.webm'
+```
+
+The output is `.local/demo-final/athena-demo.mp4`. Captions appear in an added strip below the complete interface. Every original frame and live wait is preserved; there are no simulated states or speed changes. The renderer adds no audio and uploads nothing.

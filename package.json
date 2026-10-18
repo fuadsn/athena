@@ -21,6 +21,7 @@
     "test:integration": "GRAPH_INTEGRATION=1 RUNTIME_GRAPH_INTEGRATION=1 vitest run tests/integration packages/graph/test/graph.integration.test.ts",
     "test:e2e": "playwright test",
     "demo:record": "ATHENA_RECORD_DEMO=1 playwright test headline.spec.ts",
+    "demo:render": "node --import tsx scripts/render-demo.ts",
     "eval:live": "node --env-file-if-exists=.env --import tsx evals/live/run.ts"
   },
   "dependencies": {
