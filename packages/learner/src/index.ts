@@ -3,7 +3,7 @@ import {
   AppError, CandidateContentSchema, EPISODE_LIMITS, IdSchema, StepSchema, BindingSchema,
   type CandidateContent, type Episode, type EpisodeHooks, type GraphStore, type ModelAdapter, type ModelTool,
 } from '@athena/contracts';
-export { createModelAdapter, type ModelOptions } from './model';
+export { createModelAdapter, hasModelConfiguration, type ModelOptions } from './model';
 
 const EmptyArguments = z.object({}).strict();
 const SourceArguments = z.object({ sourceId: IdSchema, revision: z.number().int().positive() }).strict();

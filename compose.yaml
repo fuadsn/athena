@@ -35,6 +35,9 @@ services:
       FALKORDB_GRAPH: athena
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-}
+      MODEL_PROVIDER: ${MODEL_PROVIDER:-openai}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-}
       RUNTIME_HOST: 0.0.0.0
       RUNTIME_PORT: 4100
       WORKSPACE_LAB_URL: http://workspace-lab:4200

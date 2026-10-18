@@ -15,7 +15,7 @@ export class RuntimeService {
   private reruns = new Map<string, () => Promise<void>>();
   constructor(readonly options: RuntimeOptions) {}
   private get graph() { return this.options.graph; }
-  private get model(): ModelAdapter { if (!this.options.model) throw new AppError('DEPENDENCY_UNAVAILABLE', 'Configure OPENAI_API_KEY and OPENAI_MODEL to run a live agent', 503); return this.options.model; }
+  private get model(): ModelAdapter { if (!this.options.model) throw new AppError('DEPENDENCY_UNAVAILABLE', 'Configure credentials and a model for the selected model provider to run a live agent', 503); return this.options.model; }
   async event(actorId: string, targetId: string, type: string, message: string, data: Record<string, unknown> = {}): Promise<Event> {
     return this.graph.appendEvent({ id: newId('event'), at: nowIso(), actorId, targetId, type, message, data });
   }

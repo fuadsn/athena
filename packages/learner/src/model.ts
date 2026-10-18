@@ -1,10 +1,21 @@
 import OpenAI from 'openai';
 import { AppError, type ModelAdapter, type ModelTool, type ModelTurn } from '@athena/contracts';
+import { createGeminiAdapter } from './gemini';
 
-export type ModelOptions = { apiKey?: string; model?: string; baseURL?: string };
+export type ModelOptions = { apiKey?: string; model?: string; baseURL?: string; provider?: 'openai' | 'gemini' };
+
+export function hasModelConfiguration(): boolean {
+  const provider = process.env.MODEL_PROVIDER ?? 'openai';
+  if (provider === 'gemini') return !!(process.env.GEMINI_API_KEY && process.env.GEMINI_MODEL);
+  if (provider === 'openai') return !!(process.env.OPENAI_API_KEY && process.env.OPENAI_MODEL);
+  throw new AppError('INVALID_INPUT', 'MODEL_PROVIDER must be openai or gemini');
+}
 
 /** Live Responses adapter. Missing credentials and API failures never select a fake. */
 export function createModelAdapter(options: ModelOptions = {}): ModelAdapter {
+  const provider = options.provider ?? process.env.MODEL_PROVIDER ?? 'openai';
+  if (provider === 'gemini') return createGeminiAdapter(options);
+  if (provider !== 'openai') throw new AppError('INVALID_INPUT', 'MODEL_PROVIDER must be openai or gemini');
   const model = options.model ?? process.env.OPENAI_MODEL;
   const apiKey = options.apiKey ?? process.env.OPENAI_API_KEY;
   if (!model || !apiKey) throw new AppError('DEPENDENCY_UNAVAILABLE', 'Configure OPENAI_API_KEY and OPENAI_MODEL before running live learning', 503);
