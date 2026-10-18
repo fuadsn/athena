@@ -1,8 +1,8 @@
 # Validation status
 
-Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. Both CI jobs passed at `ce273a2`, including the full Compose build and cold browser flow.
+Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. Both CI jobs passed at `40e27dd`, including the full Compose build and cold browser flow.
 
-The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](demo/athena-demo.mp4) has been exported and visually reviewed. Participant code/demo inspection and official submission remain outstanding.
+The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](https://fuadsn.github.io/athena/) has been exported and visually reviewed. Participant code/demo inspection and official submission remain outstanding.
 
 ## Completed checks
 
@@ -18,11 +18,11 @@ The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The 
 | Local production preview | All four services started; persisted graph reopened; health endpoint reported available |
 | Real OpenAI schema probe | Passed with `gpt-5.4-mini-2026-03-17`; subsequent full live results are recorded separately below |
 | Final audited live batch | **3/3 consecutive passes** with `gpt-5.4-2026-03-05`; nine requests independently verified; every recorded episode ended with final counters |
-| Earlier headline browser recording | Passed with the mini model through `npm run demo:record`; a real WebM exists. The final paced recording is running. |
-| CI: deterministic job at `ce273a2` | Passed on Node.js 24 with pinned FalkorDB 4.22.1: typechecking, production build, unit tests, and integration tests |
-| CI: container smoke job at `ce273a2` | Passed: full Compose build/start, service readiness, and the actual cold browser flow |
+| Final headline browser recording | Passed with `gpt-5.4-2026-03-05` through `npm run demo:record`; the complete 3:11 MP4 is public |
+| CI: deterministic job at `40e27dd` | Passed on Node.js 24 with pinned FalkorDB 4.22.1: typechecking, production build, unit tests, and integration tests |
+| CI: container smoke job at `40e27dd` | Passed: full Compose build/start, service readiness, and the actual cold browser flow |
 
-Both CI jobs passed in [Verify Athena run 39124306179](https://github.com/fuadsn/athena/actions/runs/39124306179). Earlier CI runs at `21effa7`, `280d4a9`, and `041767b` also passed both jobs. The [workflow](../.github/workflows/verify.yml) uses the digest-pinned FalkorDB image from Compose. CI's model credentials are intentionally empty: live-model results come from the separate recorded rehearsals. This CI result belongs to `ce273a2`; subsequent implementation changes need their own checks.
+Both CI jobs passed in [Verify Athena run 39125498278](https://github.com/fuadsn/athena/actions/runs/39125498278). Earlier CI runs at `4cabf62`, `ce273a2`, `21effa7`, `280d4a9`, and `041767b` also passed both jobs. The [workflow](../.github/workflows/verify.yml) uses the digest-pinned FalkorDB image from Compose. CI's model credentials are intentionally empty: live-model results come from the separate recorded rehearsals. This CI result belongs to `40e27dd`; subsequent implementation changes need their own checks.
 
 Runtime integration coverage uses explicit test-only model responses and includes both real-graph and graph-double cases. Lab resources are persisted independently. Deterministic success and live-model success are reported separately.
 
@@ -69,6 +69,8 @@ That WebM is 6,830,185 bytes and used the mini model. It remains historical evid
 The final `npm run demo:record` passed with `gpt-5.4-2026-03-05`, using the capture and application source at `ce273a2`. It records cold learning, structured owner teaching, a normal request, an approved extension, invalidation of a pending plan, current authority changing to Leena, independent verification, and idempotent replay. It opens the actual Q3 `HOLDS_ROLE` query and pauses on the evidence.
 
 The original recording is preserved under `.local/demo-recordings/2026-10-18T11-47-18.999Z/`. The [public MP4](demo/athena-demo.mp4) is 190.6 seconds, 1440 × 1100, and 5,951,358 bytes. Captions occupy an added strip below the complete interface; live waits and original video timing are preserved. No simulated state, substituted model output, or audio was added. Source, query, and final-verification frames were visually inspected. [Recording metadata and hashes](demo/recording.json) · [Caption timestamps](demo/chapters.json).
+
+The [public viewing page](https://fuadsn.github.io/athena/) deployed successfully through GitHub Pages. An anonymous Chrome check verified video metadata, `video/mp4` delivery, playback advancing after the authority chapter button, no browser exceptions, and no horizontal overflow at a 390-pixel viewport. Desktop and mobile screenshots were inspected. The first probe used an incorrect accessible-name locator for the chapter button; correcting the probe to match the rendered name passed without changing the page. The page hosts the recording and project links only.
 
 ## Other verified behavior
 

@@ -39,7 +39,7 @@ The Workspace Lab stores business resources separately. Its independent read-bac
 | Complete local setup | [README: Run locally](https://github.com/fuadsn/athena#run-locally) |
 | Graph model and architecture | [README graph map](https://github.com/fuadsn/athena#why-falkordb-matters) and [graph-model.md](graph-model.md) |
 | Essential graph queries | [queries.md](queries.md) |
-| Working demo video | [Watch the complete 3:11 demonstration](https://github.com/fuadsn/athena/blob/main/docs/demo/athena-demo.mp4) |
+| Working demo video | [Watch the complete 3:11 demonstration](https://fuadsn.github.io/athena/) · [Download MP4](https://fuadsn.github.io/athena/demo/athena-demo.mp4) |
 | Deployment | Local demonstration; no public application deployment is claimed. |
 | Actual validation evidence | [validation.md](validation.md) |
 

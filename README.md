@@ -6,9 +6,9 @@ Athena learns a proposed trial-workspace procedure from three synthetic company 
 
 Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October 2026.
 
-**[Watch Athena working — 3:11 video](docs/demo/athena-demo.mp4)** · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
+**[Watch Athena working — 3:11 video](https://fuadsn.github.io/athena/)** · [Download MP4](docs/demo/athena-demo.mp4) · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
 
-[![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](docs/demo/athena-demo.mp4)
+[![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](https://fuadsn.github.io/athena/)
 
 Validated with three consecutive live-model rehearsals, nine independently verified requests, 78 unit tests, 67 integration tests, the complete live browser flow, and a full Docker Compose check. [CI results](https://github.com/fuadsn/athena/actions).
 
@@ -72,7 +72,7 @@ npm run preview -- --embedded
 
 An approval wait ends its model episode. Resuming starts a new episode with empty model history and fresh graph retrieval. A rejected request cannot resume. Other unsupported durations require clarification.
 
-Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). [Watch the working demo](docs/demo/athena-demo.mp4) or follow [the demo script](docs/demo-script.md). The recording retains live model waits, shows the actual authority query, and adds captions below the interface.
+Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). [Watch the working demo](https://fuadsn.github.io/athena/) or follow [the demo script](docs/demo-script.md). The recording retains live model waits, shows the actual authority query, and adds captions below the interface. The public page serves the recording; the application runs through the local setup below.
 
 After live verification, `npm run demo:record` captures the actual headline flow as a WebM video under `.local/demo-recordings/`. It preserves failed recordings too; only a passing, reviewed recording should be used for submission.
 
