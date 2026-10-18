@@ -2,7 +2,7 @@
 
 **Teach the company once. Equip the next agent to get the job done.**
 
-Athena learns a proposed trial-workspace procedure from three synthetic company cases, asks the process owner to resolve uncertainty, and stores the reviewed capability in FalkorDB. A fresh agent retrieves that procedure and current authority, obtains any required approval, creates a persisted resource in a separate Workspace Lab, and verifies the result.
+HelioWorks gives customers trial workspaces. Its past records show both seven-day and thirty-day trials, but those examples do not explain what the next customer should receive. Athena reads the evidence, asks a person to confirm the policy, and saves it in FalkorDB. A new agent can then use that policy, find the right approver, create a trial workspace, and check that it was set up correctly.
 
 Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October 2026.
 
@@ -13,6 +13,62 @@ The public demo runs on Render Free with real FalkorDB and OpenAI. Enter the acc
 [![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](https://fuadsn.github.io/athena/)
 
 Validated with three consecutive live-model rehearsals, nine independently verified requests, 85 unit tests, 68 integration tests, the complete live browser flow, and a full Docker Compose check. The public deployment also passed the complete live browser flow with three verified workspaces. [CI results](https://github.com/fuadsn/athena/actions).
+
+## Try the demo
+
+Open the **[live app](https://athena-0gfk.onrender.com)** and enter the access code supplied with the submission, or **[watch the 3:11 recording](https://fuadsn.github.io/athena/)**. The app has three tabs: **Learn** teaches a policy, **Do** carries out a request, and **Verify** checks the actual workspace.
+
+You play four people using the **Demo persona** dropdown at the top. Switching people demonstrates who is allowed to teach, request, or approve work.
+
+| Person | Their part in the demo |
+|---|---|
+| **Mira** — process owner | Reviews the evidence, publishes the policy, and changes who may approve extensions |
+| **Ana** — trial operator | Requests a new customer's workspace |
+| **Ravi** — initial approver | Approves extended trials |
+| **Leena** — replacement approver | Takes over approval when Mira changes the role assignment |
+
+### 1. Teach Athena the policy
+
+Enter as **Mira**. In **Learn**, open **Read source** on a case to see the original evidence. Click **Learn from these cases** and wait for the model to finish. It compares the cases and asks what should become reusable policy.
+
+For this walkthrough, review and enter these settings:
+
+| Field | Demo value |
+|---|---|
+| Normal trial duration | **7 days** |
+| Extended trial duration | **30 days** |
+| Workspace access | **Member** |
+| Extension approval role | **Trial Extension Approver** |
+
+Check all three confirmations, then click **Confirm & publish procedure**. **Expected result:** a published procedure and its human confirmation source. The values above are your teaching input; the historical cases do not automatically authorize future work.
+
+If a procedure is already published, inspect it and continue with its confirmed values. This is a shared demo, so another visitor may have already completed the teaching step.
+
+### 2. Request a workspace
+
+Switch **Demo persona** to **Ana**, open **Do**, and enter:
+
+- **Customer name:** `Atlas Robotics`
+- **Workspace owner:** `owner@atlas.example`
+- **Requested duration:** `30`
+
+Click **Create trial request**. **Expected result:** Athena proposes the steps and waits for the current approver, initially Ravi. The workspace is not created before approval. Use a different customer name and email if you repeat the walkthrough.
+
+### 3. Approve and inspect the result
+
+Switch to the person named on the approval card and click **Approve this plan**. Wait for execution, then click **Inspect outcome**.
+
+**Expected result:** **Verify** shows the workspace, member access, expiry, active state, and independent checks. Athena reads the resource back from the separate Workspace Lab before marking the request complete. These are real resources in a synthetic demo application, not accounts in a third-party SaaS product.
+
+### 4. See why the graph matters
+
+Switch to **Mira**. Open **Demo controls**, select **Trial Extension Approver**, assign **Leena**, and click **Update authority**. Return to **Ana** and submit a new 30-day request for `Orion Instruments`, `owner@orion.example`.
+
+**Expected result:** the new request waits for **Leena**. Ravi can no longer approve it. The company relationship changed in FalkorDB; no prompt or application code changed. In **Activity & graph evidence**, open a `Q3_current_role_holder` entry's **Recorded details** to inspect the actual Cypher query.
+
+For a shorter path, Ana can leave the duration blank to use the confirmed normal trial, which does not require extension approval in this walkthrough. The app's **How to try this demo** guide keeps these steps available while you work.
+
+The video also shows a pending request becoming blocked when its approval authority changes. [Detailed recording script](docs/demo-script.md) · [Graph model and queries](#why-falkordb-matters).
 
 ## Run locally
 
@@ -62,21 +118,7 @@ npm run preview -- --embedded
 
 `preview` runs the built web interface with the same runtime and Lab, without development controls or hot reload. Omit `--embedded` when the database is already running separately. Both modes use the same saved local graph and Lab data.
 
-## Demonstration
-
-1. Enter as **Mira**, the process owner. Show three historical cases and no published procedure.
-2. Start learning. Inspect actual source excerpts and the model's question about the different trial lengths.
-3. Review the structured fields and confirm the reusable policy. Publishing creates an immutable version and a new human source.
-4. Switch to **Ana**, the trial operator, and request a new extended trial. Show the paused request and exact plan hash.
-5. Switch to the current approver, initially **Ravi**, and approve. Inspect the fresh episode, real receipts, and independent verification.
-6. As Mira, assign the extension role to **Leena**. A new request routes to Leena; Ravi cannot approve it.
-7. Review a new version with a nine-day normal duration. A default request uses that new value without code or prompt changes.
-
-An approval wait ends its model episode. Resuming starts a new episode with empty model history and fresh graph retrieval. A rejected request cannot resume. Other unsupported durations require clarification.
-
-Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). [Watch the working demo](https://fuadsn.github.io/athena/) or follow [the demo script](docs/demo-script.md). The recording retains live model waits, shows the actual authority query, and adds captions below the interface. The public page serves the recording; the application runs through the local setup below.
-
-After live verification, `npm run demo:record` captures the actual headline flow as a WebM video under `.local/demo-recordings/`. It preserves failed recordings too; only a passing, reviewed recording should be used for submission.
+To capture a new working video after live verification, run `npm run demo:record`. It records the actual flow, including model waits, under `.local/demo-recordings/`. See [capture instructions](docs/demo-script.md#capture-the-working-flow).
 
 ## Why FalkorDB matters
 

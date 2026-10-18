@@ -168,3 +168,20 @@
   .rule-card{padding:12px}
   .rule-card>strong{font-size:17px}
 }
+
+/* The walkthrough stays available without competing with the current task. */
+.demo-guide{margin:-10px 0 26px;border:1px solid #e6e0ee;border-radius:10px;background:#fff}
+.demo-guide>summary{cursor:pointer;padding:14px 18px;font-size:12px;font-weight:600;color:#665080}
+.demo-guide>summary::marker{color:#947ab4}
+.demo-guide>summary>span{font-size:11px;font-weight:400;color:#8b7e97;margin-left:14px}
+.demo-guide-content{padding:0 22px 20px;font-size:12px;color:#70617c;line-height:1.8;max-width:980px}
+.demo-guide-content>p{margin-top:4px}
+.demo-guide-content ol{padding-left:22px;margin:18px 0}
+.demo-guide-content li{padding-left:7px;margin:16px 0}
+.demo-guide-content li::marker{color:#8b6db3;font-weight:600}
+.demo-guide-content li>strong{font-size:13px;color:#554065}
+.demo-guide-content li p{margin-top:5px}
+.demo-guide-content b{font-weight:600;color:#5c4671}
+.demo-guide-content code{overflow-wrap:anywhere;font-size:11px;color:#684993}
+.demo-guide-result{border-top:1px solid #eee8f3;padding-top:15px;color:#695275}
+@media(max-width:740px){.demo-guide>summary>span{display:none}.demo-guide-content{padding:0 16px 18px}.demo-guide-content li{padding-left:3px}}

@@ -1,6 +1,8 @@
 # Athena demonstration
 
-Primary track: Company Brain. Use synthetic HelioWorks data and the local Workspace Lab. This script is a recording plan, not a claim that a rehearsal has passed. Record actual outcomes and model latency; never replace waiting or failure with a simulated result.
+For a first visit, follow the [interactive demo walkthrough](../README.md#try-the-demo). This page is the detailed script for presenting or recording the same workflow.
+
+Primary track: Company Brain. Use synthetic HelioWorks data and the independent Workspace Lab. Record actual outcomes and model latency; never replace waiting or failure with a simulated result.
 
 Submission closes **18 October 2026 at 11:59 PM IST**. The organizer's final checklist is: public repository, working demo video, a graph map in the README, and visible evidence that graph relationships drive the result. The README contains the map and decision-to-traversal table; the recording must show actual execution and the authority change below. Complete the form at https://www.wemakedevs.org/hackathons/falkordb/submit only after the public repository and working-video links are available.
 
@@ -8,7 +10,7 @@ Submission closes **18 October 2026 at 11:59 PM IST**. The organizer's final che
 
 1. Follow the root README to start FalkorDB, the Workspace Lab, the runtime, and the web application.
 2. Configure a tested live `OPENAI_MODEL` and `OPENAI_API_KEY` on the server. Open `http://127.0.0.1:3100`.
-3. Select Mira in the **Local demo persona** control. Open **Demo controls**, acknowledge the local reset, and choose **Reset demo**. Confirm zero published procedures and zero verified workspaces.
+3. Select Mira in the **Demo persona** control. Open **Demo controls**, acknowledge the local reset, and choose **Reset demo**. Confirm zero published procedures and zero verified workspaces.
 4. Keep recording at a readable browser size, ideally 1440 × 1000. Close unrelated applications. Do not show keys or local environment files.
 5. Use `npm run build` followed by `npm run preview -- --embedded` for recording, after stopping development mode. This serves the production interface without Next.js development controls.
 
@@ -69,7 +71,7 @@ Say: “The approval role stayed the same. Its holder changed in the graph. A fr
 
 “Athena learned a reviewed procedure from three synthetic historical cases, resolved uncertainty through human teaching, and executed new requests using current graph-based authority. Company knowledge persists; each agent episode starts fresh.”
 
-The demonstration proves one bounded local workflow. It does not provision a production cloud environment or establish enterprise identity security. The synthetic persona selector is explicitly a local demonstration control.
+The demonstration proves one bounded workflow in a synthetic company. It does not provision a production cloud environment or establish enterprise identity security. The persona selector lets the presenter demonstrate each person’s permissions; the hosted version also requires the private demo access code.
 
 ## Browser release test
 

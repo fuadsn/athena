@@ -21,6 +21,13 @@
     .live-demo { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; margin: 24px 0; color: #c4c3d2; font-size: 14px; line-height: 1.6; }
     .live-demo a { display: inline-block; padding: 12px 20px; border-radius: 9px; background: #b7a1ff; color: #171222; font-weight: 700; text-decoration: none; }
     .live-demo a:hover, .live-demo a:focus-visible { background: #d0c1ff; }
+    .story { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 28px 0; }
+    .story article { padding: 20px; border: 1px solid #393545; border-radius: 12px; background: #191922; }
+    .story h2 { margin: 0 0 10px; font-size: 15px; }
+    .story h2 span { color: #b7a1ff; margin-right: 8px; }
+    .story p { margin: 0; font-size: 13px; color: #c4c3d2; line-height: 1.8; }
+    .watch-note { font-size: 13px; line-height: 1.8; color: #aaa8b8; margin: 12px 0 24px; }
+    @media (max-width: 700px) { .story { grid-template-columns: 1fr; gap: 10px; } .story article { padding: 17px; } }
     .player { border: 1px solid #393545; border-radius: 15px; overflow: hidden; background: #191b25; box-shadow: 0 20px 80px #0005; }
     video { display: block; width: 100%; height: auto; }
     .caption { display: flex; justify-content: space-between; gap: 20px; padding: 14px 18px; font-size: 13px; color: #c4c3d2; border-top: 1px solid #393545; }
@@ -39,7 +46,7 @@
     <nav><a class="brand" href="https://github.com/fuadsn/athena">athena<span>.</span></a><a href="https://github.com/fuadsn/athena">View source ↗</a></nav>
     <div class="eyebrow">Company Brain · Graph Hacks · Working demonstration</div>
     <h1>Teach the company once.<br>Equip the next agent.</h1>
-    <p class="intro">Athena learns from historical evidence, asks a person to confirm the policy, and equips a fresh agent to act. Change the approver in FalkorDB, and the next request follows the new authority.</p>
+    <p class="intro">HelioWorks gives customers trial workspaces. Watch Athena learn the trial policy, ask the right person for approval, and verify the finished workspace.</p>
     <div class="live-demo"><a href="https://athena-0gfk.onrender.com">Try Athena live ↗</a><span>Use the access code supplied with the submission.<br>Free hosting may take about a minute to wake.</span></div>
     <div class="proof"><span>✓ 3 consecutive live rehearsals</span><span>✓ 9 independently verified requests</span><a href="https://github.com/fuadsn/athena/blob/main/docs/validation.md">Inspect the evidence</a></div>
     <div class="player">
@@ -49,14 +56,20 @@
       </video>
       <div class="caption"><span>3:11 · Captioned · Full live capture, including model waits</span><a href="demo/athena-demo.mp4" download>Download MP4</a></div>
     </div>
-    <h2>Explore the demonstration</h2>
+    <p class="watch-note">The recording includes real model waits. Use the chapters below to jump to a decision, or <a href="https://github.com/fuadsn/athena#try-the-demo">follow the step-by-step guide</a> in the live app. Switch people with the Demo persona dropdown.</p>
+    <section class="story" aria-label="The demo in three steps">
+      <article><h2><span>01</span>Teach the policy</h2><p>Mira reviews three past cases and confirms seven-day trials, with approval needed for thirty-day extensions.</p></article>
+      <article><h2><span>02</span>Run a new request</h2><p>Ana requests a workspace. Ravi approves an extension. Athena creates the resource and checks the result.</p></article>
+      <article><h2><span>03</span>Change the approver</h2><p>Mira assigns Leena. New requests follow the changed graph, and an old pending plan is blocked.</p></article>
+    </section>
+    <h2>Jump to a moment</h2>
     <div class="chapters">
-      <button data-time="0"><span>0:00</span>Cold evidence</button>
-      <button data-time="49"><span>0:49</span>Human teaching</button>
-      <button data-time="86"><span>1:26</span>Approval gate</button>
-      <button data-time="90"><span>1:30</span>Actual graph query</button>
-      <button data-time="122"><span>2:02</span>Change authority</button>
-      <button data-time="179"><span>2:59</span>Verified result</button>
+      <button data-time="0"><span>0:00</span>Read the past cases</button>
+      <button data-time="49"><span>0:49</span>Mira teaches the policy</button>
+      <button data-time="86"><span>1:26</span>Wait for Ravi’s approval</button>
+      <button data-time="90"><span>1:30</span>Inspect the graph query</button>
+      <button data-time="122"><span>2:02</span>Replace Ravi with Leena</button>
+      <button data-time="179"><span>2:59</span>See the verified result</button>
     </div>
     <footer>
       <div class="links"><a href="https://github.com/fuadsn/athena#run-locally">Run it locally</a><a href="https://github.com/fuadsn/athena/blob/main/docs/graph-model.md">Graph model</a><a href="https://github.com/fuadsn/athena/blob/main/docs/live-evidence.json">Measured live results</a></div>
