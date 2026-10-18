@@ -1,8 +1,29 @@
-import { test, expect, type Page } from '@playwright/test';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { dirname } from 'node:path';
+import { test, expect, type Page, type Locator } from '@playwright/test';
 import type { RequestDetail, State } from '@athena/contracts';
 
 /** Release test: all learning and execution use the running live-model runtime. */
-test('cold evidence → owner teaching → verified work → changed authority', async ({ page }) => {
+test('cold evidence → owner teaching → verified work → changed authority', async ({ page }, testInfo) => {
+  const recording = process.env.ATHENA_RECORD_DEMO === '1';
+  const recordingStarted = Date.now();
+  const chapters: { seconds: number; caption: string }[] = [];
+  const chapter = async (caption: string, target?: Locator, pauseMs = 4000) => {
+    if (!recording) return;
+    if (target) await target.scrollIntoViewIfNeeded();
+    chapters.push({ seconds: (Date.now() - recordingStarted) / 1000, caption });
+    const file = testInfo.outputPath('chapters.json');
+    await mkdir(dirname(file), { recursive: true });
+    await writeFile(file, JSON.stringify(chapters, null, 2) + '\n');
+    await page.waitForTimeout(pauseMs);
+  };
+  const showAuthorityQuery = async () => {
+    if (!recording) return;
+    const event = page.locator('.event-log li').filter({ hasText: 'Q3_current_role_holder' }).first();
+    await event.getByText('Recorded details', { exact: true }).click();
+    await chapter('This recorded Cypher traversal follows HOLDS_ROLE to current authority.', event.locator('pre'), 6000);
+    await event.getByText('Recorded details', { exact: true }).click();
+  };
   const ownerSession = await page.request.post('/api/session', { data: { personId: 'person_mira' } });
   expect(ownerSession.ok(), await ownerSession.text()).toBeTruthy();
   const reset = await page.request.post('/api/demo/reset', { data: {} });
@@ -13,21 +34,27 @@ test('cold evidence → owner teaching → verified work → changed authority',
   expect(cold.cases).toHaveLength(3);
   await page.goto('/');
   await expect(page.getByText('No published procedure')).toBeVisible();
+  await chapter('Three synthetic historical cases. No published procedure.', page.getByRole('heading', { level: 1 }));
   await page.getByRole('button', { name: 'Open Northstar source' }).click();
   await expect(page.getByRole('dialog')).toContainText('Northstar');
+  await chapter('Historical observations link to immutable source evidence.', page.getByRole('dialog'));
   await page.getByRole('button', { name: 'Close dialog' }).click();
 
   await page.getByRole('button', { name: 'Learn from these cases' }).click();
+  await chapter('The live model reads graph evidence and proposes a procedure for review.', undefined, 0);
   await expect(page.getByRole('heading', { name: 'Teach the reusable policy' })).toBeVisible();
   await expect(page.getByText('A PERSON NEEDS TO CONFIRM')).toBeVisible();
+  await chapter('Observed variation needs human teaching before it can become reusable policy.', page.locator('.teaching-question'), 6000);
   await page.getByLabel('Normal trial duration', { exact: true }).fill('7');
   await page.getByLabel('Extended trial duration', { exact: true }).fill('30');
   await page.getByLabel('Extension approval role', { exact: true }).selectOption('role_trial_extension_approver');
   await page.getByRole('checkbox', { name: 'Configure access and expiry while the workspace is inactive.' }).check();
   await page.getByRole('checkbox', { name: 'Activate only after both access and expiry are correctly configured.' }).check();
   await page.getByRole('checkbox', { name: 'I confirm these settings as reusable policy.' }).check();
+  await chapter('Mira confirms 7 days normally; 30 days requires approval for each request.', page.locator('.review-form'), 6000);
   await page.getByRole('button', { name: 'Confirm & publish procedure' }).click();
   await expect(page.getByRole('button', { name: 'Use this procedure' })).toBeVisible();
+  await chapter('The reviewed procedure and its human confirmation now persist in FalkorDB.', page.locator('.published-panel .panel-header'));
   const taught = await state(page);
   const published = taught.procedures.find(procedure => procedure.status === 'PUBLISHED');
   expect(published).toBeDefined();
@@ -45,6 +72,7 @@ test('cold evidence → owner teaching → verified work → changed authority',
   expect(latest.verification?.passed).toBe(true);
   expect(latest.episodes.every(episode => episode.initialContextMessages === 0)).toBe(true);
   expect(latest.verification?.resourceCount).toBe(1);
+  await chapter('A fresh episode uses the confirmed default. A separate application verifies the result.', page.locator('.completion-card'));
 
   // T05: a request waits without mutation; only current authority can approve.
   await submit(page, 'Orion Instruments', 'owner@orion.example', '30');
@@ -52,9 +80,12 @@ test('cold evidence → owner teaching → verified work → changed authority',
   latest = await latestRequest(page);
   expect(latest.request.state).toBe('WAITING_APPROVAL');
   expect(latest.receipts).toHaveLength(0);
+  await chapter('The extension waits for Ravi. No workspace changes happen before approval.', page.getByLabel('Graph decision path'));
+  await showAuthorityQuery();
   const unauthorized = await page.request.post(`/api/plans/${latest.plan!.id}/approval`, { data: { planHash: latest.plan!.planHash, decision: 'APPROVED' } });
   expect(unauthorized.status()).toBe(403);
   await persona(page, 'person_ravi');
+  await chapter('Ravi approves one exact plan; code rechecks authority before every mutation.', page.locator('.approval-card'));
   await page.getByRole('button', { name: 'Approve this plan' }).click();
   await expect(page.getByRole('heading', { name: 'Workspace independently verified' })).toBeVisible();
   latest = await latestRequest(page);
@@ -63,6 +94,7 @@ test('cold evidence → owner teaching → verified work → changed authority',
   expect(latest.verification?.workspace?.grants).toEqual([{ email: 'owner@orion.example', role: 'member' }]);
   await page.getByRole('button', { name: 'Inspect outcome' }).click();
   await expect(page.getByRole('heading', { name: 'The result matches the approved plan.' })).toBeVisible();
+  await chapter('Independent checks confirm the actual workspace, access, expiry and uniqueness.', page.getByRole('heading', { name: 'The result matches the approved plan.' }), 6000);
 
   // T06 + T07 pre-approval invalidation: changing authority invalidates the displayed pending plan.
   await persona(page, 'person_ana');
@@ -73,6 +105,7 @@ test('cold evidence → owner teaching → verified work → changed authority',
   await persona(page, 'person_mira');
   await page.getByRole('button', { name: 'Demo controls' }).click();
   await page.getByLabel('Current role holder').selectOption('person_leena');
+  await chapter('Change the graph assignment from Ravi to Leena. Pending plans become stale.', page.getByRole('dialog'), 5000);
   await page.getByRole('button', { name: 'Update authority' }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await persona(page, 'person_ravi');
@@ -85,6 +118,8 @@ test('cold evidence → owner teaching → verified work → changed authority',
   latest = await latestRequest(page);
   expect(latest.plan?.approverPersonId).toBe('person_leena');
   expect(latest.receipts).toHaveLength(0);
+  await chapter('A new episode retrieves Leena from the changed graph, without a prompt or code change.', page.getByLabel('Graph decision path'), 6000);
+  await showAuthorityQuery();
   await persona(page, 'person_leena');
   await page.getByRole('button', { name: 'Approve this plan' }).click();
   await expect(page.getByRole('heading', { name: 'Workspace independently verified' })).toBeVisible();
@@ -109,6 +144,7 @@ test('cold evidence → owner teaching → verified work → changed authority',
   expect(replayDetail.verification?.workspace?.id).toBe(latest.verification?.workspace?.id);
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'The result matches the approved plan.' })).toBeVisible();
+  await chapter('Company knowledge stays. Agents start fresh. Real work is independently verified.', page.getByRole('heading', { name: 'The result matches the approved plan.' }), 8000);
 });
 
 async function state(page: Page) { const response = await page.request.get('/api/state'); expect(response.ok()).toBeTruthy(); return await response.json() as State; }
