@@ -1,6 +1,6 @@
 # Athena — submission copy
 
-Prepared 18 October 2026 for **Track 3: Company Brain**. This is a submission draft; the working-video URL and participant inspection remain pending. Live-rehearsal and container results must be taken from the final [validation record](validation.md), not assumed from this copy.
+Prepared 18 October 2026 for **Track 3: Company Brain**. Repository, working video, and validation evidence are ready. Participant inspection and submission through the owner's account remain pending. Actual results are recorded in [validation](validation.md).
 
 ## Title
 
@@ -39,11 +39,11 @@ The Workspace Lab stores business resources separately. Its independent read-bac
 | Complete local setup | [README: Run locally](https://github.com/fuadsn/athena#run-locally) |
 | Graph model and architecture | [README graph map](https://github.com/fuadsn/athena#why-falkordb-matters) and [graph-model.md](graph-model.md) |
 | Essential graph queries | [queries.md](queries.md) |
-| Working demo video | **PENDING — add the actual published, reviewed recording URL before submitting.** |
+| Working demo video | [Watch the complete 3:11 demonstration](https://github.com/fuadsn/athena/blob/main/docs/demo/athena-demo.mp4) |
 | Deployment | Local demonstration; no public application deployment is claimed. |
 | Actual validation evidence | [validation.md](validation.md) |
 
-Setup requires Node.js 24 LTS, npm, and a configured OpenAI API key/model supporting strict Responses function calling. The README documents `npm ci`, `npm run setup`, model configuration, and either the embedded FalkorDB route or Docker. Run the documented production preview for the recording. The presence of Compose instructions is not a claim that its deployment has passed validation.
+Setup requires Node.js 24 LTS, npm, and a configured OpenAI API key/model supporting strict Responses function calling. The verified release uses `gpt-5.4-2026-03-05`. The README documents `npm ci`, `npm run setup`, model configuration, and either embedded FalkorDB or Docker. Full Compose startup and its cold browser flow passed CI; three consecutive live rehearsals and the complete live browser recording passed separately.
 
 ## AI assistance disclosure
 
@@ -58,7 +58,7 @@ Complete these through personal code inspection and a hands-on run; automated ch
 - [ ] Read [runtime publication and approval handling](../apps/runtime/src/service.ts) and [executor guards](../packages/executor/src/index.ts). Explain exact-plan approval, revision invalidation, and rechecking authority before mutation.
 - [ ] Inspect [Lab persistence](../apps/workspace-lab/src/store.ts), [resource behavior](../apps/workspace-lab/src/application.ts), and [executor verification](../packages/executor/src/index.ts). Explain durable operation replay, independent read-back, and why a tool success alone cannot complete work.
 - [ ] Personally run the [demo sequence](demo-script.md): cold evidence, owner teaching, fresh request, current approval, verified workspace, and authority replacement. Inspect at least one literal source and one actual graph-query trace.
-- [ ] Review [test coverage](../tests/integration/runtime.test.ts), [live rehearsal output generation](../evals/live/run.ts), and the final [validation record](validation.md). Check the real recording, add its public URL above, and ensure the repository reflects the demonstrated commit.
+- [ ] Review [test coverage](../tests/integration/runtime.test.ts), [live rehearsal output generation](../evals/live/run.ts), and the final [validation record](validation.md). Watch the linked recording and confirm that you understand the demonstrated implementation.
 
 ## Organizer requirements checked
 

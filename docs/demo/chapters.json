@@ -1,0 +1,62 @@
+[
+  {
+    "seconds": 0.657,
+    "caption": "Three synthetic historical cases. No published procedure."
+  },
+  {
+    "seconds": 5.155,
+    "caption": "Historical observations link to immutable source evidence."
+  },
+  {
+    "seconds": 9.629,
+    "caption": "The live model reads graph evidence and proposes a procedure for review."
+  },
+  {
+    "seconds": 49.905,
+    "caption": "Observed variation needs human teaching before it can become reusable policy."
+  },
+  {
+    "seconds": 57.453,
+    "caption": "Mira confirms 7 days normally; 30 days requires approval for each request."
+  },
+  {
+    "seconds": 63.919,
+    "caption": "The reviewed procedure and its human confirmation now persist in FalkorDB."
+  },
+  {
+    "seconds": 79.403,
+    "caption": "A fresh episode uses the confirmed default. A separate application verifies the result."
+  },
+  {
+    "seconds": 86.47,
+    "caption": "The extension waits for Ravi. No workspace changes happen before approval."
+  },
+  {
+    "seconds": 90.952,
+    "caption": "This recorded Cypher traversal follows HOLDS_ROLE to current authority."
+  },
+  {
+    "seconds": 97.636,
+    "caption": "Ravi approves one exact plan; code rechecks authority before every mutation."
+  },
+  {
+    "seconds": 112.401,
+    "caption": "Independent checks confirm the actual workspace, access, expiry and uniqueness."
+  },
+  {
+    "seconds": 122.636,
+    "caption": "Change the graph assignment from Ravi to Leena. Pending plans become stale."
+  },
+  {
+    "seconds": 133.317,
+    "caption": "A new episode retrieves Leena from the changed graph, without a prompt or code change."
+  },
+  {
+    "seconds": 139.8,
+    "caption": "This recorded Cypher traversal follows HOLDS_ROLE to current authority."
+  },
+  {
+    "seconds": 179.316,
+    "caption": "Company knowledge stays. Agents start fresh. Real work is independently verified."
+  }
+]

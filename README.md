@@ -6,6 +6,12 @@ Athena learns a proposed trial-workspace procedure from three synthetic company 
 
 Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October 2026.
 
+**[Watch Athena working — 3:11 video](docs/demo/athena-demo.mp4)** · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
+
+[![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](docs/demo/athena-demo.mp4)
+
+Validated with three consecutive live-model rehearsals, nine independently verified requests, 78 unit tests, 67 integration tests, the complete live browser flow, and a full Docker Compose check. [CI results](https://github.com/fuadsn/athena/actions).
+
 ## Run locally
 
 Prerequisites: Node.js 24 LTS, npm, and either a running Docker daemon (Docker Desktop or Colima) or the embedded database option below. This is a local demo using synthetic identities and resources.
@@ -16,6 +22,8 @@ npm run setup
 ```
 
 Edit the ignored `.env` and set `OPENAI_API_KEY` and `OPENAI_MODEL` to a model available to your account that supports strict Responses function calling. Setup generates separate random session, Lab write, and Lab administrative credentials. Keep those local; never commit `.env`.
+
+The recorded release uses `OPENAI_MODEL=gpt-5.4-2026-03-05`. Earlier attempts with the mini model had intermittent induction failures; the [validation record](docs/validation.md) preserves those results.
 
 ```sh
 docker compose up -d graph
@@ -64,7 +72,7 @@ npm run preview -- --embedded
 
 An approval wait ends its model episode. Resuming starts a new episode with empty model history and fresh graph retrieval. A rejected request cannot resume. Other unsupported durations require clarification.
 
-Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). See [the demo script](docs/demo-script.md) for the recording sequence. The working demo video is still pending live-model verification; its link will be added before submission.
+Public repository: [fuadsn/athena](https://github.com/fuadsn/athena). [Watch the working demo](docs/demo/athena-demo.mp4) or follow [the demo script](docs/demo-script.md). The recording retains live model waits, shows the actual authority query, and adds captions below the interface.
 
 After live verification, `npm run demo:record` captures the actual headline flow as a WebM video under `.local/demo-recordings/`. It preserves failed recordings too; only a passing, reviewed recording should be used for submission.
 

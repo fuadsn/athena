@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-18T11:47:18.999Z",
+  "applicationAndCaptureRevision": "ce273a2",
+  "model": "gpt-5.4-2026-03-05",
+  "test": "cold evidence → owner teaching → verified work → changed authority",
+  "result": "PASSED",
+  "durationSeconds": 190.6,
+  "original": {
+    "format": "webm",
+    "bytes": 13367145,
+    "sha256": "d4f0eff4fc7236a435c4c411e8ead4e88cb44881343826ce13578d35fa5a0f0f"
+  },
+  "published": {
+    "format": "mp4",
+    "bytes": 5951358,
+    "sha256": "ce77df884f037cb62d0ca8756dfd443c9f9ad1c8c94f36f08741e14ef5d23744",
+    "width": 1440,
+    "height": 1100
+  },
+  "processing": "All original frames and live waits retained at their original speed. Added readable captions below the complete interface. No audio, simulated states, or substituted model output."
+}

@@ -2,7 +2,7 @@
 
 Updated **18 October 2026**. The final audited live batch passed **three consecutive reset-to-completion rehearsals** using **`gpt-5.4-2026-03-05`**, with nine independently verified requests and finalized episode counters. Both CI jobs passed at `ce273a2`, including the full Compose build and cold browser flow.
 
-The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser recording is currently running; its result and public video URL remain pending. Participant code/demo inspection and official submission remain outstanding.
+The public repository is [fuadsn/athena](https://github.com/fuadsn/athena). The final paced browser flow passed with the same model, and its [working video](demo/athena-demo.mp4) has been exported and visually reviewed. Participant code/demo inspection and official submission remain outstanding.
 
 ## Completed checks
 
@@ -64,7 +64,11 @@ An earlier live headline browser run passed in about 1.5 minutes and produced th
 
 `.local/demo-recordings/2026-10-18T11-36-46.382Z/headline-cold-evidence-→-o-ca10b-ed-work-→-changed-authority-chromium/video.webm`
 
-That WebM is 6,830,185 bytes and used the mini model. It remains historical evidence. The updated recording script adds readable pauses and opens the actual Q3 `HOLDS_ROLE` query. Typechecking and test discovery passed; the final paced capture against the current configuration is running. Its pass result, reviewed artifact, and public URL are not yet claimed here.
+That WebM is 6,830,185 bytes and used the mini model. It remains historical evidence.
+
+The final `npm run demo:record` passed with `gpt-5.4-2026-03-05`, using the capture and application source at `ce273a2`. It records cold learning, structured owner teaching, a normal request, an approved extension, invalidation of a pending plan, current authority changing to Leena, independent verification, and idempotent replay. It opens the actual Q3 `HOLDS_ROLE` query and pauses on the evidence.
+
+The original recording is preserved under `.local/demo-recordings/2026-10-18T11-47-18.999Z/`. The [public MP4](demo/athena-demo.mp4) is 190.6 seconds, 1440 × 1100, and 5,951,358 bytes. Captions occupy an added strip below the complete interface; live waits and original video timing are preserved. No simulated state, substituted model output, or audio was added. Source, query, and final-verification frames were visually inspected. [Recording metadata and hashes](demo/recording.json) · [Caption timestamps](demo/chapters.json).
 
 ## Other verified behavior
 
@@ -84,9 +88,7 @@ The local production preview uses separate persisted graph and Lab stores with l
 
 ## Remaining work before submission
 
-1. Let the final paced browser capture finish and inspect its actual source, Q3 authority query, approval, and verified-workspace sequence. Record its real outcome here; preserve any failed capture.
-2. Complete the participant code walkthrough and hands-on demonstration using the [inspection checklist](submission.md#participant-inspection-before-submission).
-3. Publish the reviewed working video and add its actual URL to the README and [submission copy](submission.md). A local WebM path does not satisfy the public-video handoff.
-4. Review the public repository and final artifacts, then submit through the participant's signed-in [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) before the deadline.
+1. Complete the participant code walkthrough and hands-on demonstration using the [inspection checklist](submission.md#participant-inspection-before-submission).
+2. Review the public repository, working video, and [submission copy](submission.md), then submit through the participant's signed-in [official submission page](https://www.wemakedevs.org/hackathons/falkordb/submit) before the deadline.
 
-The final audited three-rehearsal gate and container verification are complete. Video publication, participant review, and the official submission remain pending.
+The technical release checks and video are complete. Participant review and the official submission remain pending.
