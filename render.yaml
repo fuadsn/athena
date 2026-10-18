@@ -9,10 +9,10 @@ services:
     autoDeployTrigger: off
     envVars:
       - key: MODEL_PROVIDER
-        value: gemini
-      - key: GEMINI_MODEL
-        value: gemini-3.8-flash
-      - key: GEMINI_API_KEY
+        value: openai
+      - key: OPENAI_MODEL
+        value: gpt-5.4-2026-03-05
+      - key: OPENAI_API_KEY
         sync: false
       - key: DEMO_ACCESS_CODE
         sync: false

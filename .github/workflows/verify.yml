@@ -157,7 +157,7 @@ jobs:
           docker run --detach --name athena-hosted-ci --memory 512m --memory-swap 512m --cpus 0.1
           --publish 127.0.0.1:10000:10000 --env DEMO_ACCESS_CODE
           --env APP_PUBLIC_ORIGIN=https://127.0.0.1:3443
-          --env MODEL_PROVIDER=gemini --env GEMINI_MODEL=gemini-3.8-flash athena-hosted-ci
+          --env MODEL_PROVIDER=openai --env OPENAI_MODEL=gpt-5.4-2026-03-05 athena-hosted-ci
       - name: Terminate HTTPS as the hosting platform does
         run: |
           mkdir -p .local/ci-tls

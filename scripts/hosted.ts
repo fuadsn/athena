@@ -9,7 +9,8 @@ import { publicOrigin } from '../packages/contracts/src/origin';
 const origin = publicOrigin(process.env.APP_PUBLIC_ORIGIN ?? process.env.RENDER_EXTERNAL_URL);
 if (!origin) throw new Error('Configure APP_PUBLIC_ORIGIN or Render\'s RENDER_EXTERNAL_URL');
 if ((process.env.DEMO_ACCESS_CODE ?? '').length < 16) throw new Error('Set DEMO_ACCESS_CODE to at least 16 characters');
-if (process.env.MODEL_PROVIDER && process.env.MODEL_PROVIDER !== 'gemini') throw new Error('The free hosted profile permits only Gemini; it never uses paid OpenAI fallback');
+const provider = process.env.MODEL_PROVIDER || 'openai';
+if (!['openai', 'gemini'].includes(provider)) throw new Error('MODEL_PROVIDER must be openai or gemini');
 const port = Number(process.env.PORT ?? 10000);
 if (!Number.isInteger(port) || port < 1024 || port > 65535 || [4100, 4200, 16379].includes(port)) throw new Error('Invalid hosted web port');
 const data = resolve(process.env.ATHENA_DATA_DIR ?? '.local/hosted');
@@ -18,12 +19,14 @@ const env: NodeJS.ProcessEnv = { ...process.env, APP_PUBLIC_ORIGIN: origin, NODE
   FALKORDB_HOST: '127.0.0.1', FALKORDB_PORT: '16379', FALKORDB_GRAPH: 'athena', FALKORDB_PASSWORD: '',
   RUNTIME_HOST: '127.0.0.1', RUNTIME_PORT: '4100', RUNTIME_URL: 'http://127.0.0.1:4100',
   WORKSPACE_LAB_HOST: '127.0.0.1', WORKSPACE_LAB_PORT: '4200', WORKSPACE_LAB_URL: 'http://127.0.0.1:4200',
-  WORKSPACE_LAB_STORE: resolve(data, 'workspaces.json'), DEMO_MODE: 'true', MODEL_PROVIDER: 'gemini',
-  GEMINI_MODEL: process.env.GEMINI_MODEL ?? 'gemini-3.8-flash',
+  WORKSPACE_LAB_STORE: resolve(data, 'workspaces.json'), DEMO_MODE: 'true', MODEL_PROVIDER: provider,
   WORKSPACE_LAB_TOKEN: randomBytes(36).toString('base64url'), WORKSPACE_LAB_ADMIN_TOKEN: randomBytes(36).toString('base64url'),
   DEMO_SESSION_SECRET: process.env.DEMO_SESSION_SECRET || randomBytes(36).toString('base64url'),
 };
-delete env.OPENAI_API_KEY; delete env.OPENAI_MODEL; delete env.RENDER_API_KEY;
+delete env.RENDER_API_KEY;
+// The runtime gets only the selected provider's credential.
+if (provider === 'openai') delete env.GEMINI_API_KEY;
+else delete env.OPENAI_API_KEY;
 const graph = await FalkorDB.open({ path: resolve(data, 'graph'), falkordbVersion: 'v4.18.3',
   additionalConfig: { port: '16379', bind: '127.0.0.1', appendonly: 'yes', appendfsync: 'always', save: '""', maxmemory: '96mb', 'maxmemory-policy': 'noeviction' }, timeout: 30_000 });
 const children: ChildProcess[] = [];
@@ -54,12 +57,12 @@ const ready = async (url: string) => {
   throw new Error('A hosted service did not become ready');
 };
 try {
-  const labEnv: NodeJS.ProcessEnv = { ...env }; delete labEnv.GEMINI_API_KEY; delete labEnv.DEMO_ACCESS_CODE;
+  const labEnv: NodeJS.ProcessEnv = { ...env }; delete labEnv.OPENAI_API_KEY; delete labEnv.GEMINI_API_KEY; delete labEnv.DEMO_ACCESS_CODE;
   launch('Workspace Lab', ['--import', 'tsx', 'apps/workspace-lab/src/main.ts'], labEnv);
   await ready('http://127.0.0.1:4200/health');
   launch('Runtime', ['--import', 'tsx', 'apps/runtime/src/main.ts'], env);
   await ready('http://127.0.0.1:4100/health');
-  const webEnv: NodeJS.ProcessEnv = { ...env }; delete webEnv.GEMINI_API_KEY; delete webEnv.DEMO_ACCESS_CODE; delete webEnv.DEMO_SESSION_SECRET; delete webEnv.WORKSPACE_LAB_TOKEN; delete webEnv.WORKSPACE_LAB_ADMIN_TOKEN;
+  const webEnv: NodeJS.ProcessEnv = { ...env }; delete webEnv.OPENAI_API_KEY; delete webEnv.GEMINI_API_KEY; delete webEnv.DEMO_ACCESS_CODE; delete webEnv.DEMO_SESSION_SECRET; delete webEnv.WORKSPACE_LAB_TOKEN; delete webEnv.WORKSPACE_LAB_ADMIN_TOKEN;
   launch('Web', [resolve('node_modules/next/dist/bin/next'), 'start', 'apps/web', '-H', '0.0.0.0', '-p', String(port)], webEnv);
   process.stdout.write('Athena hosted demo started. Free storage is ephemeral; only historical evidence is seeded.\n');
 } catch (error) { await stop(); throw error; }

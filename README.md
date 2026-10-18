@@ -8,7 +8,7 @@ Track: **Company Brain / Track 03**, WeMakeDevs × FalkorDB Graph Hacks, October
 
 **[Watch Athena working — 3:11 video](https://fuadsn.github.io/athena/)** · [Download MP4](docs/demo/athena-demo.mp4) · [Measured live evidence](docs/live-evidence.json) · [Validation](docs/validation.md)
 
-[Free hosted-demo setup](docs/hosting.md) is available for Render with Gemini. A public interactive deployment and live Gemini verification are pending; the linked recording uses the verified OpenAI configuration.
+[Free hosted-demo setup](docs/hosting.md) is available for Render using the same OpenAI configuration as the recording. Hosting and model provider are configured independently; model API usage is billed by the selected provider. A public interactive deployment is pending.
 
 [![Athena independently verifies a real Workspace Lab resource](docs/demo/poster.jpg)](https://fuadsn.github.io/athena/)
 
